@@ -1,0 +1,42 @@
+\documentclass[10pt]{report}
+
+% Language and input encoding
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% Document settings
+
+\usepackage{titling}
+	\author{Groctel}
+	\title{Aqademia}
+	\date{\today}
+
+\usepackage{hologo}
+\usepackage[title=\thetitle]{aqademia}
+
+% Document composition
+
+\begin{document}
+
+\aqtitlepage{University of GitHub}
+            {A \hologo{XeTeX} template}
+            {https://github.com/Groctel/aqademia}
+\tableofcontents
+
+% Document files
+
+\chapter{Getting to know Aqademia}
+
+\input{input/intro.tex}
+\input{input/dependencies.tex}
+\input{input/building.tex}     \pagebreak
+\input{input/properties.tex}
+
+% Appendices formatting and files
+
+\aqapp{Appendix~}%
+
+\input{input/appendix.tex}
+
+\end{document}

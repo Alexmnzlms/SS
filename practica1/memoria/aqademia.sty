@@ -1,0 +1,204 @@
+\ProvidesPackage{aqademia}
+
+\RequirePackage{titling}
+
+% Package options
+
+\RequirePackage{etoolbox}
+\RequirePackage{kvoptions}
+	\DeclareStringOption[CC]       {ltype}
+	\DeclareStringOption[by-nc-sa] {lmodifier}
+	\DeclareStringOption[4.0]      {lversion}
+
+	\DeclareStringOption[\thetitle]{title}
+	\DeclareStringOption[3]{tab}
+
+	\ProcessKeyvalOptions{aqademia}
+\RequirePackage{xifthen}
+\RequirePackage{xparse}
+
+% Licence options
+
+\RequirePackage[type={\aqademia@ltype},           % Createve commons
+                modifier = {\aqademia@lmodifier}, % Attribution - NonCommercial - ShareAlike
+                version  = {\aqademia@lversion}   % 4.0 International
+               ]{doclicense}
+
+% Fonts
+
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{fontspec}
+	\setmonofont[Ligatures=TeX]{Liberation Mono}
+
+% Physical properties and text shaping and placement
+
+\RequirePackage{vmargin}
+	\setpapersize{A4}
+	\setmarginsrb{2 cm}   % Left margin
+	             {1.5 cm} % Top margin
+	             {2 cm}   % Text width
+	             {1.5 cm} % Text height
+	             {1 cm}   % Header height
+	             {0.5 cm} % Header separation
+	             {0 cm}   % Footer height
+	             {1 cm}   % Footer separation
+\RequirePackage[bottom,   % Push all footnotes to the bottom of the page
+                multiple, % Allow formatting multiple footnotes for a single term
+                norule    % Remove the rule above the footnotes
+               ]{footmisc}
+\RequirePackage{fancyhdr}
+	\pagestyle{fancy}
+	\fancyhf{}
+	\lhead{\aqademia@title}
+	\rhead{\theauthor}
+	\cfoot{\thepage}
+\RequirePackage{titlesec}
+	\titleformat{\chapter}[block]{\normalfont\bfseries\Huge}{Chapter \thechapter:\\}{0pt}{}[]
+	\titleformat{\section}[block]{\normalfont\bfseries\huge}{\S\thesection: }{0pt}{}[]
+	\titleformat{\subsection}[block]{\normalfont\bfseries\Large}{\S\thesubsection: }{0pt}{}[]
+	\titleformat{\subsubsection}[block]{\normalfont\bfseries\large}{\S\thesubsubsection: }{0pt}{}[]
+	\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+\RequirePackage{hyperref}
+	\hypersetup{colorlinks = true,
+	            linkcolor  = black,
+	            filecolor  = black,
+	            urlcolor   = darkgray
+	           }
+\RequirePackage[toc,page]{appendix}
+\RequirePackage{csquotes}
+\RequirePackage{parskip}
+\RequirePackage{url}
+
+% Colour and graphics settings
+
+\RequirePackage{xcolor}
+	\definecolor{listing-background} {HTML} {f7f7f7}
+	\definecolor{listing-numbers}    {HTML} {8e8e8e}
+	\definecolor{listing-text-color} {HTML} {2c2c2c}
+	\definecolor{listing-keyword}    {HTML} {6a2398}
+	\definecolor{listing-keyword-2}  {HTML} {1284CA} % additional keywords
+	\definecolor{listing-keyword-3}  {HTML} {9137CB} % additional keywords
+	\definecolor{listing-identifier} {HTML} {2467be}
+	\definecolor{listing-string}     {HTML} {568a34}
+	\definecolor{listing-comment}    {HTML} {8e8e8e}
+
+% Tables
+
+\RequirePackage{array}
+	% https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
+	\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+	\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+	\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\RequirePackage{booktabs}
+
+% Listings
+
+\RequirePackage{listings}
+	\lstdefinestyle{aqademia-listings}{basicstyle = \color{listing-text-color}\linespread{1.0}\small\ttfamily{},
+	                         backgroundcolor  = \color{listing-background},
+	                         numbers          = left,
+	                         breaklines       = true,
+	                         breakindent      = 0pt,
+	                         frame            = single,
+	                         xleftmargin      = 0cm,
+	                         framexleftmargin = 0.08cm,
+	                         tabsize          = \aqademia@tab,
+	                         numberstyle      = \color{listing-numbers},
+	                         keywordstyle     = {\color{listing-keyword}\bfseries},
+	                         keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+	                         keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+	                         sensitive        = true,
+	                         identifierstyle  = \color{listing-identifier},
+	                         commentstyle     = \color{listing-comment},
+	                         stringstyle      = \color{listing-string},
+	                         showstringspaces = false,
+	                         escapeinside     = {/*@}{@*/}, % Allow LaTeX inside these special comments
+	                         literate         =
+		                         {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'\i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+		                         {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1  {Ó}{{\'O}}1 {Ú}{{\'U}}1
+		                         {à}{{\`a}}1 {è}{{\'e}}1 {ì}{{\`\i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+		                         {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1  {Ò}{{\`O}}1 {Ù}{{\`U}}1
+		                         {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"\i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+		                         {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1  {Ö}{{\"O}}1 {Ü}{{\"U}}1
+		                         {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^\i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+		                         {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1  {Ô}{{\^O}}1 {Û}{{\^U}}1
+		                         {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1  {Æ}{{\AE}}1 {ß}{{\ss}}1
+		                         {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+		                         {€}{{\EUR}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+		                         {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+		                         {…}{{\ldots}}1 {≥}{{>=}}1 {≤}{{<=}}1 {„}{{\glqq}}1 {“}{{\grqq}}1
+		                         {”}{{''}}1
+	                        }
+	\lstset{escapechar=@,style=aqademia-listings}
+
+% Standalone command definitions and redefinitions
+%  \aqappendices -> Start appendix format for the rest of the document
+%	\aqtitle -> Render the title page
+%	\code -> Print text in monospaced font its size scaled down to the regular font size
+
+\NewDocumentCommand{\aqchap}{m}{%
+	\titleformat{\chapter}[block]
+	            {\normalfont\bfseries\Huge}{#1\thechapter:\\}{0pt}{}[]
+}
+
+\NewDocumentCommand{\aqsec}{m}{%
+	\titleformat{\section}[block]
+	            {\normalfont\bfseries\huge}{#1\thesection: }{0pt}{}[]
+}
+
+\NewDocumentCommand{\aqssec}{m}{%
+	\titleformat{\subsection}[block]
+	            {\normalfont\bfseries\Large}{#1\thesubsection: }{0pt}{}[]
+}
+
+\NewDocumentCommand{\aqsssec}{m}{%
+	\titleformat{\subsubsection}[block]
+	            {\normalfont\bfseries\large}{#1\thesubsubsection: }{0pt}{}[]
+}
+
+\NewDocumentCommand{\aqapp}{m}{%
+	\setcounter{chapter}{0}
+	\renewcommand{\thechapter}
+					 {\MakeUppercase{\alph{chapter}}}
+	\renewcommand{\thesection}
+	             {\MakeUppercase{\alph{chapter}}.\arabic{section}}
+	\renewcommand{\thesubsection}
+	             {\MakeUppercase{\alph{chapter}}.\arabic{section}.\arabic{subsection}}
+	\renewcommand{\thesubsubsection}
+	             {\MakeUppercase{\alph{chapter}}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+	\titleformat{\chapter}[block]
+	            {\normalfont\bfseries\Huge}{#1\MakeUppercase{\alph{chapter}}:\\}{0pt}{}[]
+}
+
+\NewDocumentCommand{\aqtitlepage}{O{} O{\theauthor} m m m}{%
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[scale = 0.75]{titlepage.png}\\[0.5cm]
+
+			\ifthenelse{\isempty{#3}}{}
+				{\textsc{\Huge{#3}}\\}
+
+			\ifthenelse{\isempty{#4}}
+				{\rule{\linewidth}{0.2 mm}\\[0.3 cm]}
+				{\rule{\linewidth}{0.2 mm}\\}
+			{\huge\bfseries\thetitle\ifthenelse{\isempty{#4}}{}{ --- #4\\}}
+			\rule{\linewidth}{0.2 mm}\\[1 cm]
+
+			\vfill
+
+			\Large{\textbf{#2}}
+			\ifthenelse{\isempty{#5}}{}
+				{\\[0.1cm]\large{\url{#5}}}\\[0.5 cm]
+			\large{\thedate}\\[1.5 cm]
+		\end{center}
+
+		\ifthenelse{\equal{#1}{nolicense}}
+			{}
+			{\doclicenseThis}
+	\end{titlepage}
+}
+
+\NewDocumentCommand{\code}{m}{%
+	\begingroup\fontsize{9pt}{12pt}\selectfont\texttt{#1}\endgroup
+}
