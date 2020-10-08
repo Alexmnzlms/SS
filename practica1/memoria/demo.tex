@@ -1,42 +1,33 @@
-\documentclass[10pt]{report}
+\documentclass[10pt, a4paper]{aqademic}
 
 % Language and input encoding
 
 \usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
+\selectlanguage{spanish}
 
 % Document settings
 
-\usepackage{titling}
-	\author{Groctel}
-	\title{Aqademia}
-	\date{\today}
+\usepackage[type=CC, modifier=by-nc-sa, version=4.0]{doclicense}
+\usepackage{graphicx}
+	\graphicspath{{img/}}
+\usepackage{multirow}
 
-\usepackage{hologo}
-\usepackage[title=\thetitle]{aqademia}
+\author{Alejandro Manzanares Lemus}
+\title{Práctica 1}
 
 % Document composition
 
 \begin{document}
 
-\aqtitlepage{University of GitHub}
-            {A \hologo{XeTeX} template}
-            {https://github.com/Groctel/aqademia}
+\AqMaketitle[cover    = cover,
+             org      = Simulación de Sistemas,
+             subtitle = ,
+             url      = alexmnzlms@correo.ugr.es]
 \tableofcontents
 
 % Document files
 
 \chapter{Getting to know Aqademia}
-
-\input{input/intro.tex}
-\input{input/dependencies.tex}
-\input{input/building.tex}     \pagebreak
-\input{input/properties.tex}
-
-% Appendices formatting and files
-
-\aqapp{Appendix~}%
-
-\input{input/appendix.tex}
+	\input{input/aparcamiento.tex}
 
 \end{document}
