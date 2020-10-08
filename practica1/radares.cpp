@@ -146,26 +146,26 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	else if (argc == 8)
-	      {
-	      	total_radares = atoi(argv[1]);
+	{
+	   total_radares = atoi(argv[1]);
 		total_reserva = atoi(argv[2]);
 		vmin = atof(argv[3]);
 		vmax = atof(argv[4]);
 		tfallo = atof(argv[5]);
-	       	tiempo_total = atof(argv[6]);
+	   tiempo_total = atof(argv[6]);
 		simulaciones = atoi(argv[7]);
-	      }
-	      else
-	         {
-	  		total_radares = 5;
-			total_reserva = atoi(argv[1]);
-			vmin = 15.0;
-			vmax = 30.0;
-			tfallo = 20.0;
-			tiempo_total = 365.0;
-			simulaciones = atoi(argv[2]);
-		 }
-	
+	}
+	else
+	{
+		total_radares = 5;
+		total_reserva = atoi(argv[1]);
+		vmin = 15.0;
+		vmax = 30.0;
+		tfallo = 20.0;
+		tiempo_total = 365.0;
+		simulaciones = atoi(argv[2]);
+	}
+
 
 	/* Defino una variable de tipo reloj para guardar el instante en el que comienza la ejecucion para saber al final cuanto tarda en ejecutarse */
 	clock_t j,fin;
