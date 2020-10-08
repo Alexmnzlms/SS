@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+*_exe
+
+*.aux
+*.log
+*.toc
