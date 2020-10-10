@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
       for (posicion=posicion_inicial; !stop; posicion+=(vision+1)) //si no se aparca en las posiciones posicion..posicion+vision se salta a posicion+vision+1.
       {
         if (posicion <= (destino-vision))
+        {
           for (j=0; ((!stop) && (j<(vision+1))); j++)
           {
             plazalibre = generar_dato();
@@ -85,44 +86,24 @@ int main(int argc, char *argv[])
               stop = true;
             }// if
           }// for j
-      else if (posicion < destino) // en ese caso es (destino-vision < posicion < destino)
-                                 //veo la posicion de destino
-      {
-        plazalibre = generar_dato();
-        if (plazalibre) //si está libre la plaza destino, aparco alli
+        }
+        else if (posicion < destino) // en ese caso es (destino-vision < posicion < destino)
+                                     //veo la posicion de destino
         {
-          aparca = destino;
-          distancia = 0;
-          stop = true;
-        }// if
-        else //intento aparcar lo mas cerca de destino, a izquierda y derecha
-        {
-          distanciaactual = destino-posicion; //hay ese numero de posibilidades a la izquierda de destino
-          cuantosmepuedopasar = vision-distanciaactual; //hay ese numero de posibilidades a la derecha de destino
-          if (cuantosmepuedopasar < distanciaactual) //hay mas plazas a izquierda
+          plazalibre = generar_dato();
+          if (plazalibre) //si está libre la plaza destino, aparco alli
           {
-            for (j=1; ((!stop)&&(j<(cuantosmepuedopasar+1))); j++)
+            aparca = destino;
+            distancia = 0;
+            stop = true;
+          }// if
+          else //intento aparcar lo mas cerca de destino, a izquierda y derecha
+          {
+            distanciaactual = destino-posicion; //hay ese numero de posibilidades a la izquierda de destino
+            cuantosmepuedopasar = vision-distanciaactual; //hay ese numero de posibilidades a la derecha de destino
+            if (cuantosmepuedopasar < distanciaactual) //hay mas plazas a izquierda
             {
-              plazalibre = generar_dato();
-              if (plazalibre) // aparca a la izquierda
-              {
-                aparca = destino-j;
-                distancia = j;
-                stop = true;
-              }// if
-              else
-              {
-                plazalibre = generar_dato();
-                if (plazalibre) // aparca a la derecha
-                {
-                  aparca = destino+j;
-                  distancia = j;
-                  stop = true;
-                }// if
-              }// else
-            }// for j
-            if (!stop) //no he aparcado, tengo que mirar las posiciones restantes a la izquierda, empezando por la mas cercana a destino
-              for (j=(cuantosmepuedopasar+1); ((!stop)&&(j<(distanciaactual+1))); j++)
+              for (j=1; ((!stop)&&(j<(cuantosmepuedopasar+1))); j++)
               {
                 plazalibre = generar_dato();
                 if (plazalibre) // aparca a la izquierda
@@ -131,55 +112,82 @@ int main(int argc, char *argv[])
                   distancia = j;
                   stop = true;
                 }// if
+                else
+                {
+                  plazalibre = generar_dato();
+                  if (plazalibre) // aparca a la derecha
+                  {
+                    aparca = destino+j;
+                    distancia = j;
+                    stop = true;
+                  }// if
+                }// else
               }// for j
-          }// if cuantosmepuedopasar
-          else // en ese caso distanciaactual <= cuantosmepuedopasar, hay mas plazas a la derecha
-          {
-            for (j=1; ((!stop)&&(j<(distanciaactual+1))); j++)
+              if (!stop) //no he aparcado, tengo que mirar las posiciones restantes a la izquierda, empezando por la mas cercana a destino
+              {
+                for (j=(cuantosmepuedopasar+1); ((!stop)&&(j<(distanciaactual+1))); j++)
+                {
+                  plazalibre = generar_dato();
+                  if (plazalibre) // aparca a la izquierda
+                  {
+                    aparca = destino-j;
+                    distancia = j;
+                    stop = true;
+                  }// if
+                }// for j
+              }
+            }// if cuantosmepuedopasar
+            else // en ese caso distanciaactual <= cuantosmepuedopasar, hay mas plazas a la derecha
             {
-              plazalibre = generar_dato();
-              if (plazalibre) // aparca a la izquierda
-              {
-                aparca = destino-j;
-                distancia = j;
-                stop = true;
-              }// if
-              else
+              for (j=1; ((!stop)&&(j<(distanciaactual+1))); j++)
               {
                 plazalibre = generar_dato();
-                if (plazalibre) // aparca a la derecha
+                if (plazalibre) // aparca a la izquierda
                 {
-                  aparca = destino+j;
+                  aparca = destino-j;
                   distancia = j;
                   stop = true;
                 }// if
-              }// else
-            }// for j
-            if (!stop) //no he aparcado, tengo que mirar las posiciones restantes a la derecha, empezando por la mas cercana a destino
-              for (j=(distanciaactual+1); ((!stop)&&(j<(cuantosmepuedopasar+1))); j++)
-              {
-                plazalibre = generar_dato();
-                if (plazalibre) // aparca a la derecha
+                else
                 {
-                  aparca = destino+j;
-                  distancia = j;
-                  stop = true;
-                }// if
+                  plazalibre = generar_dato();
+                  if (plazalibre) // aparca a la derecha
+                  {
+                    aparca = destino+j;
+                    distancia = j;
+                    stop = true;
+                  }// if
+                }// else
               }// for j
+              if (!stop) //no he aparcado, tengo que mirar las posiciones restantes a la derecha, empezando por la mas cercana a destino
+              {
+                for (j=(distanciaactual+1); ((!stop)&&(j<(cuantosmepuedopasar+1))); j++)
+                {
+                  plazalibre = generar_dato();
+                  if (plazalibre) // aparca a la derecha
+                  {
+                    aparca = destino+j;
+                    distancia = j;
+                    stop = true;
+                  }// if
+                }// for j
+              }
+            }// else
           }// else
-        }// else
-      }// if posicion < destino
-      else // en ese caso es (posicion >= destino), me estoy pasando
-        for (j=0; ((!stop)&&(j<(vision+1))); j++)
+        }// if posicion < destino
+        else // en ese caso es (posicion >= destino), me estoy pasando
         {
-          plazalibre = generar_dato();
-          if (plazalibre) //intento aparcar lo mas cerca de destino, la posicion mas pequeña posible
+          for (j=0; ((!stop)&&(j<(vision+1))); j++)
           {
-            aparca = posicion+j;
-            distancia = aparca-destino;
-            stop = true;
-          }// if
-        }// for j
+            plazalibre = generar_dato();
+            if (plazalibre) //intento aparcar lo mas cerca de destino, la posicion mas pequeña posible
+            {
+              aparca = posicion+j;
+              distancia = aparca-destino;
+              stop = true;
+            }// if
+          }// for j
+        }
       }// for posicion
       distanciaacumulada += distancia;
       distancia2 += distancia*distancia;
