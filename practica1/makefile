@@ -1,7 +1,8 @@
 STD = -std=c++20
-
+SRC = src
+BIN = bin
 
 all:
-	g++ -o aparcamiento_exe aparcamiento.cpp $(STD)
-	g++ -o radares_exe radares.cpp $(STD)
-	g++ -o simulacion_lago2especiespeces_exe simulacion_lago2especiespeces.cpp $(STD)
+	g++ -o $(BIN)/aparcamiento_exe $(SRC)/aparcamiento.cpp $(STD)
+	g++ -o $(BIN)/radares_exe $(SRC)/radares.cpp $(STD)
+	g++ -o $(BIN)/simulacion_lago2especiespeces_exe $(SRC)/simulacion_lago2especiespeces.cpp $(STD)
