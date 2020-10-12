@@ -19,18 +19,22 @@ printf "Posición objetivo: $objetivo\n"
 printf "Visión del conductor: $vision\n"
 printf "Prob. de sitio ocupado: $prob_ocupado\n"
 
-fichero="../datos/aparcamiento_${num_veces}_${objetivo}_${vision}_${prob_ocupado}.data"
+fichero="../data/aparcamiento_${num_veces}_${objetivo}_${vision}_${prob_ocupado}.data"
 
 touch $fichero
 
 
-if [ ! -e ../bin/aparcamiento ]; then
+if [ ! -e ../bin/aparcamiento_exe ]; then
 	printf "Compilando binario\n"
-	cd .. && make bin/aparcamiento
+	cd .. && make bin/aparcamiento_exe
 	cd scripts
 fi
 
-output=$(../bin/aparcamiento $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -e desv.tipica\ \[0-9\.\]\* -o)
+output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -e desv.tipica\ \[0-9\.\]\* -o)
+
+#../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado
+
+#echo $output
 
 printf "# Pos. I.\tMedia\tDesv. tipica\n" > $fichero
 
@@ -38,6 +42,9 @@ printf "# Pos. I.\tMedia\tDesv. tipica\n" > $fichero
 for i in {0..100}; do
 
 	unica_linea=$(echo $output | grep -e inicial:\ \($i\)\ media\ \[0-9\.\]\*\ desv.tipica\ \[0-9\.\]\* -o)
+
+#	echo $unica_linea
+#	echo \n
 
 	printf "$i\t" >> $fichero
 	awk '{print $4,"\t",$6}' <<< $unica_linea >> $fichero
