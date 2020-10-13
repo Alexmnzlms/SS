@@ -30,7 +30,9 @@ if [ ! -e ../bin/aparcamiento_exe ]; then
 	cd scripts
 fi
 
-output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -e desv.tipica\ \[0-9\.\]\* -o)
+#output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -e desv.tipica\ \[0-9\.\]\* -o)
+
+output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -o)
 
 #../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado
 
@@ -38,10 +40,13 @@ output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | gr
 
 printf "# Pos. I.\tMedia\tDesv. tipica\n" > $fichero
 
+printf "" > $fichero
 
-for i in {0..100}; do
+for i in $(seq 0 $objetivo); do
 
-	unica_linea=$(echo $output | grep -e inicial:\ \($i\)\ media\ \[0-9\.\]\*\ desv.tipica\ \[0-9\.\]\* -o)
+#	unica_linea=$(echo $output | grep -e inicial:\ \($i\)\ media\ \[0-9\.\]\*\ desv.tipica\ \[0-9\.\]\* -o)
+
+	unica_linea=$(echo $output | grep -e inicial:\ \($i\)\ media\ \[0-9\.\]\* -o)
 
 #	echo $unica_linea
 #	echo \n
@@ -50,3 +55,7 @@ for i in {0..100}; do
 	awk '{print $4,"\t",$6}' <<< $unica_linea >> $fichero
 
 done
+
+awk 'END { print min} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "out/min_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
+
+awk 'END { print s} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "out/min_linea_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
