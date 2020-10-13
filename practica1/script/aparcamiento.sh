@@ -52,10 +52,10 @@ for i in $(seq 0 $objetivo); do
 #	echo \n
 
 	printf "$i\t" >> $fichero
-	awk '{print $4,"\t",$6}' <<< $unica_linea >> $fichero
+	awk '{print $4}' <<< $unica_linea >> $fichero
 
 done
 
-awk 'END { print min} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "out/min_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
+awk 'END { print min} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "../data/out/min_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
 
-awk 'END { print s} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "out/min_linea_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
+awk 'END { print s} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "../data/out/min_linea_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"

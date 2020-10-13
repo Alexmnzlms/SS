@@ -27,6 +27,11 @@ set ylabel "Distancia minima al objetivo"
 set output "../memoria/img/min_simulaciones_aparcamiento.png"
 plot "../data/aparcamiento_veces_min.data" with linespoints title "Distancia minima al objetivo"
 
+set xlabel "Ejecución de la simulación"
+set ylabel "Distancia minima al objetivo"
+set output "../memoria/img/min_ejecuciones_aparcamiento.png"
+plot "../data/aparcamiento_ejecuciones_min.data" with linespoints title "Distancia minima al objetivo"
+
 set yrange [0:100]
 set xlabel "Probabilidad de aparcamiento"
 set ylabel "Posición inicial (c)"
@@ -45,5 +50,8 @@ set ylabel "Posicion inicial (c)"
 set output "../memoria/img/min_c_simulaciones_aparcamiento.png"
 plot "../data/aparcamiento_veces_min_linea.data" with linespoints title "Posición (c) donde se alcanza la distancia mínima"
 
-
-
+set yrange[0:100]
+set xlabel "Ejecución de la simulación"
+set ylabel "Posicion inicial (c)"
+set output "../memoria/img/min_c_ejecuciones_aparcamiento.png"
+plot "../data/aparcamiento_ejecuciones_min_linea.data" with linespoints title "Posicion (c) donde se alcanza la distancia mínima"
