@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [ ! -e ../bin/radares ]; then
+if [ ! -e ../bin/radares_exe ]; then
 	printf "Compilando ../bin/radares\n"
 	cd ..
-	make bin/radares
+	make bin/radares_exe
 	cd scripts
 fi
 
@@ -19,12 +19,12 @@ elif [ $# -eq 7 ]; then
 	tiempo_fin=$6
 	num_simulaciones=$7
 else
-	../bin/radares
+	../bin/radares_exe
 	exit
 fi
 
 
-ejecucion=$(../bin/radares $@)
+ejecucion=$(../bin/radares_exe $@)
 
 
 medias=$(echo $ejecucion | grep -o -e media\ \[a-z\:\ \]\*\ \[0-9\.\]\*)
@@ -57,7 +57,9 @@ if ! [[ $desv_p_desproteccion =~ $is_num_regex ]]; then
 	desv_p_desproteccion=0
 fi
 
-printf "$num_repuestos\t$num_simulaciones\t$media_fallos\t$media_t_desproteccion\t$media_p_desproteccion\t$desv_num_fallos\t$desv_t_desproteccion\t$desv_p_desproteccion\n"
+printf "$num_repuestos,$num_simulaciones,$media_fallos,$media_t_desproteccion,$media_p_desproteccion,$desv_num_fallos,$desv_t_desproteccion,$desv_p_desproteccion\n"
+
+
 
 
 

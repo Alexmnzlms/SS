@@ -25,7 +25,13 @@ tabla="../data/aparcamiento_prob_tabla.csv"
 
 touch $tabla
 
-echo -n "" > $tabla
+echo -n "," > $tabla
+
+for i in $(seq 0.1 0.1 0.9); do
+	echo -n "$i," >> $tabla
+done
+
+echo "" >> $tabla
 
 for i in $(seq 0 100); do
 
@@ -65,7 +71,13 @@ tabla="../data/aparcamiento_vision_tabla.csv"
 
 touch $tabla
 
-echo -n "" > $tabla
+echo -n "," > $tabla
+
+for i in $(seq 1 1 10); do
+	echo -n "$i," >> $tabla
+done
+
+echo "" >> $tabla
 
 for i in $(seq 0 100); do
 
@@ -106,7 +118,14 @@ tabla="../data/aparcamiento_veces_tabla.csv"
 
 touch $tabla
 
-echo -n "" > $tabla
+echo -n "," > $tabla
+
+for i in 10 100 1000 10000 100000; do
+	echo -n "$i," >> $tabla
+done
+
+echo "" >> $tabla
+
 
 for i in $(seq 0 100); do
 
@@ -148,8 +167,16 @@ tabla2="../data/aparcamiento_prob_vision_posicion_tabla.csv"
 touch $tabla
 touch $tabla2
 
-echo -n "" > $tabla
-echo -n "" > $tabla2
+echo -n "," > $tabla
+echo -n "," > $tabla2
+
+for i in $(seq 0.1 0.1 0.9); do
+	echo -n "$i," >> $tabla
+	echo -n "$i," >> $tabla2
+done
+
+echo "" >> $tabla
+echo "" >> $tabla2
 
 for i in $(seq 1 1 10); do
 

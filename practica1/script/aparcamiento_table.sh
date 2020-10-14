@@ -71,7 +71,13 @@ tabla="../data/aparcamiento_ejecuciones_tabla.csv"
 
 touch $tabla
 
-echo -n "" > $tabla
+echo -n "," > $tabla
+
+for i in $(seq 0 1 9); do
+	echo -n "$i," >> $tabla
+done
+
+echo "" >> $tabla
 
 for i in $(seq 0 $objetivo); do
 
