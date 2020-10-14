@@ -131,6 +131,17 @@ for i in $(seq 1 1 10); do
 	done
 done
 
+echo -n "" > "../data/aparcamiento_prob_vision_distancia.data"
+echo -n "" > "../data/aparcamiento_prob_vision_distancia_linea.data"
+for i in $(seq 1 1 10); do
+	for j in $(seq 0.1 0.1 0.9); do
+		echo -n "${j} ${i} " >> "../data/aparcamiento_prob_vision_distancia.data"
+		echo -n "${j} ${i} " >> "../data/aparcamiento_prob_vision_distancia_linea.data"
+		cat "../data/out/min_100000_100_${i}_${j}" >> "../data/aparcamiento_prob_vision_distancia.data"
+		cat "../data/out/min_linea_100000_100_${i}_${j}" >> "../data/aparcamiento_prob_vision_distancia_linea.data"
+	done
+done
+
 tabla="../data/aparcamiento_prob_vision_distancia_tabla.csv"
 tabla2="../data/aparcamiento_prob_vision_posicion_tabla.csv"
 

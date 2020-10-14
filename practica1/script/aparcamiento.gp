@@ -32,6 +32,23 @@ set ylabel "Distancia minima al objetivo"
 set output "../memoria/img/min_ejecuciones_aparcamiento.png"
 plot "../data/aparcamiento_ejecuciones_min.data" with linespoints title "Distancia minima al objetivo"
 
+set xlabel ""
+set ylabel ""
+set zlabel ""
+set view 60,210
+set dgrid3d splines
+set output "../memoria/img/aparcamiento_pob_vision_distancia.png"
+splot "../data/aparcamiento_prob_vision_distancia.data" with lines title ""
+
+set xlabel ""
+set ylabel ""
+set zlabel ""
+set view 60,210
+set dgrid3d splines
+set output "../memoria/img/aparcamiento_pob_vision_distancia_linea.png"
+splot "../data/aparcamiento_prob_vision_distancia_linea.data" with lines title ""
+
+
 set yrange [0:100]
 set xlabel "Probabilidad de aparcamiento"
 set ylabel "Posición inicial (c)"
