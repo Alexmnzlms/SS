@@ -51,7 +51,7 @@ for i in $(seq 0 $objetivo); do
 #	echo $unica_linea
 #	echo \n
 
-	printf "$i\t" >> $fichero
+	printf "$i " >> $fichero
 	awk '{print $4}' <<< $unica_linea >> $fichero
 
 done

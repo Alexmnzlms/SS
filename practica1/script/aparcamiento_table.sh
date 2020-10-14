@@ -25,7 +25,7 @@ if [ ! -e ../bin/aparcamiento_exe ]; then
 	cd scripts
 fi
 
-echo -n "" > ../data/aparcamiento_ejecuciones_min_table.csv
+echo -n "" > ../data/aparcamiento_ejecuciones_min_tabla.csv
 echo -n "" > ../data/aparcamiento_ejecuciones_min.data
 echo -n "" > ../data/aparcamiento_ejecuciones_min_linea.data
 
@@ -56,12 +56,12 @@ for i in $(seq 0 1 9); do
 	awk 'END { print s} { min || min = $2; s || s = NR; if ($2 < min) {min=$2; s=NR} }' <<< cat $fichero > "../data/out/min_linea_${i}_${num_veces}_${objetivo}_${vision}_${prob_ocupado}"
 
 
-	echo -n "${i};" >> ../data/aparcamiento_ejecuciones_min_table.csv
+	echo -n "${i}," >> ../data/aparcamiento_ejecuciones_min_tabla.csv
 	echo -n "${i} " >> ../data/aparcamiento_ejecuciones_min.data
 	echo -n "${i} " >> ../data/aparcamiento_ejecuciones_min_linea.data
-	cat "../data/out/min_${i}_100000_100_2_0.9" | tr '\n' ';'>> ../data/aparcamiento_ejecuciones_min_table.csv
+	cat "../data/out/min_${i}_100000_100_2_0.9" | tr '\n' ','>> ../data/aparcamiento_ejecuciones_min_tabla.csv
 	cat "../data/out/min_${i}_100000_100_2_0.9" >> ../data/aparcamiento_ejecuciones_min.data
-	cat "../data/out/min_linea_${i}_100000_100_2_0.9" >> ../data/aparcamiento_ejecuciones_min_table.csv
+	cat "../data/out/min_linea_${i}_100000_100_2_0.9" >> ../data/aparcamiento_ejecuciones_min_tabla.csv
 	cat "../data/out/min_linea_${i}_100000_100_2_0.9" >> ../data/aparcamiento_ejecuciones_min_linea.data
 
 done
