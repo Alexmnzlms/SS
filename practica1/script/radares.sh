@@ -22,12 +22,20 @@ for i in 1 5 10 50 100 500 1000; do
 	done
 done
 
-for i in $(seq 0 15 45); do
-	inc=15
-	sig=$(($i + $inc))
+for n in {0..25}; do
+	for i in $(seq 0 15 45); do
+		inc=15
+		sig=$(($i + $inc))
 
-	for j in $(seq 0 20 60); do
-		./ejecucion_radar.sh 5 5 $i $sig $j 365 1000 >> "../data/radares_1000_${i}_${sig}_${j}.data"
+		for j in $(seq 0 20 60); do
+			./ejecucion_radar.sh 5 $n $i $sig $j 365 1 >> "../data/radares_${i}_${sig}_${j}.data"
+			linea=$(cat "../data/radares_${i}_${sig}_${j}.data" | grep -e ^$n, )
+			echo $linea
+			echo -n "${n} " >> "../data/radares_${i}_${sig}_${j}_prob.data"
+			echo -n "${n} " >> "../data/radares_${i}_${sig}_${j}_tiempo.data"
+			awk 'BEGIN{FS=","; OFS=" "}{print $5}' <<< $linea >> "../data/radares_${i}_${sig}_${j}_prob.data"
+			awk 'BEGIN{FS=","; OFS=" "}{print $4}' <<< $linea >> "../data/radares_${i}_${sig}_${j}_tiempo.data"
+		done
 	done
 done
 
