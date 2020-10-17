@@ -1,3 +1,5 @@
+*.png
+!./practica1/memoria/img/cover.png
 *.csv
 *.data
 
