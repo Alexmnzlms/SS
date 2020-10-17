@@ -37,6 +37,9 @@ double *  __y = new double[1];
 double *  x_aux = new double[1];
 double *  y_aux = new double[1];
 
+int pesca;
+double proporcion;
+int periodo;
 
 
 // Functions for variables higher derivative calculation
@@ -113,7 +116,17 @@ void  resolver (double _t0, double _tf, double * _res ){
 }
 
 // Main: execution (with text interface) of the model's simulation.
-int main(){
+int main(int argc, char * argv[]){
+
+  if(argc != 3){
+    pesca = 0;
+    periodo = 1;
+    proporcion = 0.0;
+  } else {
+    pesca = 0;
+    periodo = atoi(argv[1]);
+    proporcion = stod(argv[2]);
+  }
 //	cerr << " tinicio => ";
 //	cin >> _tinicio;
 //	cout << " tinicio " << _tinicio << endl;
@@ -184,11 +197,15 @@ int main(){
 
 	for(double t=_tinicio ; t < (_tfin-10e-8) ; t += inc ){
 		resolver( t, t + inc, aux );
-      if((int)t > 0 && __y[0] > 1000){
-        __y[0]=100;
+      if((int)t % periodo == 0 && (int)t > 0 && __y[0] > 0){
+        __y[0]*= (1.0 - proporcion);
+        pesca += (proporcion*__y[0]);
       }
 		cout << "\t" << aux[0]<< "\t" << aux[1]<< "\t" << aux[2]<< endl;
 	}
+   cout << "Pesca = " << pesca << endl;
+   cout << "Periodo= " << periodo << endl;
+   cout << "Proprocion= " << proporcion << endl;
 }
 
 
