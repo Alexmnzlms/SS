@@ -22,12 +22,24 @@ for i in 1 5 10 50 100 500 1000; do
 	done
 done
 
+
+for i in $(seq 0 15 45); do
+	inc=15
+	sig=$(($i + $inc))
+
+	for j in $(seq 20 20 60); do
+		echo -n "" > "../data/radares_${i}_${sig}_${j}_prob.data"
+		echo -n "" > "../data/radares_${i}_${sig}_${j}_tiempo.data"
+		echo -n "" > "../data/radares_${i}_${sig}_${j}.data"
+	done
+done
+
 for n in {0..25}; do
 	for i in $(seq 0 15 45); do
 		inc=15
 		sig=$(($i + $inc))
 
-		for j in $(seq 0 20 60); do
+		for j in $(seq 20 20 60); do
 			./ejecucion_radar.sh 5 $n $i $sig $j 365 1 >> "../data/radares_${i}_${sig}_${j}.data"
 			linea=$(cat "../data/radares_${i}_${sig}_${j}.data" | grep -e ^$n, )
 			echo $linea
@@ -38,5 +50,26 @@ for n in {0..25}; do
 		done
 	done
 done
+
+tabla="../data/radares_tabla_multiple.csv"
+echo -n "" > $tabla
+
+for n in {0..25}; do
+	echo -n "${n}," >> $tabla
+	for i in $(seq 0 15 45); do
+		inc=15
+		sig=$(($i + $inc))
+
+		for j in $(seq 20 20 60); do
+			tiempo=$(cat "../data/radares_${i}_${sig}_${j}_tiempo.data" | grep -e ^$n\ )
+			prob=$(cat "../data/radares_${i}_${sig}_${j}_prob.data" | grep -e ^$n\ )
+			awk '{printf "%f,", $2}' <<< $tiempo >> $tabla
+			awk '{printf "%f,", $2}' <<< $prob >> $tabla
+		done
+	done
+	echo "" >> $tabla
+done
+
+rm -f ../data/*.data
 
 gnuplot radares.gp
