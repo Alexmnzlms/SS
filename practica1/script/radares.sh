@@ -80,4 +80,4 @@ done
 
 gnuplot radares.gp
 
-rm -f ../data/*.data
+#rm -f ../data/*.data

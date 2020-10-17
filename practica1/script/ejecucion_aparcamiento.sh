@@ -204,5 +204,5 @@ rm -rf out ../data/out
 
 gnuplot aparcamiento.gp
 
-rm -f ../data/*.data
+#rm -f ../data/*.data
 

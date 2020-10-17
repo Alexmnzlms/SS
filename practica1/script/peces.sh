@@ -38,4 +38,4 @@ done
 
 gnuplot peces.gp
 
-rm ../data/*.data
+#rm ../data/*.data

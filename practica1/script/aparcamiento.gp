@@ -1,4 +1,4 @@
-set terminal png size 1920,1080
+set terminal pngcairo size 960,540
 
 set xlabel "Posición inicial (c)"
 set ylabel "Distancia media al objetivo"
@@ -32,21 +32,22 @@ set ylabel "Distancia minima al objetivo"
 set output "../memoria/img/min_ejecuciones_aparcamiento.png"
 plot "../data/aparcamiento_ejecuciones_min.data" with linespoints title "Distancia minima al objetivo"
 
-set xlabel ""
-set ylabel ""
-set zlabel ""
+set ylabel "Visión del conductor"
+set xlabel "Probabilidad de aparcamiento"
+set zlabel "Distancia minima al objetivo" rotate by 90
 set view 60,210
 set dgrid3d splines
 set output "../memoria/img/aparcamiento_pob_vision_distancia.png"
-splot "../data/aparcamiento_prob_vision_distancia.data" with lines title ""
+splot "../data/aparcamiento_prob_vision_distancia.data" with lines title "Mapa 3D distancia minima al objetivo variando visión y probabilidad de aparcamiento"
 
-set xlabel ""
-set ylabel ""
-set zlabel ""
+
+set ylabel "Visión del conductor"
+set xlabel "Probabilidad de aparcamiento"
+set zlabel "Posicion inicial(c)" rotate by 90
 set view 60,210
 set dgrid3d splines
 set output "../memoria/img/aparcamiento_pob_vision_distancia_linea.png"
-splot "../data/aparcamiento_prob_vision_distancia_linea.data" with lines title ""
+splot "../data/aparcamiento_prob_vision_distancia_linea.data" with lines title "Mapa 3D posicion inicial (c) donde la distancia al objetivo es minima variando visión y probabilidad de aparcamiento"
 
 
 set yrange [0:100]
