@@ -27,7 +27,7 @@ touch $fichero
 if [ ! -e ../bin/aparcamiento_exe ]; then
 	printf "Compilando binario\n"
 	cd .. && make bin/aparcamiento_exe
-	cd scripts
+	cd script
 fi
 
 #output=$(../bin/aparcamiento_exe $num_veces $objetivo $vision $prob_ocupado | grep -e inicial:\ \(\[0-9\]\*\) -e media\ \[0-9\.\]\* -e desv.tipica\ \[0-9\.\]\* -o)

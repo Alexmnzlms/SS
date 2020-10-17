@@ -40,7 +40,7 @@ for n in {0..25}; do
 		sig=$(($i + $inc))
 
 		for j in $(seq 20 20 60); do
-			./ejecucion_radar.sh 5 $n $i $sig $j 365 1 >> "../data/radares_${i}_${sig}_${j}.data"
+			./ejecucion_radar.sh 5 $n $i $sig $j 365 500 >> "../data/radares_${i}_${sig}_${j}.data"
 			linea=$(cat "../data/radares_${i}_${sig}_${j}.data" | grep -e ^$n, )
 			echo $linea
 			echo -n "${n} " >> "../data/radares_${i}_${sig}_${j}_prob.data"
@@ -52,8 +52,16 @@ for n in {0..25}; do
 done
 
 tabla="../data/radares_tabla_multiple.csv"
-echo -n "" > $tabla
+echo -n "Numero de repuestos," > $tabla
 
+for i in $(seq 0 15 45); do
+	inc=15
+	sig=$(($i + $inc))
+	for j in $(seq 20 20 60); do
+		echo -n "Tiempo de fallo para tiempo de reparacion de: ${i}-${sig} dias y vida util de: ${j} dias," >> $tabla
+		echo -n "Probabilidad de fallo para tiempo de reparacion de: ${i}-${sig} dias y vida util de: ${j} dias," >> $tabla
+	done
+done
 for n in {0..25}; do
 	echo -n "${n}," >> $tabla
 	for i in $(seq 0 15 45); do
@@ -70,6 +78,6 @@ for n in {0..25}; do
 	echo "" >> $tabla
 done
 
-rm -f ../data/*.data
-
 gnuplot radares.gp
+
+rm -f ../data/*.data

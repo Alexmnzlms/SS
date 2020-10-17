@@ -184,6 +184,9 @@ int main(){
 
 	for(double t=_tinicio ; t < (_tfin-10e-8) ; t += inc ){
 		resolver( t, t + inc, aux );
+      if((int)t > 0 && __y[0] > 1000){
+        __y[0]=100;
+      }
 		cout << "\t" << aux[0]<< "\t" << aux[1]<< "\t" << aux[2]<< endl;
 	}
 }
