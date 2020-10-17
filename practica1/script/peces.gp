@@ -37,7 +37,7 @@ do for [i in "30 60 180 365"] {
 		set lmargin at screen 0.1
 		set rmargin at screen 0.9
 
-		set terminal pngcairo size 1920,1080
+		set terminal pngcairo size 960,540
 		set output "../memoria/img/pesca_".i."_".j.".png"
 		set title "Simulación del lago con una pesca de ".j." cada ".i." dias durante 10 años."
 		set xlabel "Tiempo en días"
