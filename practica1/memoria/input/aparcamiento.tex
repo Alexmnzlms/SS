@@ -1,5 +1,5 @@
 \chapter{Simulador de aparcamiento}
-El simulador de aparcamiento consiste en un sistema que simula un conductor que debe aparcar su coche en una calle infinitamente larga lo mas cerca posible de una posición objetivo. Para todas las pruebas realizadas se ha considerado 100 como posición objetivo en la que se desea aparcar. Para simular este sistemas, podemos establecer la probabilidad de que el conductor encuentre la plaza ocupada, asi como la distancia de visión que posee y el numero de simulaciones que se realizan.
+El simulador de aparcamiento consiste en un sistema que simula un conductor que debe aparcar su coche en una calle infinitamente larga lo mas cerca posible de una posición objetivo. Para todas las pruebas realizadas se ha considerado 100 como posición objetivo en la que se desea aparcar. Para simular este sistemas, podemos establecer la probabilidad de que el conductor encuentre la plaza ocupada, así como la distancia de visión que posee y el numero de simulaciones que se realizan.
 \section{Múltiples ejecuciones}
 En la primera prueba, ejecutamos el simulador un total de 10 veces, para comprobar los resultados obtenidos. Podemos ver en la siguiente tabla la distancia mínima a la posición objetivo ---recordemos que esta posición es la número 100--- así como la posición a partir de la cual empezó a buscar aparcamiento. Para cada iteración del simulador se han realizado 100000 simulaciones.
 % Please add the following required packages to your document preamble:
@@ -9,7 +9,7 @@ En la primera prueba, ejecutamos el simulador un total de 10 veces, para comprob
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Iteracion de la simulación} & \textbf{Distancia mínima al objetivo} & \textbf{Posicion inicial (c)} \\ \hline
+\textbf{Iteración de la simulación} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
 0 & 6.554650 & 96 \\
 1 & 6.514790 & 95 \\
 2 & 6.521850 & 94 \\
@@ -51,7 +51,7 @@ Primeramente realizamos la prueba variando el parámetro de la probabilidad de q
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Probabilidad de ocupación} & \textbf{Distancia minima al objetivo} & \textbf{Posicion inicial (c)} \\ \hline
+\textbf{Probabilidad de ocupación} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
 
 0.1 & 0.101910 & 100 \\
 0.2 & 0.210680 & 100 \\
@@ -66,7 +66,7 @@ Primeramente realizamos la prueba variando el parámetro de la probabilidad de q
 }
 \end{table}
 
-Para una probabilidad inferior al 50\%, podemos observar como la mejor distancia se obtiene empezando a busca aparcamiento justo cuando alcanzamos la posición objetivo, mientras que cuando la probabilidad aumenta, debemos ser mas precavidos y empezar a buscar plaza antes de llegar a nuestro objetivo.
+Para una probabilidad inferior al 50\%, podemos observar como la mejor distancia se obtiene empezando a buscar aparcamiento justo cuando alcanzamos la posición objetivo, mientras que cuando la probabilidad aumenta, debemos ser mas precavidos y empezar a buscar plaza antes de llegar a nuestro objetivo.
 
 En la gráfica siguiente se puede observar como para los distintos valores de probabilidad, cuando antes se empieza a buscar aparcamiento, más lejos se aparca del objetivo, mientras que cuanto mas esperamos a empezar a buscar, mejor resultado se obtiene, excepto cuando la probabilidad pasa el 50\%. En este caso, podemos ver como al curva es ascendente en su ultimo tramo, lo que significa que el resultado empeora si esperamos demasiado.
 
@@ -76,7 +76,7 @@ En la gráfica siguiente se puede observar como para los distintos valores de pr
 \end{figure}
 
 \newpage
-En las siguientes gráficas, podemos ver de manera visual, como según aumenta la probabilidad de encontrar la plaza ocupada, aumenta la distancia minima encontrada y disminuya la posición inicial a partir de la cual empezar a buscar aparcamiento.
+En las siguientes gráficas, podemos ver de manera visual, como según aumenta la probabilidad de encontrar la plaza ocupada, aumenta la distancia mínima encontrada y disminuye la posición inicial a partir de la cual empezar a buscar aparcamiento.
 \begin{figure}[h]
 \includegraphics[width=16cm]{min_probabilidad_aparcamiento.png}
 \includegraphics[width=16cm]{min_c_probabilidad_aparcamiento.png}
@@ -94,7 +94,7 @@ El siguiente parámetro que variamos, es la distancia de visión del conductor. 
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline
-\multicolumn{1}{|l|}{\textbf{Visión del conducto}} & \multicolumn{1}{l|}{\textbf{Distancia minima al objetivo}} & \multicolumn{1}{l|}{\textbf{Posicion inicial (c)}} \\ \hline
+\multicolumn{1}{|l|}{\textbf{Visión del conducto}} & \multicolumn{1}{l|}{\textbf{Distancia mínima al objetivo}} & \multicolumn{1}{l|}{\textbf{Posición inicial (c)}} \\ \hline
 1 & 6.567060 & 94 \\
 2 & 6.509090 & 94 \\
 3 & 6.447840 & 95 \\
@@ -122,7 +122,7 @@ Se puede notar como para los diferentes valores de la visión del conductor, los
 
 \newpage
 
-A continuación se puede notar graficamente como al aumentar la visión del conductor, la distancia minima al objetivo se reduce, mientras que la posición inicial aumenta en un principio pero disminuye finalmente.
+A continuación se puede notar gráficamente como al aumentar la visión del conductor, la distancia mínima al objetivo se reduce, mientras que la posición inicial aumenta en un principio pero disminuye finalmente.
 \begin{figure}[h]
 \includegraphics[width=16cm]{min_vision_aparcamiento.png}
 \includegraphics[width=16cm]{min_c_vision_aparcamiento.png}
@@ -131,9 +131,9 @@ A continuación se puede notar graficamente como al aumentar la visión del cond
 
 \newpage
 
-Finalmente, el último parametro que modificaremos será el numero de simulaciones de aparcamiento que se realizan por cada ejecución del simulador.
+Finalmente, el último parámetro que modificaremos será el número de simulaciones de aparcamiento que se realizan por cada ejecución del simulador.
 
-Igual que en los casos anteriores, en la siguiente tabla podemos apreciar los distintos valores que se han probado, asi como la distancia minima al objetivo encontrada y la posicion inicial a partir de la cual se obtiene plaza a dicha distancia.
+Igual que en los casos anteriores, en la siguiente tabla podemos apreciar los distintos valores que se han probado, así como la distancia mínima al objetivo encontrada y la posición inicial a partir de la cual se obtiene plaza a dicha distancia.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -142,7 +142,7 @@ Igual que en los casos anteriores, en la siguiente tabla podemos apreciar los di
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Numero de simulaciones} & \textbf{Distancia minima al objetivo} & \textbf{Posicion inicial (c)} \\ \hline
+\textbf{número de simulaciones} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
 10 & 3.200000 & 93 \\
 100 & 5.800000 & 96 \\
 1000 & 6.350000 & 94 \\
@@ -152,7 +152,7 @@ Igual que en los casos anteriores, en la siguiente tabla podemos apreciar los di
 }
 \end{table}
 
-De forma gráfica, podemos observar como, cuando el numero de simulaciones es bajo, los resultados tienen un mayor numero de altibajos, mientras que según aumenta el numero de simulaciones, la grafica se vuelve más continua y con menos saltos.
+De forma gráfica, podemos observar como, cuando el número de simulaciones es bajo, los resultados tienen un mayor número de altibajos, mientras que según aumenta el número de simulaciones, la gráfica se vuelve más continua y con menos saltos.
 
 \begin{figure}[h]
 \includegraphics[width=16cm]{simulaciones_aparcamiento.png}
@@ -161,7 +161,7 @@ De forma gráfica, podemos observar como, cuando el numero de simulaciones es ba
 
 \newpage
 
-Como nota de interes, al igual que en los apartados anteriores se han generado las siguientes graficas, donde podemos observar que segun aumenta el numero de simulaciones, los resultados convergen a un valor concreto.
+Como nota de interés, al igual que en los apartados anteriores se han generado las siguientes gráficas, donde podemos observar que según aumenta el número de simulaciones, los resultados convergen a un valor concreto.
 
 \begin{figure}[h]
 \includegraphics[width=16cm]{min_simulaciones_aparcamiento.png}
@@ -173,9 +173,9 @@ Como nota de interes, al igual que en los apartados anteriores se han generado l
 
 \section{Variación de varios parámetros}
 
-Finalmente, realizaremos un estudio del comportamiento del simulador cambiando más de un parametro al mismo tiempo. Para esta memoria, se ha decido mantener el numero de simulaciones y variar la distancia de visión del conductor asi como la probabilidad de ocupación de una plaza de aparcamiento.
+Finalmente, realizaremos un estudio del comportamiento del simulador cambiando más de un parámetro al mismo tiempo. Para esta memoria, se ha decido mantener el número de simulaciones y variar la distancia de visión del conductor asi como la probabilidad de ocupación de una plaza de aparcamiento.
 
-En las siguientes tablas se reflejan los resultados obtenidos en distancia minima y posicion inicial para los valores que se han probado.
+En las siguientes tablas se reflejan los resultados obtenidos en distancia mínima y posición inicial para los valores que se han probado.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
@@ -223,11 +223,11 @@ En las siguientes tablas se reflejan los resultados obtenidos en distancia minim
 }
 \end{table}
 
-Estos datos son utiles pero poco ilustrativos, por ello, para comprobar el comportamiento real del simulador, he generado los siguientes mapas 3D, donde puede apreciaser de manera grafica el comportamiento de los resulados.
+Estos datos son útiles pero poco ilustrativos, por ello, para comprobar el comportamiento real del simulador, he generado los siguientes mapas 3D, donde puede apreciarse de manera gráfica el comportamiento de los resultados.
 
-En el primer mapa, podemos ver que la variable que más afecta a los resultados es la probabilidad de ocupación de la plaza, siendo que segun aumenta este valor, aumenta tambien la distancia minima obtenida. Mientrad que segun varia la visión del conductor, el valos de la distancia minima aumenta, pero no de manera tan marcada.
+En el primer mapa, podemos ver que la variable que más afecta a los resultados es la probabilidad de ocupación de la plaza, siendo que según aumenta este valor, aumenta también la distancia mínima obtenida. Mientras que según varia la visión del conductor, el valor de la distancia mínima aumenta, pero no de manera tan marcada.
 
-En el segundo mapa no apreciamos tan bien el comportamiento cuando hablamos de la posición incial optima a partir de la cual empezar a buscar aparcamiento. Si podemos ver, que a menos vista del conductor, menos anticipación debemos tener a la hora de buscar plaza, puesto que vemos menos. Segun aumenta la probabilidad de ocupación de la plaza, aumenta también la anticipación que debemos tener.
+En el segundo mapa no apreciamos tan bien el comportamiento cuando hablamos de la posición inicial óptima a partir de la cual empezar a buscar aparcamiento. Si podemos ver, que a menos vista del conductor, menos anticipación debemos tener a la hora de buscar plaza, puesto que vemos menos. Según aumenta la probabilidad de ocupación de la plaza, aumenta también la anticipación que debemos tener.
 
 \begin{figure}[h]
 \includegraphics[width=16cm]{aparcamiento_pob_vision_distancia.png}

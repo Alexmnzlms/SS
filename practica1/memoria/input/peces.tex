@@ -1,9 +1,29 @@
 \chapter{Simulador dos especies de peces}
-\section{Busqueda del equilibrio}
+Este ultimo simulador, se basa en simular un lago en el que conviven dos especies de peces. La especie de peces pequeños se alimenta de los recursos que se encuentran en el lago, mientras que los peces grandes se alimentan de los peces pequeños. Si los peces tienen acceso a suficiente comida pueden reproducirse con el tiempo y aumentar la población.
+
+\section{Búsqueda del equilibrio}
+En este simulador, es fundamental encontrar la combinación de parametros que permitan que el sistema encuentre un punto de equilibro, durante las pruebas realizadas, se ha seleccionado como ejemplo ilustrativo los siguientes valores:
+
+\begin{itemize}
+	\item Como ejemplos de sistemas que no estan en equilibrio lagos con 5000 peces pequeños y 50 grandes y 50000 peces pequeños y 500 grandes.
+	\item Como ejemplos de sistemas en equilibrio, poblaciones con 5000 peces pequeños y 10 grandes y 50000 peces pequeños y 100 grandes.
+\end{itemize}
+
+Las pruebas se han realizado para una población de dichos tamaños durante un periodo de 10 años.
+
+Para los sistemas que no estan en equilibrio, podemos ver como la población de peces pequeños se reduce drasticamente, mientras que la población de peces grandes se reduce poco a poco, ya que han consumido todos los recursos de los que disponían.
+
+Sin embargo, en los sistemas en equilibrio, vemos como la población de peces grandes cree y disminuye en consonancia con la de los peces pequeños, hasta que ambas poblaciones alcanzan un tamaño que les permite permancer en equilibrio a lo largo del tiempo.
 
 \begin{figure}[h]
-\includegraphics[width=16cm]{lago_100_10.png}
-\includegraphics[width=16cm]{lago_10000_100.png}
+\includegraphics[width=16cm]{lago_5000_10.png}
+\includegraphics[width=16cm]{lago_5000_50.png}
+\centering
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{lago_50000_100.png}
+\includegraphics[width=16cm]{lago_50000_500.png}
 \centering
 \end{figure}
 
