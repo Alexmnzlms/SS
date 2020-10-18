@@ -2,18 +2,21 @@
 Este ultimo simulador, se basa en simular un lago en el que conviven dos especies de peces. La especie de peces pequeños se alimenta de los recursos que se encuentran en el lago, mientras que los peces grandes se alimentan de los peces pequeños. Si los peces tienen acceso a suficiente comida pueden reproducirse con el tiempo y aumentar la población.
 
 \section{Búsqueda del equilibrio}
-En este simulador, es fundamental encontrar la combinación de parametros que permitan que el sistema encuentre un punto de equilibro, durante las pruebas realizadas, se ha seleccionado como ejemplo ilustrativo los siguientes valores:
+En este simulador, es fundamental encontrar la combinación de parámetros que permitan que el sistema encuentre un punto de equilibro, durante las pruebas realizadas, se ha seleccionado como ejemplo ilustrativo los siguientes valores:
 
 \begin{itemize}
-	\item Como ejemplos de sistemas que no estan en equilibrio lagos con 5000 peces pequeños y 50 grandes y 50000 peces pequeños y 500 grandes.
+	\item Como ejemplos de sistemas que no están en equilibrio lagos con 5000 peces pequeños y 50 grandes y 50000 peces pequeños y 500 grandes.
 	\item Como ejemplos de sistemas en equilibrio, poblaciones con 5000 peces pequeños y 10 grandes y 50000 peces pequeños y 100 grandes.
 \end{itemize}
 
 Las pruebas se han realizado para una población de dichos tamaños durante un periodo de 10 años.
 
-Para los sistemas que no estan en equilibrio, podemos ver como la población de peces pequeños se reduce drasticamente, mientras que la población de peces grandes se reduce poco a poco, ya que han consumido todos los recursos de los que disponían.
+Para los sistemas que no están en equilibrio, podemos ver como la población de peces pequeños se reduce drásticamente, mientras que la población de peces grandes se reduce poco a poco, ya que han consumido todos los recursos de los que disponían.
 
-Sin embargo, en los sistemas en equilibrio, vemos como la población de peces grandes cree y disminuye en consonancia con la de los peces pequeños, hasta que ambas poblaciones alcanzan un tamaño que les permite permancer en equilibrio a lo largo del tiempo.
+Sin embargo, en los sistemas en equilibrio, vemos como la población de peces grandes cree y disminuye en consonancia con la de los peces pequeños, hasta que ambas poblaciones alcanzan un tamaño que les permite permanecer en equilibrio a lo largo del tiempo.
+
+\newpage
+\newpage
 
 \begin{figure}[h]
 \includegraphics[width=16cm]{lago_5000_10.png}
@@ -21,14 +24,28 @@ Sin embargo, en los sistemas en equilibrio, vemos como la población de peces gr
 \centering
 \end{figure}
 
+\newpage
+
 \begin{figure}[h]
 \includegraphics[width=16cm]{lago_50000_100.png}
 \includegraphics[width=16cm]{lago_50000_500.png}
 \centering
 \end{figure}
 
+\newpage
+
 \section{Campaña de pesca}
 
+Para este apartado se ha propuesto añadir una mécanica de pesca al sistema. Para ello se ha seleccionado un sistema que se sabe que se encuentra en equilibrio.
+
+El sistema con una población de 50000 peces pequeños y 100 grandes es el sistema de referencia.
+
+
+La mecánica de pesca funciona de la siguiente manera, cada cierto numero de días, se sustrae un determinado \% porcentaje de la población de peces grandes --- que es la que tiene interés comercial ---.
+
+Finalmente se anota el total de la pesca pasados 10 años en la simulación para comprobar cual es el mejor sistema.
+
+En la siguiente tabla podemos observar los resultados obtenidos:
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
 \begin{table}[h]
@@ -36,7 +53,7 @@ Sin embargo, en los sistemas en equilibrio, vemos como la población de peces gr
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Intervalo de dias en los que se pesca} & \textbf{Porcentaje de la población que se pesca} & \textbf{Tamaño de la pesca pasados 10 años} \\ \hline
+\textbf{Intervalo de días en los que se pesca} & \textbf{Porcentaje de la población que se pesca} & \textbf{Tamaño de la pesca pasados 10 años} \\ \hline
 30 & 0.1 & 166300 \\
 30 & 0.3 & 253974 \\
 30 & 0.5 & 236 \\
@@ -57,10 +74,15 @@ Sin embargo, en los sistemas en equilibrio, vemos como la población de peces gr
 }
 \end{table}
 
+Como se puede apreciar, la mejor opción es pescar el 30\% de la población de los peces grandes cada mes. De esta manera, el numero de peces pequeños se mantiene lo suficientemente estable para que el sistema permanezca el equilibrio y la población de peces grandes pueda recuperarse.
+
+Más adelante podemos ver como afecta gráficamente la pesca al ecosistema.
+
 \begin{figure}[h]
-\includegraphics[width=16cm]{pesca_30_0.1.png}
 \includegraphics[width=16cm]{pesca_30_0.3.png}
+\includegraphics[width=16cm]{pesca_30_0.9.png}
 \centering
 \end{figure}
 
+Vemos como podemos mantener el sistema en equilibrio si pescamos la cantidad justa y necesaria, mientras que si pescamos más de lo debido, podemos destruir el equilibrio del sistema y condenar a los peces a la extinción, así como condenarnos a nosotros a la ruina.
 
