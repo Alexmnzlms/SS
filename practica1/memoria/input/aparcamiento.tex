@@ -1,5 +1,5 @@
 \chapter{Simulador de aparcamiento}
-El simulador de aparcamiento consiste en un sistema que simula un conductor que debe aparcar su coche en una calle infinitamente larga lo mas cerca posible de una posición objetivo. Para todas las pruebas realizadas se ha considerado 100 como posición objetivo en la que se desea aparcar. Para simular este sistemas, podemos establecer la probabilidad de que el conductor encuentre la plaza ocupada, así como la distancia de visión que posee y el numero de simulaciones que se realizan.
+El simulador de aparcamiento consiste en un sistema que simula un conductor que debe aparcar su coche en una calle infinitamente larga lo mas cerca posible de una posición objetivo. Para todas las pruebas realizadas se ha considerado 100 como posición objetivo en la que se desea aparcar. Para simular este sistema, podemos establecer la probabilidad de que el conductor encuentre la plaza ocupada, así como la distancia de visión que posee y el número de simulaciones que se realizan.
 \section{Múltiples ejecuciones}
 En la primera prueba, ejecutamos el simulador un total de 10 veces, para comprobar los resultados obtenidos. Podemos ver en la siguiente tabla la distancia mínima a la posición objetivo ---recordemos que esta posición es la número 100--- así como la posición a partir de la cual empezó a buscar aparcamiento. Para cada iteración del simulador se han realizado 100000 simulaciones.
 % Please add the following required packages to your document preamble:
@@ -42,7 +42,9 @@ Como se puede apreciar, los resultados no varían demasiado entre una simulació
 \section{Variación de un parámetro}
 Esta prueba si que tiene algo más de interés, a continuación realizaremos una serie de ejecuciones del simulador variando un solo parámetro cada vez. Por defecto, los parámetros son 100000 simulaciones, 0.9 probabilidad de ocupación de la plaza y 2 unidades de visión para el conductor.
 
-Primeramente realizamos la prueba variando el parámetro de la probabilidad de que el conductor encuentre ocupada la plaza en la que intentara aparcar. En la siguiente tabla podemos ver la distancia mínima encontrada para los diferentes valores de esta probabilidad así como la posición inicial a partir de la cual se obtiene esta distancia.
+Primeramente realizamos la prueba variando el parámetro de la probabilidad de que el conductor encuentre ocupada la plaza en la que intentará aparcar.
+
+En la siguiente tabla podemos ver la distancia mínima encontrada para los diferentes valores de esta probabilidad así como la posición inicial a partir de la cual se obtiene esta distancia.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -68,7 +70,7 @@ Primeramente realizamos la prueba variando el parámetro de la probabilidad de q
 
 Para una probabilidad inferior al 50\%, podemos observar como la mejor distancia se obtiene empezando a buscar aparcamiento justo cuando alcanzamos la posición objetivo, mientras que cuando la probabilidad aumenta, debemos ser mas precavidos y empezar a buscar plaza antes de llegar a nuestro objetivo.
 
-En la gráfica siguiente se puede observar como para los distintos valores de probabilidad, cuando antes se empieza a buscar aparcamiento, más lejos se aparca del objetivo, mientras que cuanto mas esperamos a empezar a buscar, mejor resultado se obtiene, excepto cuando la probabilidad pasa el 50\%. En este caso, podemos ver como al curva es ascendente en su ultimo tramo, lo que significa que el resultado empeora si esperamos demasiado.
+En la gráfica siguiente se puede observar como para los distintos valores de probabilidad, cuanto antes se empieza a buscar aparcamiento, más lejos se aparca del objetivo, mientras que cuanto mas esperamos a empezar a buscar, mejor resultado se obtiene, excepto cuando la probabilidad pasa el 50\%. En este caso, podemos ver como al curva es ascendente en su ultimo tramo, lo que significa que el resultado empeora si esperamos demasiado.
 
 \begin{figure}[h]
 \includegraphics[width=16cm]{probabilidad_aparcamiento.png}
