@@ -1,0 +1,238 @@
+\chapter{Simulador de aparcamiento}
+El simulador de aparcamiento consiste en un sistema que simula un conductor que debe aparcar su coche en una calle infinitamente larga lo mas cerca posible de una posición objetivo. Para todas las pruebas realizadas se ha considerado 100 como posición objetivo en la que se desea aparcar. Para simular este sistema, podemos establecer la probabilidad de que el conductor encuentre la plaza ocupada, así como la distancia de visión que posee y el número de simulaciones que se realizan.
+\section{Múltiples ejecuciones}
+En la primera prueba, ejecutamos el simulador un total de 10 veces, para comprobar los resultados obtenidos. Podemos ver en la siguiente tabla la distancia mínima a la posición objetivo ---recordemos que esta posición es la número 100--- así como la posición a partir de la cual empezó a buscar aparcamiento. Para cada iteración del simulador se han realizado 100000 simulaciones.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Iteración de la simulación} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
+0 & 6.554650 & 96 \\
+1 & 6.514790 & 95 \\
+2 & 6.521850 & 94 \\
+3 & 6.497070 & 95 \\
+4 & 6.493840 & 95 \\
+5 & 6.523610 & 94 \\
+6 & 6.514420 & 95 \\
+7 & 6.499410 & 95 \\
+8 & 6.525110 & 95 \\
+9 & 6.562060 & 96 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+También podemos ver estos resultados en forma de gráfica a continuación.
+
+Como se puede apreciar, los resultados no varían demasiado entre una simulación y otra, ya que no estamos alterando ninguna variable del sistema, simplemente estamos ejecutando la misma simulación de forma reiterada.
+
+\newpage
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{min_ejecuciones_aparcamiento.png}
+\includegraphics[width=16cm]{min_c_ejecuciones_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+
+\section{Variación de un parámetro}
+Esta prueba si que tiene algo más de interés, a continuación realizaremos una serie de ejecuciones del simulador variando un solo parámetro cada vez. Por defecto, los parámetros son 100000 simulaciones, 0.9 probabilidad de ocupación de la plaza y 2 unidades de visión para el conductor.
+
+Primeramente realizamos la prueba variando el parámetro de la probabilidad de que el conductor encuentre ocupada la plaza en la que intentará aparcar.
+
+En la siguiente tabla podemos ver la distancia mínima encontrada para los diferentes valores de esta probabilidad así como la posición inicial a partir de la cual se obtiene esta distancia.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Probabilidad de ocupación} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
+
+0.1 & 0.101910 & 100 \\
+0.2 & 0.210680 & 100 \\
+0.3 & 0.338430 & 100 \\
+0.4 & 0.509750 & 100 \\
+0.5 & 0.744920 & 99 \\
+0.6 & 1.067510 & 99 \\
+0.7 & 1.647840 & 99 \\
+0.8 & 2.960300 & 98 \\
+0.9 & 6.478240 & 95 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+Para una probabilidad inferior al 50\%, podemos observar como la mejor distancia se obtiene empezando a buscar aparcamiento justo cuando alcanzamos la posición objetivo, mientras que cuando la probabilidad aumenta, debemos ser mas precavidos y empezar a buscar plaza antes de llegar a nuestro objetivo.
+
+En la gráfica siguiente se puede observar como para los distintos valores de probabilidad, cuanto antes se empieza a buscar aparcamiento, más lejos se aparca del objetivo, mientras que cuanto mas esperamos a empezar a buscar, mejor resultado se obtiene, excepto cuando la probabilidad pasa el 50\%. En este caso, podemos ver como al curva es ascendente en su ultimo tramo, lo que significa que el resultado empeora si esperamos demasiado.
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{probabilidad_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+En las siguientes gráficas, podemos ver de manera visual, como según aumenta la probabilidad de encontrar la plaza ocupada, aumenta la distancia mínima encontrada y disminuye la posición inicial a partir de la cual empezar a buscar aparcamiento.
+\begin{figure}[h]
+\includegraphics[width=16cm]{min_probabilidad_aparcamiento.png}
+\includegraphics[width=16cm]{min_c_probabilidad_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+El siguiente parámetro que variamos, es la distancia de visión del conductor. En la siguiente tabla podemos ver los resultados obtenidos para esta prueba.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{\textbf{Visión del conducto}} & \multicolumn{1}{l|}{\textbf{Distancia mínima al objetivo}} & \multicolumn{1}{l|}{\textbf{Posición inicial (c)}} \\ \hline
+1 & 6.567060 & 94 \\
+2 & 6.509090 & 94 \\
+3 & 6.447840 & 95 \\
+4 & 6.389330 & 95 \\
+5 & 6.251710 & 95 \\
+6 & 6.145040 & 95 \\
+7 & 5.937980 & 94 \\
+8 & 5.849080 & 94 \\
+9 & 5.752370 & 93 \\
+10 & 5.647370 & 93 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+Podemos ver en este caso, que según aumenta la distancia de visión del conductor, disminuye la distancia a la que conseguimos aparcar de la posición objetivo, pero también disminuye la posición inicial a partir de la cual debemos empezar a buscar, es decir, debemos empezar a buscar aparcamiento con más antelación.
+
+En la siguiente gráfica, se muestra la relación entre distancia mínima al objetivo y la posición inicial a partir de la cual se empieza a buscar aparcamiento.
+
+Se puede notar como para los diferentes valores de la visión del conductor, los resultados son bastante homogéneos, siendo que las gráficas casi parecen una sola.
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{vision_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+A continuación se puede notar gráficamente como al aumentar la visión del conductor, la distancia mínima al objetivo se reduce, mientras que la posición inicial aumenta en un principio pero disminuye finalmente.
+\begin{figure}[h]
+\includegraphics[width=16cm]{min_vision_aparcamiento.png}
+\includegraphics[width=16cm]{min_c_vision_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+Finalmente, el último parámetro que modificaremos será el número de simulaciones de aparcamiento que se realizan por cada ejecución del simulador.
+
+Igual que en los casos anteriores, en la siguiente tabla podemos apreciar los distintos valores que se han probado, así como la distancia mínima al objetivo encontrada y la posición inicial a partir de la cual se obtiene plaza a dicha distancia.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{número de simulaciones} & \textbf{Distancia mínima al objetivo} & \textbf{Posición inicial (c)} \\ \hline
+10 & 3.200000 & 93 \\
+100 & 5.800000 & 96 \\
+1000 & 6.350000 & 94 \\
+10000 & 6.371000 & 94 \\
+100000 & 6.470920 & 95 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+De forma gráfica, podemos observar como, cuando el número de simulaciones es bajo, los resultados tienen un mayor número de altibajos, mientras que según aumenta el número de simulaciones, la gráfica se vuelve más continua y con menos saltos.
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{simulaciones_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+Como nota de interés, al igual que en los apartados anteriores se han generado las siguientes gráficas, donde podemos observar que según aumenta el número de simulaciones, los resultados convergen a un valor concreto.
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{min_simulaciones_aparcamiento.png}
+\includegraphics[width=16cm]{min_c_simulaciones_aparcamiento.png}
+\centering
+\end{figure}
+
+\newpage
+
+\section{Variación de varios parámetros}
+
+Finalmente, realizaremos un estudio del comportamiento del simulador cambiando más de un parámetro al mismo tiempo. Para esta memoria, se ha decido mantener el número de simulaciones y variar la distancia de visión del conductor asi como la probabilidad de ocupación de una plaza de aparcamiento.
+
+En las siguientes tablas se reflejan los resultados obtenidos en distancia mínima y posición inicial para los valores que se han probado.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccccccccccc}
+\multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{9}{c}{Probabilidad de aparcamiento} \\ \cline{3-11}
+\multicolumn{1}{l}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\textbf{0.1}} & \multicolumn{1}{c|}{\textbf{0.2}} & \multicolumn{1}{c|}{\textbf{0.3}} & \multicolumn{1}{c|}{\textbf{0.4}} & \multicolumn{1}{c|}{\textbf{0.5}} & \multicolumn{1}{c|}{\textbf{0.6}} & \multicolumn{1}{c|}{\textbf{0.7}} & \multicolumn{1}{c|}{\textbf{0.8}} & \multicolumn{1}{c|}{\textbf{0.9}} \\ \cline{2-11}
+\multicolumn{1}{c|}{\multirow{10}{*}{Vision del conductor}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{0.099620} & \multicolumn{1}{c|}{0.210710} & \multicolumn{1}{c|}{0.338900} & \multicolumn{1}{c|}{0.506900} & \multicolumn{1}{c|}{0.748600} & \multicolumn{1}{c|}{1.151790} & \multicolumn{1}{c|}{1.839180} & \multicolumn{1}{c|}{3.030380} & \multicolumn{1}{c|}{6.517660} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{0.100520} & \multicolumn{1}{c|}{0.209580} & \multicolumn{1}{c|}{0.338920} & \multicolumn{1}{c|}{0.506960} & \multicolumn{1}{c|}{0.746740} & \multicolumn{1}{c|}{1.064400} & \multicolumn{1}{c|}{1.649300} & \multicolumn{1}{c|}{2.953630} & \multicolumn{1}{c|}{6.460450} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{0.100390} & \multicolumn{1}{c|}{0.208980} & \multicolumn{1}{c|}{0.331670} & \multicolumn{1}{c|}{0.477110} & \multicolumn{1}{c|}{0.687310} & \multicolumn{1}{c|}{1.006920} & \multicolumn{1}{c|}{1.602300} & \multicolumn{1}{c|}{2.782350} & \multicolumn{1}{c|}{6.437300} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{c|}{0.099130} & \multicolumn{1}{c|}{0.207590} & \multicolumn{1}{c|}{0.333320} & \multicolumn{1}{c|}{0.480670} & \multicolumn{1}{c|}{0.689810} & \multicolumn{1}{c|}{0.982970} & \multicolumn{1}{c|}{1.512140} & \multicolumn{1}{c|}{2.697540} & \multicolumn{1}{c|}{6.371280} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{5}} & \multicolumn{1}{c|}{0.099830} & \multicolumn{1}{c|}{0.208420} & \multicolumn{1}{c|}{0.330430} & \multicolumn{1}{c|}{0.475570} & \multicolumn{1}{c|}{0.670110} & \multicolumn{1}{c|}{0.966900} & \multicolumn{1}{c|}{1.480660} & \multicolumn{1}{c|}{2.565040} & \multicolumn{1}{c|}{6.277510} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{1}{c|}{0.100240} & \multicolumn{1}{c|}{0.206780} & \multicolumn{1}{c|}{0.328190} & \multicolumn{1}{c|}{0.476200} & \multicolumn{1}{c|}{0.672600} & \multicolumn{1}{c|}{0.954690} & \multicolumn{1}{c|}{1.437860} & \multicolumn{1}{c|}{2.513240} & \multicolumn{1}{c|}{6.085530} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{1}{c|}{0.099610} & \multicolumn{1}{c|}{0.207000} & \multicolumn{1}{c|}{0.326700} & \multicolumn{1}{c|}{0.475310} & \multicolumn{1}{c|}{0.664360} & \multicolumn{1}{c|}{0.945820} & \multicolumn{1}{c|}{1.427430} & \multicolumn{1}{c|}{2.441490} & \multicolumn{1}{c|}{6.001120} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{8}} & \multicolumn{1}{c|}{0.099350} & \multicolumn{1}{c|}{0.206130} & \multicolumn{1}{c|}{0.325790} & \multicolumn{1}{c|}{0.475920} & \multicolumn{1}{c|}{0.668380} & \multicolumn{1}{c|}{0.942190} & \multicolumn{1}{c|}{1.396800} & \multicolumn{1}{c|}{2.416840} & \multicolumn{1}{c|}{5.853020} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{9}} & \multicolumn{1}{c|}{0.098970} & \multicolumn{1}{c|}{0.206130} & \multicolumn{1}{c|}{0.328060} & \multicolumn{1}{c|}{0.471570} & \multicolumn{1}{c|}{0.664220} & \multicolumn{1}{c|}{0.942370} & \multicolumn{1}{c|}{1.400510} & \multicolumn{1}{c|}{2.345610} & \multicolumn{1}{c|}{5.729080} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{10}} & \multicolumn{1}{c|}{0.099440} & \multicolumn{1}{c|}{0.204730} & \multicolumn{1}{c|}{0.327840} & \multicolumn{1}{c|}{0.473750} & \multicolumn{1}{c|}{0.666350} & \multicolumn{1}{c|}{0.933790} & \multicolumn{1}{c|}{1.395460} & \multicolumn{1}{c|}{2.351450} & \multicolumn{1}{c|}{5.656510} \\ \cline{2-11}
+\end{tabular}%
+}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{graphicx}
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccrrrrrrrrr}
+\multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{9}{c}{Probabilidad de aparcamiento} \\ \cline{3-11}
+\multicolumn{1}{l}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{\textbf{0.1}} & \multicolumn{1}{c|}{\textbf{0.2}} & \multicolumn{1}{c|}{\textbf{0.3}} & \multicolumn{1}{c|}{\textbf{0.4}} & \multicolumn{1}{c|}{\textbf{0.5}} & \multicolumn{1}{c|}{\textbf{0.6}} & \multicolumn{1}{c|}{\textbf{0.7}} & \multicolumn{1}{c|}{\textbf{0.8}} & \multicolumn{1}{c|}{\textbf{0.9}} \\ \cline{2-11}
+\multicolumn{1}{c|}{\multirow{10}{*}{Vision del conductor}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{r|}{100} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{94} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{5}} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{6}} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{7}} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{99} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{95} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{8}} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{98} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{94} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{9}} & \multicolumn{1}{r|}{94} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{93} \\ \cline{2-11}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{10}} & \multicolumn{1}{r|}{94} & \multicolumn{1}{r|}{94} & \multicolumn{1}{r|}{97} & \multicolumn{1}{r|}{94} & \multicolumn{1}{r|}{96} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{95} & \multicolumn{1}{r|}{94} & \multicolumn{1}{r|}{93} \\ \cline{2-11}
+\end{tabular}%
+}
+\end{table}
+
+Estos datos son útiles pero poco ilustrativos, por ello, para comprobar el comportamiento real del simulador, he generado los siguientes mapas 3D, donde puede apreciarse de manera gráfica el comportamiento de los resultados.
+
+En el primer mapa, podemos ver que la variable que más afecta a los resultados es la probabilidad de ocupación de la plaza, siendo que según aumenta este valor, aumenta también la distancia mínima obtenida. Mientras que según varia la visión del conductor, el valor de la distancia mínima aumenta, pero no de manera tan marcada.
+
+En el segundo mapa no apreciamos tan bien el comportamiento cuando hablamos de la posición inicial óptima a partir de la cual empezar a buscar aparcamiento. Si podemos ver, que a menos vista del conductor, menos anticipación debemos tener a la hora de buscar plaza, puesto que vemos menos. Según aumenta la probabilidad de ocupación de la plaza, aumenta también la anticipación que debemos tener.
+
+\begin{figure}[h]
+\includegraphics[width=16cm]{aparcamiento_pob_vision_distancia.png}
+\includegraphics[width=16cm]{aparcamiento_pob_vision_distancia_linea.png}
+\centering
+\end{figure}
