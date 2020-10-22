@@ -13,7 +13,6 @@ CCP_flags        := -std=c++20 -Wall -O2 -I/usr/include -I$(INC)
 
 
 x: $(exe)
-	$(exe)
 
 $(exe): $(units_o) makefile
 	$(compiler) -o $(exe) $(units_o)
