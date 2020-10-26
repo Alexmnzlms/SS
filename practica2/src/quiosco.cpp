@@ -23,27 +23,27 @@ int main(int argc, char ** argv){
     if(modificacion != 0) z = atoi(argv[6]);
   }
 
-
-  srand(time(NULL)); //Inicializa el generador de números pseudoaleatorios
   double* tablademanda;
-
-  if(distribucion == 'a'){
-    tablademanda = construye_prop_a(100); //Construye la tabla de búsqueda
-  } else if(distribucion == 'b'){
-    tablademanda = construye_prop_b(100); //Construye la tabla de búsqueda
-  } else if(distribucion == 'c'){
-    tablademanda = construye_prop_c(100); //Construye la tabla de búsqueda
-  } else {
-    cerr << "Distribución incorrecta, debe ser a b o c" << endl;
-    exit(1);
-  }
 
   int demanda; //Cada vez que se necesite un
                //valor del generador de demanda
   double sum, sum2, ganancia, gananciaesperada, desviaciont;
 
   for (int s = 0; s <= 100; s++){
-    sum = sum2 =0.0;
+    sum = sum2 = 0.0;
+    srand(time(NULL)); //Inicializa el generador de números pseudoaleatorios
+
+    if(distribucion == 'a'){
+      tablademanda = construye_prop_a(100); //Construye la tabla de búsqueda
+    } else if(distribucion == 'b'){
+      tablademanda = construye_prop_b(100); //Construye la tabla de búsqueda
+    } else if(distribucion == 'c'){
+      tablademanda = construye_prop_c(100); //Construye la tabla de búsqueda
+    } else {
+      cerr << "Distribución incorrecta, debe ser a b o c" << endl;
+      exit(1);
+    }
+
     for (int i = 0; i < veces; i++){
       demanda = genera_demanda(tablademanda,100);
       switch(modificacion){

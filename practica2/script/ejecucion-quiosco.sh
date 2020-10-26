@@ -4,33 +4,28 @@ cd ..
 make
 cd script
 
-dist_a="../data/quiosco_a.data"
-dist_b="../data/quiosco_b.data"
-dist_c="../data/quiosco_c.data"
+for y in 1 5 10; do
+	echo -n "" > "../data/quiosco_${y}_a.data"
+	echo -n "" > "../data/quiosco_${y}_b.data"
+	echo -n "" > "../data/quiosco_${y}_c.data"
+done
 
-echo -n "" > $dist_a
-echo -n "" > $dist_b
-echo -n "" > $dist_c
+for y in 1 5 10; do
+../bin/quiosco_exe 10 $y 100000 a 0 >> "../data/quiosco_${y}_a.data"
+../bin/quiosco_exe 10 $y 100000 b 0 >> "../data/quiosco_${y}_b.data"
+../bin/quiosco_exe 10 $y 100000 c 0 >> "../data/quiosco_${y}_c.data"
+done
 
-../bin/quiosco_exe $i 10 10 100000 a 0 >> $dist_a
-../bin/quiosco_exe $i 10 10 100000 b 0 >> $dist_b
-../bin/quiosco_exe $i 10 10 100000 c 0 >> $dist_c
+for y in 1 5 10; do
+	echo -n "" > "../data/ganancia_${y}_a.data"
+	echo -n "" > "../data/ganancia_${y}_b.data"
+	echo -n "" > "../data/ganancia_${y}_c.data"
+done
 
-
-salida_a="../data/ganancia_a.data"
-salida_b="../data/ganancia_b.data"
-salida_c="../data/ganancia_c.data"
-
-echo -n "" > $salida_a
-echo -n "" > $salida_b
-echo -n "" > $salida_c
-
-awk '{print $6}' <<< $(cat $dist_a) >> $salida_a
-awk '{print $6}' <<< $(cat $dist_b) >> $salida_b
-awk '{print $6}' <<< $(cat $dist_c) >> $salida_c
-
-cat $salida_a
-cat $salida_b
-cat $salida_c
+for y in 1 5 10; do
+	awk '{print $6}' <<< $(cat "../data/quiosco_${y}_a.data") >> "../data/ganancia_${y}_a.data"
+	awk '{print $6}' <<< $(cat "../data/quiosco_${y}_b.data") >> "../data/ganancia_${y}_b.data"
+	awk '{print $6}' <<< $(cat "../data/quiosco_${y}_c.data") >> "../data/ganancia_${y}_c.data"
+done
 
 gnuplot quiosco.gp
