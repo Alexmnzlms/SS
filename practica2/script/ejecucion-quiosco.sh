@@ -8,17 +8,14 @@ dist_a="../data/quiosco_a.data"
 dist_b="../data/quiosco_b.data"
 dist_c="../data/quiosco_c.data"
 
-for i in $(seq 0 1 100); do
-	echo -n "" > $dist_a
-	echo -n "" > $dist_b
-	echo -n "" > $dist_c
-done
+echo -n "" > $dist_a
+echo -n "" > $dist_b
+echo -n "" > $dist_c
 
-for i in $(seq 0 1 100); do
-	../bin/quiosco_exe $i 10 5 1000000 a >> $dist_a
-	../bin/quiosco_exe $i 10 5 1000000 b >> $dist_b
-	../bin/quiosco_exe $i 10 5 1000000 c >> $dist_c
-done
+../bin/quiosco_exe $i 10 10 100000 a 0 >> $dist_a
+../bin/quiosco_exe $i 10 10 100000 b 0 >> $dist_b
+../bin/quiosco_exe $i 10 10 100000 c 0 >> $dist_c
+
 
 salida_a="../data/ganancia_a.data"
 salida_b="../data/ganancia_b.data"

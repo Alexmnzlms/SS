@@ -1,24 +1,26 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <algorithm>
 #include "codigo-generadores.h"
 
 using namespace std;
 
 int main(int argc, char ** argv){
 
-  int s, x, y, veces;
+  int x, y, veces, modificacion, z;
   char distribucion;
 
-  if(argc != 6){
-    cerr << "Uso incorrecto bin/quiosco_exe <valor de s> <valor de x> <valor de y> <numero de veces> <distribucion>" << endl;
+  if(argc != 6 && argc != 7){
+    cerr << "Uso incorrecto bin/quiosco_exe <valor de x> <valor de y> <numero de veces> <distribucion> <modificacion> <valor de z>" << endl;
     exit(1);
   } else {
-    s = atoi(argv[1]);
-    x = atoi(argv[2]);
-    y = atoi(argv[3]);
-    veces = atoi(argv[4]);
-    distribucion = argv[5][0];
+    x = atoi(argv[1]);
+    y = atoi(argv[2]);
+    veces = atoi(argv[3]);
+    distribucion = argv[4][0];
+    modificacion = atoi(argv[5]);
+    if(modificacion != 0) z = atoi(argv[6]);
   }
 
 
@@ -40,18 +42,37 @@ int main(int argc, char ** argv){
                //valor del generador de demanda
   double sum, sum2, ganancia, gananciaesperada, desviaciont;
 
-  sum=0.0; sum2=0.0;
-  for (int i=0; i<veces; i++){
-    demanda=genera_demanda(tablademanda,100);
-    if (s>demanda) ganancia=demanda*x-(s-demanda)*y;
-    else ganancia=s*x;
-    sum+=ganancia;
-    sum2+=ganancia*ganancia;
+  for (int s = 0; s <= 100; s++){
+    sum = sum2 =0.0;
+    for (int i = 0; i < veces; i++){
+      demanda = genera_demanda(tablademanda,100);
+      switch(modificacion){
+        case 0:
+          if (s > demanda) ganancia = demanda*x - (s - demanda)*y;
+          else ganancia = s*x;
+          break;
+        case 1:
+          if (s > demanda) ganancia = demanda*x - z;
+          else ganancia = s*x;
+          break;
+        case 2:
+          if (s > demanda) ganancia = demanda*x - min(z, (s-demanda)*y);
+          else ganancia = s*x;
+          break;
+        default:
+          ganancia = 0;
+          break;
+      }
+    sum += ganancia;
+    sum2 += ganancia*ganancia;
+    }
+  gananciaesperada = sum/veces;
+  desviaciont = sqrt((sum2-veces*gananciaesperada*gananciaesperada)/(veces-1));
+
+
+  cout << s << " " << x << " " << y << " " << veces
+       << " " << distribucion << " " << gananciaesperada
+       << " " << desviaciont << endl;
   }
-  gananciaesperada=sum/veces;
-  desviaciont=sqrt((sum2-veces*gananciaesperada*gananciaesperada)/(veces-1));
-
-
-  cout << s << " " << x << " " << y << " " << veces << " " << distribucion << " " << gananciaesperada << " " << desviaciont << endl;
 }
 
