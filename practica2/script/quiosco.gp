@@ -1,23 +1,29 @@
 set terminal png size 960,540
 set yrange [0:*]
-
+set key left Left
 
 do for [v in "100 1000 5000 10000 100000"]{
-	set output "../memoria/img/distribucion_a".v.".png"
-	set title "Ganancia esperada para la distribución a ".v." veces"
-	set xlabel "Periodicos contratados"
-	set ylabel "Ganancia esperada"
-	plot for [name in "1 5 10"] "../data/ganancia_".name."_".v."_a.data" with linespoints title "Ganancia para x = 10, y = ".name, "../data/max_ganancia_1_".v."_a.data" with points title "Maximo"
+	do for [d in "a b c"]{
+		set output "../memoria/img/distribucion_".d."_".v.".png"
+		set title "Ganancia esperada para la distribución ".d." ".v." veces"
+		set xlabel "Periodicos contratados"
+		set ylabel "Ganancia esperada"
+		plot for [y in "1 5 10"] "../data/ganancia_".y."_".v."_".d.".data" with lines title "Ganancia para x = 10, y = ".y, for [y in "1 5 10"] "../data/max_ganancia_".y."_".v."_".d.".data" using 1:2:(sprintf("(%d, %d)", $1, $2)) with labels point pt 7 offset char 1,1 notitle
+	}
+}
 
-	set output "../memoria/img/distribucion_b".v.".png"
-	set title "Ganancia esperada para la distribución b ".v." veces"
+do for [d in "a b c"]{
+	set output "../memoria/img/mod_1_distribucion_".d.".png"
+	set title "Ganancia esperada para la distribución ".d." (modificación 1)"
 	set xlabel "Periodicos contratados"
 	set ylabel "Ganancia esperada"
-	plot for [name in "1 5 10"] "../data/ganancia_".name."_".v."_b.data" with linespoints title "Ganancia para x = 10, y = ".name
+	plot for [z in "10 100 500"] "../data/mod_1_ganancia_".z."_".d.".data" with lines title "Ganancia para x = 10, z = ".z, for [z in "10 100 500"] "../data/mod_1_max_ganancia_".z."_".d.".data" using 1:2:(sprintf("(%d, %d)", $1, $2)) with labels point pt 7 offset char 1,1 notitle
+}
 
-	set output "../memoria/img/distribucion_c".v.".png"
-	set title "Ganancia esperada para la distribución c con ".v." veces"
+do for [d in "a b c"]{
+	set output "../memoria/img/mod_2_distribucion_".d.".png"
+	set title "Ganancia esperada para la distribución ".d." (modificación 2)"
 	set xlabel "Periodicos contratados"
 	set ylabel "Ganancia esperada"
-	plot for [name in "1 5 10"] "../data/ganancia_".name."_".v."_c.data" with linespoints title "Ganancia para x = 10, y = ".name
+	plot for [z in "10 100 500"] for [y in "1 5 10"] "../data/mod_2_ganancia_".y."_".z."_".d.".data" with lines title "Ganancia para x = 10, y = ".y.", z = ".z, for [z in "10 100 500"] for [y in "1 5 10"] "../data/mod_2_max_ganancia_".y."_".z."_".d.".data" using 1:2:(sprintf("(%d, %d)", $1, $2)) with labels point pt 7 offset char 1,1 notitle
 }
