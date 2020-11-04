@@ -1,6 +1,8 @@
 #include <cstdlib>
+#include <cstdlib>
 #include <cmath>
 #include <ctgmath>
+#include <set>
 #include <iostream>
 
 using namespace std;
@@ -12,7 +14,7 @@ int gen_congr_ae(int a, int x, int c, int m){
 double gen_congr_ar(int a, double x, int c, int m){
 	x = (a*x + c) / m;
 	x = (x - (int)x) * m;
-	return x;
+	return (int)x;
 }
 
 double gen_congr_arc(int a, double x, int c, int m){
@@ -26,40 +28,6 @@ double gen_congr_fmod(int a, double x, int c, int m){
 	return fmod((a*x + c), m);
 }
 
-bool comp_double(double a, double b){
-	double resta = a - b;
-	resta = abs(resta);
-	double epsilon = 0.0001;
-	if (resta < epsilon){
-		cout << "Iguales: " << a << " " << b << endl;
-		return true;
-	} else {
-		cout << "Distintos: " << a << " " << b << endl;
-		return false;
-	}
-}
-
-bool entero_en_vector(int* vector, int tam, int num){
-	bool encontrado = false;
-	for(int i = 0; i < tam && !encontrado; i++){
-		if(vector[i] == num){
-			encontrado = true;
-		}
-	}
-
-	return encontrado;
-}
-
-bool real_en_vector(double* vector, int tam, double num){
-	bool encontrado = false;
-	for(int i = 0; i < tam && !encontrado; i++){
-		if(comp_double(vector[i],num)){
-			encontrado = true;
-		}
-	}
-
-	return encontrado;
-}
 
 int main(int argc, char ** argv){
 
@@ -84,47 +52,49 @@ int main(int argc, char ** argv){
 	int generados = 0;
 
 	if(metodo == 1){
-		int generado;
-		int* numeros = new int [m];
+		int generado, generado_ant;
+		set<int> numeros;
 		bool terminado = false;
-		numeros[generados] = x_inicial;
+		numeros.insert(x_inicial);
+		generado_ant = x_inicial;
 		generados++;
 
 		while(!terminado && generados <= m){
-			generado = gen_congr_ae(a, numeros[generados-1], c , m);
-			if(entero_en_vector(numeros, generados, generado)){
+			generado = gen_congr_ae(a, generado_ant, c , m);
+			if(numeros.find(generado) != numeros.end()){
 				periodo = generados;
 				terminado = true;
 			} else {
-				numeros[generados] = generado;
+				numeros.insert(generado);
+				generado_ant = generado;
 				generados++;
 			}
-			cout << generado << endl;
 	}
 	} else {
-		double generado;
-		double* numeros = new double[m];
+		double generado, generado_ant;
+		set<double> numeros;
 		bool terminado = false;
-		numeros[generados] = x_inicial;
+		numeros.insert(x_inicial);
+		generado_ant = x_inicial;
 		generados++;
 
 		while(!terminado && generados <= m){
 			if(metodo == 2){
-				generado = gen_congr_ar(a, numeros[generados-1], c, m);
+				generado = gen_congr_ar(a, generado_ant, c, m);
 			} else if (metodo == 3){
-				generado = gen_congr_arc(a, numeros[generados-1], c, m);
+				generado = gen_congr_arc(a, generado_ant, c, m);
 			} else {
-				generado = gen_congr_fmod(a, numeros[generados-1], c, m);
+				generado = gen_congr_fmod(a, generado_ant, c, m);
 			}
 
-			if(real_en_vector(numeros, generados, generado)){
+			if(numeros.find(generado) != numeros.end()){
 				periodo = generados;
 				terminado = true;
 			} else {
-				numeros[generados] = generado;
+				numeros.insert(generado);
+				generado_ant = generado;
 				generados++;
 			}
-			cout << generado << endl;
 		}
 	}
 
