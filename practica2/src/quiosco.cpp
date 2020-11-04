@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
-#include "codigo_generadores.h"
+#include "codigo-generadores.h"
 
 
 int main (int argc, char ** argv) {
@@ -70,7 +70,7 @@ int main (int argc, char ** argv) {
 
 			} else if ( modificacion == 2 ) {
 				if ( s > demanda )
-					ganancia = demanda * min(z,(s-demanda)*y);
+					ganancia = demanda * std::min(z,(s-demanda)*y);
 				else
 					ganancia = s * x;
 
