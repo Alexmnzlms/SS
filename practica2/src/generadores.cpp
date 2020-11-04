@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "codigo-generadores.h"
+#include "generadores.h"
 
 double uniforme() //Genera un número uniformemente distribuido en el
 						//intervalo [0,1) a partir de uno de los generadores

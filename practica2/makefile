@@ -1,28 +1,13 @@
-.SUFFIXES:
-.PHONY: x
+STD = -std=c++20
+SRC = src
+BIN = bin
+INC = include
+flags = -std=c++20 -Wall -O3 -I/usr/include -I$(INC)
 
-OBJ 				 := obj/
-SRC				 := src/
-INC    			 := include/
-exe             := bin/quiosco_exe
-units_CCP        := $(wildcard $(addprefix $(SRC), *.cpp))
-units_o         := $(addprefix $(OBJ), $(addsuffix .o, $(notdir $(basename $(units_CCP)))))
-headers         := $(wildcard $(addprefix $(INC), *.h*))
-compiler        := g++
-CCP_flags        := -std=c++20 -Wall -O2 -I/usr/include -I$(INC)
+all:	quiosco_exe gen_congr_exe
 
+quiosco_exe: $(SRC)/quiosco.cpp $(SRC)/generadores.cpp $(INC)/generadores.h
+	g++ -o $@ $^ $(flags)
 
-x: $(exe)
-
-$(exe): $(units_o) makefile
-	$(compiler) -o $(exe) $(units_o)
-
-$(OBJ)%.o : $(SRC)%.cpp
-	$(compiler) -o $@ -c $(CCP_flags) $<
-
-$(units_CCP) : $(headers)
-	touch $(units_CCP)
-
-clean:
-	rm -rf obj/*.o bin/*_exe
-
+gen_congr_exe: $(SRC)/gen_congr.cpp
+	g++ -o $@ $^ $(flags)

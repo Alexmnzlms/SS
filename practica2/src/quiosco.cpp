@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <algorithm>
-#include "codigo-generadores.h"
+#include "generadores.h"
 
 
 int main (int argc, char ** argv) {
