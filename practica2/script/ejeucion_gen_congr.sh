@@ -13,7 +13,7 @@ done
 
 for g in 2060 2061; do
 	for mod in 1 2 3 4; do
-		for i in $(seq 0 1 10000); do
+		for i in $(seq 0 1 9999); do
 			../bin/gen_congr_exe $g 4321 $i $mod >> "../data/gen_congr_${g}_${mod}.data"
 		done
 	done
@@ -21,7 +21,7 @@ done
 
 for g in 2060 2061; do
 	for mod in 1 2 3 4; do
-		awk 'END { printf "%d ", s} { max || max = $2; s || s = NR; if ($2 > max) {max=$2; s=NR} }' <<< $(cat "../data/gen_congr_${g}_${mod}.data") >> "../data/max_gen_congr_${g}_${mod}.data"
+		awk 'END { printf "%d ", s-1} { max || max = $2; s || s = NR; if ($2 > max) {max=$2; s=NR} }' <<< $(cat "../data/gen_congr_${g}_${mod}.data") >> "../data/max_gen_congr_${g}_${mod}.data"
 		awk 'END { print max} { max || max = $2; s || s = NR; if ($2 > max) {max=$2; s=NR} }' <<< $(cat "../data/gen_congr_${g}_${mod}.data") >> "../data/max_gen_congr_${g}_${mod}.data"
 	done
 done

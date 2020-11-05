@@ -95,7 +95,7 @@ int genera_demanda(double* tabla,int tama) // Genera un valor de la
 	return i;
 }
 
-double* construye_prop_c_ord(int n) //Construye la tabla de búsqueda de
+double* construye_prop_c_ord(int n, int* indices) //Construye la tabla de búsqueda de
 										 //tamaño n para la distribución de
 										 //la demanda del apartado (c).
 {
@@ -117,17 +117,17 @@ double* construye_prop_c_ord(int n) //Construye la tabla de búsqueda de
 		temp[i] = (double)(n-i)/max;
 	}
 
-	return temp;
+	double* tabla_ord = new double [n];
+
+	tabla_ord[0] = 0;
+	for(int k = 1; k < n; k++){
+		tabla_ord[k] = tabla_ord[k-1] + temp[indices[k]];
+	}
+
+	return tabla_ord;
 }
 
-int genera_demanda_ord(double* tabla,int tama) // Genera un valor de la
-		  // distribución de la demanda codificada en tabla, por el
-		  // método de tablas de búsqueda.
-		  // tama es el tamaño de la tabla, 100 en nuestro caso particular
-{
-	int i = 0;
-	double u = uniforme();
-
+int* tabla_indices_ord(int tama){
 	int* indices = new int [tama];
 	int mid = (tama / 2);
 	int max = mid - 1;
@@ -143,14 +143,18 @@ int genera_demanda_ord(double* tabla,int tama) // Genera un valor de la
 		p++;
 	}
 
-	double* tabla_ord = new double [tama];
+	return indices;
+}
 
-	tabla_ord[0] = 0;
-	for(int k = 1; k < tama; k++){
-		tabla_ord[k] = tabla_ord[k-1] + tabla[k];
-	}
+int genera_demanda_ord(double* tabla, int* indices,int tama) // Genera un valor de la
+		  // distribución de la demanda codificada en tabla, por el
+		  // método de tablas de búsqueda.
+		  // tama es el tamaño de la tabla, 100 en nuestro caso particular
+{
+	int i = 0;
+	double u = uniforme();
 
-	while((i<tama) && (u>=tabla_ord[i])){
+	while((i<tama) && (u>=tabla[i])){
 		i++;
 	}
 
@@ -161,7 +165,7 @@ int genera_demanda_bb(double* tabla, int tama){
 	int a, b, i;
 	double u = uniforme();
 
-	a = 1;
+	a = 0;
 	b = tama;
 
 	while(a <= b){

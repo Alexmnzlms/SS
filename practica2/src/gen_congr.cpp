@@ -48,8 +48,7 @@ int main(int argc, char ** argv){
 		exit(1);
 	}
 
-	int periodo = 0;
-	int generados = 0;
+	int periodo = -1;
 
 	if(metodo == 1){
 		int generado, generado_ant;
@@ -57,28 +56,25 @@ int main(int argc, char ** argv){
 		bool terminado = false;
 		numeros.insert(x_inicial);
 		generado_ant = x_inicial;
-		generados++;
 
-		while(!terminado && generados <= m){
+		while(!terminado && (int)numeros.size() < m){
 			generado = gen_congr_ae(a, generado_ant, c , m);
 			if(numeros.find(generado) != numeros.end()){
-				periodo = generados;
 				terminado = true;
 			} else {
 				numeros.insert(generado);
 				generado_ant = generado;
-				generados++;
 			}
-	}
+			periodo = numeros.size();
+		}
 	} else {
 		double generado, generado_ant;
 		set<double> numeros;
 		bool terminado = false;
 		numeros.insert(x_inicial);
 		generado_ant = x_inicial;
-		generados++;
 
-		while(!terminado && generados <= m){
+		while(!terminado && (int)numeros.size() < m){
 			if(metodo == 2){
 				generado = gen_congr_ar(a, generado_ant, c, m);
 			} else if (metodo == 3){
@@ -88,13 +84,12 @@ int main(int argc, char ** argv){
 			}
 
 			if(numeros.find(generado) != numeros.end()){
-				periodo = generados;
 				terminado = true;
 			} else {
 				numeros.insert(generado);
 				generado_ant = generado;
-				generados++;
 			}
+			periodo = numeros.size();
 		}
 	}
 
