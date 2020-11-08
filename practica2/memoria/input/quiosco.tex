@@ -1,76 +1,258 @@
-\chapter{Quiosco}
+\chapter{Mi Segundo Modelo de Simulación de Monte Carlo}
+
+\section{Modelización por montecarlo}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución a}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100 & 10 & 1 & 89 & 463.86 \\
+100 & 10 & 5 & 67 & 338.65 \\
+100 & 10 & 10 & 53 & 251.8 \\
+1000 & 10 & 1 & 90 & 453.356 \\
+1000 & 10 & 5 & 68 & 329.135 \\
+1000 & 10 & 10 & 51 & 241.68 \\
+5000 & 10 & 1 & 91 & 454.153 \\
+5000 & 10 & 5 & 68 & 330.752 \\
+5000 & 10 & 10 & 49 & 239.772 \\
+10000 & 10 & 1 & 90 & 451.672 \\
+10000 & 10 & 5 & 67 & 330.668 \\
+10000 & 10 & 10 & 50 & 246.502 \\
+100000 & 10 & 1 & 90 & 449.356 \\
+100000 & 10 & 5 & 66 & 327.772 \\
+100000 & 10 & 10 & 50 & 245.066 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución b}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100 & 10 & 1 & 68 & 296.65 \\
+100 & 10 & 5 & 43 & 196.3 \\
+100 & 10 & 10 & 31 & 138.4 \\
+1000 & 10 & 1 & 70 & 287.731 \\
+1000 & 10 & 5 & 43 & 189.82 \\
+1000 & 10 & 10 & 30 & 132.2 \\
+5000 & 10 & 1 & 71 & 287.868 \\
+5000 & 10 & 5 & 43 & 190.486 \\
+5000 & 10 & 10 & 29 & 130.584 \\
+10000 & 10 & 1 & 70 & 284.796 \\
+10000 & 10 & 5 & 43 & 190.042 \\
+10000 & 10 & 10 & 29 & 134.678 \\
+100000 & 10 & 1 & 69 & 283.013 \\
+100000 & 10 & 5 & 42 & 187.965 \\
+100000 & 10 & 10 & 29 & 133.422 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución c}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100 & 10 & 1 & 77 & 472.23 \\
+100 & 10 & 5 & 60 & 389.85 \\
+100 & 10 & 10 & 52 & 334.4 \\
+1000 & 10 & 1 & 79 & 466.281 \\
+1000 & 10 & 5 & 60 & 385.515 \\
+1000 & 10 & 10 & 51 & 330.16 \\
+5000 & 10 & 1 & 79 & 467.379 \\
+5000 & 10 & 5 & 59 & 383.501 \\
+5000 & 10 & 10 & 50 & 329.704 \\
+10000 & 10 & 1 & 79 & 465.595 \\
+10000 & 10 & 5 & 60 & 387.565 \\
+10000 & 10 & 10 & 50 & 334.46 \\
+100000 & 10 & 1 & 77 & 464.006 \\
+100000 & 10 & 5 & 59 & 386.296 \\
+100000 & 10 & 10 & 50 & 333.032 \\ \hline
+\end{tabular}
+\end{table}
 
 \newpage
 
-\section{a}
-
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_a_100.png}
 	\includegraphics[width=16cm]{distribucion_a_1000.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_a_5000.png}
 	\includegraphics[width=16cm]{distribucion_a_10000.png}
 \end{figure}
-\begin{figure}[h]
-	\includegraphics[width=16cm]{distribucion_b_100000.png}
+
+\newpage
+
+\begin{figure}[h!]
+	\includegraphics[width=16cm]{distribucion_a_100000.png}
 \end{figure}
-\begin{figure}[h]
+
+\newpage
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_b_100.png}
 	\includegraphics[width=16cm]{distribucion_b_1000.png}
 \end{figure}
-\begin{figure}[h]
+
+\newpage
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_b_5000.png}
 	\includegraphics[width=16cm]{distribucion_b_10000.png}
 \end{figure}
-\begin{figure}[h]
+
+\pagebreak
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_b_100000.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_c_100.png}
 	\includegraphics[width=16cm]{distribucion_c_1000.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_c_5000.png}
 	\includegraphics[width=16cm]{distribucion_c_10000.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{distribucion_c_100000.png}
 \end{figure}
 
 \newpage
 
-\section{b}
+\section{Modificaciones del modelo}
 
-\begin{figure}[h]
+\subsection{Primera modificación}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Distribución a}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 100 & 90 & 399.802 \\
+10 & 500 & 49 & 127.062 \\
+10 & 1000 & 0 & -0.302 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Distribución b}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 100 & 80 & 235.934 \\
+10 & 500 & 0 & -0.251 \\
+10 & 1000 & 0 & -10.301 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Distribución c}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 100 & 79 & 405.927 \\
+10 & 500 & 36 & 204.343 \\
+10 & 1000 & 24 & 119.323 \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{mod_1_distribucion_a.png}
 	\includegraphics[width=16cm]{mod_1_distribucion_b.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{mod_1_distribucion_c.png}
 \end{figure}
 
 \newpage
 
-\section{c}
+\subsection{Segunda modificación}
 
-\begin{figure}[h]
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución a}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 1 & 100 & 100 & 1658.79 \\
+10 & 5 & 100 & 100 & 4023.65 \\
+10 & 10 & 100 & 100 & 4476.66 \\
+10 & 1 & 500 & 100 & 1658.79 \\
+10 & 5 & 500 & 100 & 8293.97 \\
+10 & 10 & 500 & 100 & 14482.2 \\
+10 & 1 & 1000 & 100 & 1658.79 \\
+10 & 5 & 1000 & 100 & 8294.06 \\
+10 & 10 & 1000 & 100 & 16588.1 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución b}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 1 & 100 & 100 & 1655.73 \\
+10 & 5 & 100 & 100 & 3226.05 \\
+10 & 10 & 100 & 100 & 3327.73 \\
+10 & 1 & 500 & 100 & 1655.73 \\
+10 & 5 & 500 & 100 & 8278.66 \\
+10 & 10 & 500 & 100 & 13500.1 \\
+10 & 1 & 1000 & 100 & 1655.73 \\
+10 & 5 & 1000 & 100 & 8278.66 \\
+10 & 10 & 1000 & 100 & 16557.3 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución c}} \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+10 & 1 & 100 & 100 & 2078.68 \\
+10 & 5 & 100 & 100 & 4784.29 \\
+10 & 10 & 100 & 100 & 4982.05 \\
+10 & 1 & 500 & 100 & 2078.68 \\
+10 & 5 & 500 & 100 & 10393.4 \\
+10 & 10 & 500 & 100 & 18732.2 \\
+10 & 1 & 1000 & 100 & 2078.68 \\
+10 & 5 & 1000 & 100 & 10393.4 \\
+10 & 10 & 1000 & 100 & 20876.1 \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{mod_2_distribucion_a.png}
 	\includegraphics[width=16cm]{mod_2_distribucion_b.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{mod_2_distribucion_c.png}
 \end{figure}
 
 \newpage
 
-\section{d}
+\chapter{Generadores de datos}
 
-\begin{figure}[h]
+\section{Mejorando los generadores}
+
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{tiempos_a.png}
 	\includegraphics[width=16cm]{tiempos_b.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\includegraphics[width=16cm]{tiempos_c.png}
 \end{figure}
 

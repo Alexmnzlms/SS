@@ -3,6 +3,7 @@
 #include <cmath>
 #include <ctgmath>
 #include <set>
+#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -14,7 +15,7 @@ int gen_congr_ae(int a, int x, int c, int m){
 double gen_congr_ar(int a, double x, int c, int m){
 	x = (a*x + c) / m;
 	x = (x - (int)x) * m;
-	return (int)x;
+	return x;
 }
 
 double gen_congr_arc(int a, double x, int c, int m){
@@ -74,7 +75,7 @@ int main(int argc, char ** argv){
 		numeros.insert(x_inicial);
 		generado_ant = x_inicial;
 
-		while(!terminado && (int)numeros.size() < m){
+		while(!terminado /*&& (int)numeros.size() < m*/){
 			if(metodo == 2){
 				generado = gen_congr_ar(a, generado_ant, c, m);
 			} else if (metodo == 3){
@@ -87,11 +88,13 @@ int main(int argc, char ** argv){
 				terminado = true;
 			} else {
 				numeros.insert(generado);
+				cout << setprecision(15) << generado << "\t";
 				generado_ant = generado;
 			}
 			periodo = numeros.size();
 		}
 	}
-
+	cout << endl;
+	cout << "--------------------------" << endl;
 	cout << x_inicial << "\t" << periodo << endl;
 }
