@@ -12,7 +12,8 @@ int main (int argc, char ** argv) {
 
 	if (argc != 4) {
 		std::cerr << "Uso incorrecto." << std::endl;
-		std::cerr << "\t Uso: bin/quiosco_tiempo_exe <n_veces> <generador> <demanda>" << std::endl;
+		std::cerr << "\t Uso: bin/quiosco_tiempo_exe <n_veces>"
+					 << " <generador> <demanda>" << std::endl;
 
 		exit(-1);
 	}

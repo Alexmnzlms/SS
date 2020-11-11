@@ -13,7 +13,8 @@ int main (int argc, char ** argv) {
 
 	if (argc != 6 && argc != 7) {
 		std::cerr << "Uso incorrecto." << std::endl;
-		std::cerr << "\t Uso: bin/quiosco <x> <y> <n_veces> <distribucion> <modificacion> <z>" << std::endl;
+		std::cerr << "\t Uso: bin/quiosco <x> <y> <n_veces> <distribucion>"
+					 << " <modificacion> <z>" << std::endl;
 
 		exit(-1);
 	}
@@ -70,7 +71,7 @@ int main (int argc, char ** argv) {
 
 			} else if ( modificacion == 2 ) {
 				if ( s > demanda )
-					ganancia = demanda * std::min(z,(s-demanda)*y);
+					ganancia = demanda * x - std::min(z,(s-demanda)*y);
 				else
 					ganancia = s * x;
 
