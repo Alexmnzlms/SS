@@ -1,4 +1,5 @@
 set terminal png size 1080,720
+set key left Left
 
 set output "../memoria/img/tiempos_a.png"
 set title "Tiempos para la distribución a"

@@ -2,7 +2,107 @@
 
 \section{Modelización por montecarlo}
 
-\begin{table}[h!]
+\subsection{Planteamiento del problema}
+El sistema que vamos a modelizar trata de un quiosco de periódicos que se abastece diariamente de un cierto numero de periódicos.
+
+Por cada periodico vendido se obtiene una ganancia de x euros y por cada periodico no vendido se pierde una cantidad de y euros.
+
+El número de periodicos solicitados al proveedor es s.
+
+La demanda D es el numero de periodicos que vende el quiosco cada dia y obedece a una distribución de probabilidad P(D = d).
+
+A continuación se definen las 3 distribuciones de probabilidad para D.
+
+El objetivo de esta simulación es encontrar el número de periodicos que se solicitan --- el valor de s--- para el que la ganancia es maxima.
+
+\subsection{Distribuciones de datos}
+
+\begin{itemize}
+	\item Distribución a: $P(D = d) = \frac{1}{100}$, $\forall 0,...,99$ \\ Esta es la distribución uniforme, es decir, todos los valores para D tiene la misma probabilidad.
+	\item Distribución b: $P(D = d) = \frac{100 - d}{5050}$, $\forall 0,...,99$ \\ Esta es la distribución proporcianl, los valores mas pequeños de d tienen mayor probabildad cuanto mas pequeños sean.
+	\item Distribución c: $P(D = d) = \frac{d}{2500}$ si $ 0 \leq d < 50$ y  $P(D = d) = \frac{100-d}{2500}$ si $ 50 \leq d \leq 99$ \\ Esta es la distribución triangular, lo que significa que los valores centrales de d tiene mayor probabilidad que los valores extremos, es decir, si $ 0 \leq d \leq 99$ entonces 0 y 99 tienen una probabilidad muy baja mientras que 50 --- que es el valor medio --- tiene la probabilidad mas alta.
+\end{itemize}
+
+
+
+\subsection{Análisis de resultados}
+
+A continuación pueden verse los resultados que se han obtenido para esta simulación variando le valor de y, es decir, modificando cuanto se pierde por cada unidad no vendida.
+El número de iteraciones ha sido de 100000, lo que quiere decir, que para cada posible valor de s, se han generado 100000 valores aleatorios para D siguiendo las diferentes distribuciones de probabilidad.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución a}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100000 & 10 & 1 & 90 & 449.356 \\
+100000 & 10 & 5 & 66 & 327.772 \\
+100000 & 10 & 10 & 50 & 245.066 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución b}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100000 & 10 & 1 & 69 & 283.013 \\
+100000 & 10 & 5 & 42 & 187.965 \\
+100000 & 10 & 10 & 29 & 133.422 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multicolumn{5}{|c|}{\textbf{Distribución c}} \\ \hline
+\textbf{Veces} & \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
+100000 & 10 & 1 & 77 & 464.006 \\
+100000 & 10 & 5 & 59 & 386.296 \\
+100000 & 10 & 10 & 50 & 333.032 \\ \hline
+\end{tabular}
+\end{table}
+
+Para la distribución a:
+
+Podemos observar como, al aumentar el valor de perdida/unidad, el valor optimo de s disminuye, es decir, cuanto mas aumenta lo que perdemos por una unidad, menos rentable resulta pedir muchas unidades, porque al ser la demanda igualmente probable, es igualmente posible vender 0 unidades que vender 99.
+
+Para la distribución b:
+
+En este caso podemos ver como, al ser mucho mas posible vender pocas unidades que vender mucho, es muy poco rentable encargar muchos periodicos cuanto mayor es el la perdida que obtenemos al dejar periodicos sin vender.
+Por el mismo motivo, las ganancias maximas se reducen, puesto que lo más probable es vender pocos periodicos.
+
+Para la distribución c:
+
+Vemos que es bastante parecida a los resultados obtenidos para la distribucion a. Esto tiene sentido puesto que la probabilidad de que salgan valores intermedios es mayor, por lo que de media obtendremos datos bastante pareciedos.
+
+\newpage
+
+A continuación se pueden apreciar las graficas de la ganancia obtenida para cada valor de s.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{distribucion_a_100000.png}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{distribucion_b_100000.png}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=16cm]{distribucion_c_100000.png}
+\end{figure}
+
+
+
+\subsection{Tablas de datos}
+A continuación se muestran los mismos datos, pero con variaciones en el numero de ejecuciones que se realizan para cada valor de s.
+
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -26,7 +126,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -50,7 +150,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
@@ -76,59 +176,56 @@
 
 \newpage
 
-\begin{figure}[h!]
+\subsection{Gráficas}
+
+Aquí podemos ver los datos de manera grafica.
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_a_100.png}
 	\includegraphics[width=16cm]{distribucion_a_1000.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_a_5000.png}
 	\includegraphics[width=16cm]{distribucion_a_10000.png}
 \end{figure}
 
-\newpage
-
-\begin{figure}[h!]
-	\includegraphics[width=16cm]{distribucion_a_100000.png}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_b_100.png}
 	\includegraphics[width=16cm]{distribucion_b_1000.png}
 \end{figure}
 
-\newpage
-
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_b_5000.png}
 	\includegraphics[width=16cm]{distribucion_b_10000.png}
 \end{figure}
 
-\pagebreak
-
-\begin{figure}[h!]
-	\includegraphics[width=16cm]{distribucion_b_100000.png}
-\end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_c_100.png}
 	\includegraphics[width=16cm]{distribucion_c_1000.png}
 \end{figure}
-\begin{figure}[h!]
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{distribucion_c_5000.png}
 	\includegraphics[width=16cm]{distribucion_c_10000.png}
 \end{figure}
-\begin{figure}[h!]
-	\includegraphics[width=16cm]{distribucion_c_100000.png}
-\end{figure}
 
-\newpage
+
 
 \section{Modificaciones del modelo}
 
 \subsection{Primera modificación}
+La primera modificación al sistema consiste en eliminar las perdidas por unidad no vendida, es decir, y = 0. Sin embargo introducimos un nuevo parametro z que representa los gastos de devolución de las unidades no vendidas. Es decir, ahora las perdidas son independientes de cuanto gastemos, si no de cuanto cueste devolver las unidades no vendidas.
 
-\begin{table}[h!]
+Podemos ver a continuación los resultados obtenidos en la simulación para esta modificiación. Lo primero debe ser notar que los posibles valores de z con los que trabajamos son 100, 500 y 1000. Esto es respectivamente que los costes de devolución equivalen a 10 ventas --- porque por cada venta se obtiene un beneficio de 10 ---, 50 ventas y 100 ventas, es decir, un 10\% de las ventas, la mitad de las ventas y el total de las ventas, ya que la demanda máxima puede ser 100 periodicos.
+
+
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -140,7 +237,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -152,7 +249,7 @@
 \end{tabular}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -164,96 +261,127 @@
 \end{tabular}
 \end{table}
 
-\newpage
+Podemos ver que para unos gastos de devolución de 100€ la ganancia aumenta segun aumenta el numero de periodicos que contratamos, porque a mayor numero de periodicos tengamos, más probable es que vendamos mucho ---sobre todo para la distribución a y c --- y mayor beneficio obtendremos.
 
-\begin{figure}[h!]
+Para los gastos de devolución de 500€ podemos observar como el numero de unidades de periodicos necesarias para alcanzar el mismo se reduce drasticamente, llegando a incluso a obtener perdidas en vez de beneficios. Sobre todo para la distribución de probabilidad b, ya que es mucho menos problable vender un gran numero de periodicos.
+
+Para los gastos de devolución de 1000€ vemos que es una opción inviable para las distribuciones a y b, sin embargo, si es una opción posible si trabajamos con la distribución c, aunque los beneficios totales son bastante reducidos.
+
+A continuación podemos ver los resultados obtenidos graficamente.
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{mod_1_distribucion_a.png}
 	\includegraphics[width=16cm]{mod_1_distribucion_b.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{mod_1_distribucion_c.png}
 \end{figure}
 
-\newpage
-
 \subsection{Segunda modificación}
 
-\begin{table}[h!]
+Finalmente la segunda modificación se basa en una combinación del problema original y la primera modificación.
+Ahora es posible elegir entre la opcioón que genere la minima perdida de dinero, es decir, podemos escoger entre la opción más rentable entre pagar por cada unidad no vendida --- valor de y --- y pagar un precio fijo por la devolución del total de unidades no vendidas ---valor de z ---. En este caso los valores de z e y son los mismos que para los casos anteriores.
+
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \multicolumn{5}{|c|}{\textbf{Distribución a}} \\ \hline
 \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
-10 & 1 & 100 & 100 & 1658.79 \\
-10 & 5 & 100 & 100 & 4023.65 \\
-10 & 10 & 100 & 100 & 4476.66 \\
-10 & 1 & 500 & 100 & 1658.79 \\
-10 & 5 & 500 & 100 & 8293.97 \\
-10 & 10 & 500 & 100 & 14482.2 \\
-10 & 1 & 1000 & 100 & 1658.79 \\
-10 & 5 & 1000 & 100 & 8294.06 \\
-10 & 10 & 1000 & 100 & 16588.1 \\ \hline
+10 & 1 & 100 & 90 & 448.202 \\
+10 & 5 & 100 & 89 & 406.718 \\
+10 & 10 & 100 & 89 & 401.75 \\
+10 & 1 & 500 & 90 & 446.33 \\
+10 & 5 & 500 & 66 & 325.459 \\
+10 & 10 & 500 & 49 & 241.906 \\
+10 & 1 & 1000 & 90 & 446.33 \\
+10 & 5 & 1000 & 66 & 325.459 \\
+10 & 10 & 1000 & 49 & 241.906 \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \multicolumn{5}{|c|}{\textbf{Distribución b}} \\ \hline
 \textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
-10 & 1 & 100 & 100 & 1655.73 \\
-10 & 5 & 100 & 100 & 3226.05 \\
-10 & 10 & 100 & 100 & 3327.73 \\
-10 & 1 & 500 & 100 & 1655.73 \\
-10 & 5 & 500 & 100 & 8278.66 \\
-10 & 10 & 500 & 100 & 13500.1 \\
-10 & 1 & 1000 & 100 & 1655.73 \\
-10 & 5 & 1000 & 100 & 8278.66 \\
-10 & 10 & 1000 & 100 & 16557.3 \\ \hline
+10 & 1 & 100 & 69 & 280.685 \\
+10 & 5 & 100 & 71 & 234.661 \\
+10 & 10 & 100 & 75 & 230.966 \\
+10 & 1 & 500 & 69 & 280.685 \\
+10 & 5 & 500 & 42 & 186.603 \\
+10 & 10 & 500 & 29 & 131.972 \\
+10 & 1 & 1000 & 69 & 280.685 \\
+10 & 5 & 1000 & 42 & 186.603 \\
+10 & 10 & 1000 & 29 & 131.972 \\ \hline
 \end{tabular}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|l|}
 \hline
 \multicolumn{5}{|c|}{\textbf{Distribución c}} \\ \hline
-\textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \textbf{Ganancia} \\ \hline
-10 & 1 & 100 & 100 & 2078.68 \\
-10 & 5 & 100 & 100 & 4784.29 \\
-10 & 10 & 100 & 100 & 4982.05 \\
-10 & 1 & 500 & 100 & 2078.68 \\
-10 & 5 & 500 & 100 & 10393.4 \\
-10 & 10 & 500 & 100 & 18732.2 \\
-10 & 1 & 1000 & 100 & 2078.68 \\
-10 & 5 & 1000 & 100 & 10393.4 \\
-10 & 10 & 1000 & 100 & 20876.1 \\ \hline
+\textbf{Ganancia/Unidad} & \textbf{Perdida/Unidad} & \textbf{Gastos Devolución} & \textbf{Unidades} & \multicolumn{1}{c|}{\textbf{Ganancia}} \\ \hline
+10 & 1 & 100 & 78 & 461.712 \\
+10 & 5 & 100 & 72 & 412.534 \\
+10 & 10 & 100 & 75 & 405.259 \\
+10 & 1 & 500 & 78 & 461.712 \\
+10 & 5 & 500 & 59 & 383.876 \\
+10 & 10 & 500 & 50 & 329.892 \\
+10 & 1 & 1000 & 79 & 461.563 \\
+10 & 5 & 1000 & 59 & 382.647 \\
+10 & 10 & 1000 & 50 & 329.892 \\ \hline
 \end{tabular}
 \end{table}
 
-\newpage
+Podemos apreciar
 
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{mod_2_distribucion_a.png}
 	\includegraphics[width=16cm]{mod_2_distribucion_b.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{mod_2_distribucion_c.png}
 \end{figure}
-
-\newpage
 
 \chapter{Generadores de datos}
 
 \section{Mejorando los generadores}
 
-\begin{figure}[h!]
+En este apartado se pedía introducir una serie de mejoras de enficiencia en los generadores de datos aleatorios.
+
+Dichas mejoras son las siguientes
+
+\begin{itemize}
+	\item Forma numero 1: La forma numero 1 es la de referencia, ya que es la manera en la que se han obtenido los datos en los apartados anteriores, es decir, recorriendo la tabla de probabilidad de forma secuencial.
+	\item Forma numero 2: Esta forma de mejora se basa en aplicar una busqueda binaria para encontrar el valor aleatorio en la tabla de probabilidad.
+	\item Forma numero 3: Esta mejora es especifica para la distribución a y consigue obtener un tiempo constante de ejecución. Se basa en multiplicar por 100 el numero obtenido entre 0 y 1 de manera uniforme. Dado que en la distribución a todos los valores poseen la misma probabilidad, simplemente multiplicando el valor uniforme aleatorio por el máximo, obtenemos el resultado requerido.
+	\item Forma numero 4: La forma número 4 de mejora es exclusiva para la distribución c y se basa en recorrer la tabla de probabilidad comenzando por los valores centrales y continuar en orden decreciente por la derecha y creciente por la izquierda. Asi aseguramos comprobar primero los valores con mayor prioridad.
+\end{itemize}
+
+Podemos observar en las graficas que se adjuntan a continuación:
+
+Para la distribución a, vemos como la mejora 2 --- basada en busqueda binaria --- consigue mejorar en eficiencia a la forma 1, obteniendo resultados casi un 50\% más rapido. Sin embargo vemos como la mejora 4 es inbatible, cosa que tiene sentido, ya que es capaz de obtener resultados en tiempo constante sin importar el tamaño de la tabla de búsqueda.
+
+Para la distribución b observamos que la mejora 2, como es logico, obtiene mejores resultados a la hora de encontrar los valores deseados.
+
+Para la distribución c, podemos ver que la mejora 4, es significativamente más eficiente que la forma normal --- forma 1 ---, pero es superada por la mejora 2.
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{tiempos_a.png}
 	\includegraphics[width=16cm]{tiempos_b.png}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=16cm]{tiempos_c.png}
 \end{figure}
+
 
 

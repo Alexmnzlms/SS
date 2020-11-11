@@ -14,6 +14,9 @@ do for [v in "100 1000 5000 10000 100000"]{
 	}
 }
 
+unset key
+set key bottom Left
+
 do for [d in "a b c"]{
 	set output "../memoria/img/mod_1_distribucion_".d.".png"
 	set title "Ganancia esperada para la distribución ".d." (modificación 1)"
