@@ -1,5 +1,7 @@
+*.zip
 *.png
 !./practica1/memoria/img/cover.png
+!./practica2/memoria/img/cover.png
 *.csv
 *.data
 
