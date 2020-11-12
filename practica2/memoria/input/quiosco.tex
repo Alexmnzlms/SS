@@ -3,23 +3,23 @@
 \section{Modelización por montecarlo}
 
 \subsection{Planteamiento del problema}
-El sistema que vamos a modelizar trata de un quiosco de periódicos que se abastece diariamente de un cierto numero de periódicos.
+El sistema que vamos a modelizar trata de un quiosco de periódicos que se abastece diariamente de un cierto número de periódicos.
 
-Por cada periodico vendido se obtiene una ganancia de x euros y por cada periodico no vendido se pierde una cantidad de y euros.
+Por cada periódico vendido se obtiene una ganancia de x euros y por cada periódico no vendido se pierde una cantidad de y euros.
 
-El número de periodicos solicitados al proveedor es s.
+El número de periódicos solicitados al proveedor es s.
 
-La demanda D es el numero de periodicos que vende el quiosco cada dia y obedece a una distribución de probabilidad P(D = d).
+La demanda D es el número de periódicos que vende el quiosco cada día y obedece a una distribución de probabilidad P(D = d).
 
 A continuación se definen las 3 distribuciones de probabilidad para D.
 
-El objetivo de esta simulación es encontrar el número de periodicos que se solicitan --- el valor de s--- para el que la ganancia es maxima.
+El objetivo de esta simulación es encontrar el número de periódicos que se solicitan --- el valor de s--- para el que la ganancia es máxima.
 
 \subsection{Distribuciones de datos}
 
 \begin{itemize}
 	\item Distribución a: $P(D = d) = \frac{1}{100}$, $\forall 0,...,99$ \\ Esta es la distribución uniforme, es decir, todos los valores para D tiene la misma probabilidad.
-	\item Distribución b: $P(D = d) = \frac{100 - d}{5050}$, $\forall 0,...,99$ \\ Esta es la distribución proporcianl, los valores mas pequeños de d tienen mayor probabildad cuanto mas pequeños sean.
+	\item Distribución b: $P(D = d) = \frac{100 - d}{5050}$, $\forall 0,...,99$ \\ Esta es la distribución proporcional, los valores mas pequeños de d tienen mayor probabilidad cuanto mas pequeños sean.
 	\item Distribución c: $P(D = d) = \frac{d}{2500}$ si $ 0 \leq d < 50$ y  $P(D = d) = \frac{100-d}{2500}$ si $ 50 \leq d \leq 99$ \\ Esta es la distribución triangular, lo que significa que los valores centrales de d tiene mayor probabilidad que los valores extremos, es decir, si $ 0 \leq d \leq 99$ entonces 0 y 99 tienen una probabilidad muy baja mientras que 50 --- que es el valor medio --- tiene la probabilidad mas alta.
 \end{itemize}
 
@@ -68,20 +68,20 @@ El número de iteraciones ha sido de 100000, lo que quiere decir, que para cada 
 
 Para la distribución a:
 
-Podemos observar como, al aumentar el valor de perdida/unidad, el valor optimo de s disminuye, es decir, cuanto mas aumenta lo que perdemos por una unidad, menos rentable resulta pedir muchas unidades, porque al ser la demanda igualmente probable, es igualmente posible vender 0 unidades que vender 99.
+Podemos observar como, al aumentar el valor de pérdida/unidad, el valor óptimo de s disminuye, es decir, cuanto mas aumenta lo que perdemos por una unidad, menos rentable resulta pedir muchas unidades, porque al ser la demanda igualmente probable, es igualmente posible vender 0 unidades que vender 99.
 
 Para la distribución b:
 
-En este caso podemos ver como, al ser mucho mas posible vender pocas unidades que vender mucho, es muy poco rentable encargar muchos periodicos cuanto mayor es el la perdida que obtenemos al dejar periodicos sin vender.
-Por el mismo motivo, las ganancias maximas se reducen, puesto que lo más probable es vender pocos periodicos.
+En este caso podemos ver como, al ser mucho mas posible vender pocas unidades que vender mucho, es muy poco rentable encargar muchos periódicos cuanto mayor es el la pérdida que obtenemos al dejar periódicos sin vender.
+Por el mismo motivo, las ganancias máximas se reducen, puesto que lo más probable es vender pocos periódicos.
 
 Para la distribución c:
 
-Vemos que es bastante parecida a los resultados obtenidos para la distribucion a. Esto tiene sentido puesto que la probabilidad de que salgan valores intermedios es mayor, por lo que de media obtendremos datos bastante pareciedos.
+Vemos que es bastante parecida a los resultados obtenidos para la distribución a. Esto tiene sentido puesto que la probabilidad de que salgan valores intermedios es mayor, por lo que de media obtendremos datos bastante parecidos.
 
 \newpage
 
-A continuación se pueden apreciar las graficas de la ganancia obtenida para cada valor de s.
+A continuación se pueden apreciar las gráficas de la ganancia obtenida para cada valor de s.
 
 
 \begin{figure}[H]
@@ -100,7 +100,7 @@ A continuación se pueden apreciar las graficas de la ganancia obtenida para cad
 
 
 \subsection{Tablas de datos}
-A continuación se muestran los mismos datos, pero con variaciones en el numero de ejecuciones que se realizan para cada valor de s.
+A continuación se muestran los mismos datos, pero con variaciones en el número de ejecuciones que se realizan para cada valor de s.
 
 \begin{table}[H]
 \centering
@@ -178,7 +178,7 @@ A continuación se muestran los mismos datos, pero con variaciones en el numero 
 
 \subsection{Gráficas}
 
-Aquí podemos ver los datos de manera grafica.
+Aquí podemos ver los datos de manera gráfica.
 
 \begin{figure}[H]
 	\centering
@@ -220,9 +220,9 @@ Aquí podemos ver los datos de manera grafica.
 \section{Modificaciones del modelo}
 
 \subsection{Primera modificación}
-La primera modificación al sistema consiste en eliminar las perdidas por unidad no vendida, es decir, y = 0. Sin embargo introducimos un nuevo parametro z que representa los gastos de devolución de las unidades no vendidas. Es decir, ahora las perdidas son independientes de cuanto gastemos, si no de cuanto cueste devolver las unidades no vendidas.
+La primera modificación al sistema consiste en eliminar las pérdidas por unidad no vendida, es decir, y = 0. Sin embargo introducimos un nuevo parámetro z que representa los gastos de devolución de las unidades no vendidas. Es decir, ahora las pérdidas son independientes de cuanto gastemos, si no de cuanto cueste devolver las unidades no vendidas.
 
-Podemos ver a continuación los resultados obtenidos en la simulación para esta modificiación. Lo primero debe ser notar que los posibles valores de z con los que trabajamos son 100, 500 y 1000. Esto es respectivamente que los costes de devolución equivalen a 10 ventas --- porque por cada venta se obtiene un beneficio de 10 ---, 50 ventas y 100 ventas, es decir, un 10\% de las ventas, la mitad de las ventas y el total de las ventas, ya que la demanda máxima puede ser 100 periodicos.
+Podemos ver a continuación los resultados obtenidos en la simulación para esta modificación. Lo primero debe ser notar que los posibles valores de z con los que trabajamos son 100, 500 y 1000. Esto es respectivamente que los costes de devolución equivalen a 10 ventas --- porque por cada venta se obtiene un beneficio de 10 ---, 50 ventas y 100 ventas, es decir, un 10\% de las ventas, la mitad de las ventas y el total de las ventas, ya que la demanda máxima puede ser 100 periódicos.
 
 
 \begin{table}[H]
@@ -261,13 +261,13 @@ Podemos ver a continuación los resultados obtenidos en la simulación para esta
 \end{tabular}
 \end{table}
 
-Podemos ver que para unos gastos de devolución de 100€ la ganancia aumenta segun aumenta el numero de periodicos que contratamos, porque a mayor numero de periodicos tengamos, más probable es que vendamos mucho ---sobre todo para la distribución a y c --- y mayor beneficio obtendremos.
+Podemos ver que para unos gastos de devolución de 100€ la ganancia aumenta según aumenta el número de periódicos que contratamos, porque a mayor número de periódicos tengamos, más probable es que vendamos mucho ---sobre todo para la distribución a y c --- y mayor beneficio obtendremos.
 
-Para los gastos de devolución de 500€ podemos observar como el numero de unidades de periodicos necesarias para alcanzar el mismo se reduce drasticamente, llegando a incluso a obtener perdidas en vez de beneficios. Sobre todo para la distribución de probabilidad b, ya que es mucho menos problable vender un gran numero de periodicos.
+Para los gastos de devolución de 500€ podemos observar como el número de unidades de periódicos necesarias para alcanzar el mismo se reduce drasticamente, llegando a incluso a obtener pérdidas en vez de beneficios. Sobre todo para la distribución de probabilidad b, ya que es mucho menos probable vender un gran número de periódicos.
 
 Para los gastos de devolución de 1000€ vemos que es una opción inviable para las distribuciones a y b, sin embargo, si es una opción posible si trabajamos con la distribución c, aunque los beneficios totales son bastante reducidos.
 
-A continuación podemos ver los resultados obtenidos graficamente.
+A continuación podemos ver los resultados obtenidos gráficamente.
 
 \begin{figure}[H]
 	\centering
@@ -282,7 +282,7 @@ A continuación podemos ver los resultados obtenidos graficamente.
 \subsection{Segunda modificación}
 
 Finalmente la segunda modificación se basa en una combinación del problema original y la primera modificación.
-Ahora es posible elegir entre la opcioón que genere la minima perdida de dinero, es decir, podemos escoger entre la opción más rentable entre pagar por cada unidad no vendida --- valor de y --- y pagar un precio fijo por la devolución del total de unidades no vendidas ---valor de z ---. En este caso los valores de z e y son los mismos que para los casos anteriores.
+Ahora es posible elegir entre la opción que genere la mínima pérdida de dinero, es decir, podemos escoger entre la opción más rentable entre pagar por cada unidad no vendida --- valor de y --- y pagar un precio fijo por la devolución del total de unidades no vendidas ---valor de z ---. En este caso los valores de z e y son los mismos que para los casos anteriores.
 
 \begin{table}[H]
 \centering
@@ -338,7 +338,11 @@ Ahora es posible elegir entre la opcioón que genere la minima perdida de dinero
 \end{tabular}
 \end{table}
 
-Podemos apreciar
+Podemos apreciar como en general, los resultados obtenidos se parecen significativamente a los obtenidos para la simulación sin modificar, por lo que podemos inferir, que resulta más economico fijar un precio de devolución variable segun el número de unidades que queden sin vender que fijar un precio total.
+
+Esto tiene sentido, ya que al ser los precios de devolución por unidad más pequeños que los precios fijos de devolución, es decir, al ser y más pequeña que z, es muy improbable que la demanda sea lo suficientemente baja como para provocar unas pérdidas tan grandes por unidad no vendida que igualen o superen a las pérdidas producidas por un precio de devolución fijo.
+
+Es también por este motivo que encontramos valores repetidos en las tablas y funciones superpuestas, ya que generalmente se aplica la función de ganancia utilizando el valor y en lugar del valor z.
 
 \begin{figure}[H]
 	\centering
@@ -354,22 +358,22 @@ Podemos apreciar
 
 \section{Mejorando los generadores}
 
-En este apartado se pedía introducir una serie de mejoras de enficiencia en los generadores de datos aleatorios.
+En este apartado se pedía introducir una serie de mejoras de eficiencia en los generadores de datos aleatorios.
 
 Dichas mejoras son las siguientes
 
 \begin{itemize}
-	\item Forma numero 1: La forma numero 1 es la de referencia, ya que es la manera en la que se han obtenido los datos en los apartados anteriores, es decir, recorriendo la tabla de probabilidad de forma secuencial.
-	\item Forma numero 2: Esta forma de mejora se basa en aplicar una busqueda binaria para encontrar el valor aleatorio en la tabla de probabilidad.
-	\item Forma numero 3: Esta mejora es especifica para la distribución a y consigue obtener un tiempo constante de ejecución. Se basa en multiplicar por 100 el numero obtenido entre 0 y 1 de manera uniforme. Dado que en la distribución a todos los valores poseen la misma probabilidad, simplemente multiplicando el valor uniforme aleatorio por el máximo, obtenemos el resultado requerido.
-	\item Forma numero 4: La forma número 4 de mejora es exclusiva para la distribución c y se basa en recorrer la tabla de probabilidad comenzando por los valores centrales y continuar en orden decreciente por la derecha y creciente por la izquierda. Asi aseguramos comprobar primero los valores con mayor prioridad.
+	\item Forma número 1: La forma número 1 es la de referencia, ya que es la manera en la que se han obtenido los datos en los apartados anteriores, es decir, recorriendo la tabla de probabilidad de forma secuencial.
+	\item Forma número 2: Esta forma de mejora se basa en aplicar una búsqueda binaria para encontrar el valor aleatorio en la tabla de probabilidad.
+	\item Forma número 3: Esta mejora es especifica para la distribución a y consigue obtener un tiempo constante de ejecución. Se basa en multiplicar por 100 el número obtenido entre 0 y 1 de manera uniforme. Dado que en la distribución a todos los valores poseen la misma probabilidad, simplemente multiplicando el valor uniforme aleatorio por el máximo, obtenemos el resultado requerido.
+	\item Forma número 4: La forma número 4 de mejora es exclusiva para la distribución c y se basa en recorrer la tabla de probabilidad comenzando por los valores centrales y continuar en orden decreciente por la derecha y creciente por la izquierda. Así aseguramos comprobar primero los valores con mayor prioridad.
 \end{itemize}
 
-Podemos observar en las graficas que se adjuntan a continuación:
+Podemos observar en las gráficas que se adjuntan a continuación:
 
-Para la distribución a, vemos como la mejora 2 --- basada en busqueda binaria --- consigue mejorar en eficiencia a la forma 1, obteniendo resultados casi un 50\% más rapido. Sin embargo vemos como la mejora 4 es inbatible, cosa que tiene sentido, ya que es capaz de obtener resultados en tiempo constante sin importar el tamaño de la tabla de búsqueda.
+Para la distribución a, vemos como la mejora 2 --- basada en búsqueda binaria --- consigue mejorar en eficiencia a la forma 1, obteniendo resultados casi un 50\% más rápido. Sin embargo vemos como la mejora 4 es imbatible, cosa que tiene sentido, ya que es capaz de obtener resultados en tiempo constante sin importar el tamaño de la tabla de búsqueda.
 
-Para la distribución b observamos que la mejora 2, como es logico, obtiene mejores resultados a la hora de encontrar los valores deseados.
+Para la distribución b observamos que la mejora 2, como es lógico, obtiene mejores resultados a la hora de encontrar los valores deseados.
 
 Para la distribución c, podemos ver que la mejora 4, es significativamente más eficiente que la forma normal --- forma 1 ---, pero es superada por la mejora 2.
 
@@ -384,4 +388,4 @@ Para la distribución c, podemos ver que la mejora 4, es significativamente más
 \end{figure}
 
 
-
+\newpage

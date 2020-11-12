@@ -1,1 +1,142 @@
 \section{Generadores Congruenciales Lineales}
+
+\subsection{Implementaciones}
+
+Para este aparado se pide que implementamos los siguientes generadores congruenciales lineales (g.c.l):
+
+\begin{itemize}
+	\item $x_{n+1} = (2060x_n + 4321)$ mod m
+	\item $x_{n+1} = (2061x_n + 4321)$ mod m
+\end{itemize}
+
+Para un $ m = 10^4 $
+
+Para calcular los valores generados por estos g.c.l se han implementado los siguientes métodos:
+
+\begin{itemize}
+	\item Aritmética entera:
+		\inputminted[firstline=12, lastline=12]{c++}{../src/gen_congr.cpp}
+	\item Aritmética real `artesanal':
+		\inputminted[firstline=16, lastline=18]{c++}{../src/gen_congr.cpp}
+	\item Aritmética real `artesanal' corregida:
+		\inputminted[firstline=35, lastline=38]{c++}{../src/gen_congr.cpp}
+	\item Aritmética real usando fmod:
+		\inputminted[firstline=42, lastline=42]{c++}{../src/gen_congr.cpp}
+\end{itemize}
+
+\subsection{Resultados}
+
+En la siguiente tabla, podemos ver los periodos máximos obtenidos y para que semilla se ha obtenido con cada una de las implementaciones de los c.g.l:
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Multiplicador} & \textbf{Método} & \textbf{Semilla} & \textbf{Periodo} \\ \hline
+2060 & Aritmética entera & 0 & 5 \\
+2060 & Aritmética real `artesanal' float & 1253 & 193 \\
+2060 & Aritmética real `artesanal' double & 268 & 2707 \\
+2060 & Aritmética real `artesanal' corregida float & 5226 & 16 \\
+2060 & Aritmética real `artesanal' corregida double & 0 & 5 \\
+2060 & Aritmética real usando fmod & 0 & 5 \\
+2061 & Aritmética entera & 0 & 10000 \\
+2061 & Aritmética real `artesanal' float & 3196 & 283 \\
+2061 & Aritmética real `artesanal' double & 0 & 10000 \\
+2061 & Aritmética real `artesanal' corregida float & 6717 & 543 \\
+2061 & Aritmética real `artesanal' corregida double & 0 & 10000 \\
+2061 & Aritmética real usando fmod & 0 & 10000 \\ \hline
+\end{tabular}
+\end{table}
+Primeramente debemos notar que el g.c.l que utiliza un modificador a = 2061 si ofrece el periodo máximo posible, es decir, tiene un periodo = m. Sin embargo el g.c.l con modificador a = 2060 no, la longitud máxima de su periodo es menor a m.
+
+\newpage
+
+Esto es debido los siguientes factores:
+\begin{itemize}
+	\item m y c son primos relativos, ya que el mcd(4321,10000) = 1.
+	\item Para a = 2061, a - 1 es múltiplo de todos los primos que dividen a m, en este caso 1, 2 y 5. Sin embargo para a = 2060 esto no se cumple.
+	\item Para a = 2061, a - 1 es múltiplo de 4, ya que m lo es también. Para a = 2060 esto no se cumple.
+\end{itemize}
+Por tanto esta comprobado que e g.c.l con modificador 2061 debe aportar un periodo máximo = m mientra que el g.c.l con modificador 2060 no.
+
+También podemos no que hay inconsistencias en la tabla, es decir, hay implementaciones que no aportan los resultados que deberían. A continuación analizaremos cada implementación por separado
+
+
+\subsection{Aritmética entera}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Multiplicador} & \textbf{Método} & \textbf{Semilla} & \textbf{Periodo} \\ \hline
+2060 & Aritmética entera & 0 & 5 \\
+2061 & Aritmética entera & 0 & 10000 \\ \hline
+\end{tabular}
+\end{table}
+
+En primer lugar analizaremos los resultados obtenidos para el método de aritmética entera.
+
+Para un modificador de a = 2060 vemos que el periodo máximo que ofrece el g.c.l es 5, mientras que para un modificador de a = 2061 alcanza el máximo.
+
+Los resultados que aporta esta implementación no son para nada sorprendentes, pues simplemente aplica la formula clásica para calcular g.c.l y además trabaja con valores de tipo entero, lo que elimina cualquier problema de redondeo.
+
+\subsection{Aritmética real `artesanal'}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Multiplicador} & \textbf{Método} & \textbf{Semilla} & \textbf{Periodo} \\ \hline
+2060 & Aritmética real `artesanal' float & 1253 & 193 \\
+2060 & Aritmética real `artesanal' double & 268 & 2707 \\
+2061 & Aritmética real `artesanal' float & 3196 & 283 \\
+2061 & Aritmética real `artesanal' double & 0 & 10000 \\ \hline
+\end{tabular}
+\end{table}
+
+Como se puede ver, en esta implementación los resultados son algo más variopintos.
+
+Llamamos artesanal a esta implementación puesto que nosotros tratamos con los decimales manualmente, en lugar de aplicar alguna función de redondeo o truncamiento. Se han programado dos versiones de esta implementación una que trabaja con valores float y otra que trabaja con valores double.
+
+El problema principal en esta implementación es que no se devuelve la parte entera del número, puesto que en principio no debería hacer falta, ya que las divisiones deberían ser enteras y exactas. Sin embargo, no lo son.
+
+En cada división se producen una serie de errores de precisión derivados de la aritmética en coma flotante, que alteran los números de manera que al principio el error es pequeño, pero división tras división se va agravando más y más hasta alterar por completo los números generados por el c.g.l
+
+Además podemos ver que según utilicemos valores de tipo float o double, los errores de precisión no son los mismos, puesto que el tipo double posee el doble de precisión que el tipo float.
+
+Finalmente este generador es capaz de producir números con decimales, cuando un g.c.l debe producir números enteros. Por esta razón parece que el c.g.l con a = 2061 y tipo double parece que genera 10000 números distintos. Lo que sucede es que se ha limitado al generador a producir solo 10000 valores, puesto que si no al generar números decimales, el generador podría haber ciclado durante una cantidad de tiempo considerable.
+
+\subsection{Aritmética real `artesanal' corregida}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Multiplicador} & \textbf{Método} & \textbf{Semilla} & \textbf{Periodo} \\ \hline
+2060 & Aritmética real `artesanal' corregida float & 5226 & 16 \\
+2060 & Aritmética real `artesanal' corregida double & 0 & 5 \\
+2061 & Aritmética real `artesanal' corregida float & 6717 & 543 \\
+2061 & Aritmética real `artesanal' corregida double & 0 & 10000 \\ \hline
+\end{tabular}
+\end{table}
+
+Este método es parecido al anterior, ya que también es un método artesanal. Sin embargo, en esta implementación se consiguen subsanar los errores de precisión de manera bastante buena.
+
+Si bien es cierto que se siguen produciendo si trabajamos con valores de tipo float, las divisiones con valores double son lo suficientemente precisas para que el redondeo funcione.
+
+Este método realiza los mismos cálculos que el anterior salvo porque al final suma 0.5 al valor obtenido --- para conseguir arreglar el error de precisión --- y el cambio fundamental es que se queda con la parte entera de la suma realizada, por lo que elimina la parte decimal de todo número generado.
+
+\subsection{Aritmética entera usando fmod}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Multiplicador} & \textbf{Método} & \textbf{Semilla} & \textbf{Periodo} \\ \hline
+2060 & Aritmética real usando fmod & 0 & 5 \\
+2061 & Aritmética real usando fmod & 0 & 10000 \\ \hline
+\end{tabular}
+\end{table}
+
+Esta implementación sencillamente hace uso de la función fmod, que permite realizar la operación modulo para valores de tipo real como float y double. Al utilizar una función de la biblioteca cmath, nos olvidamos de tener que prestar atención a los errores de precisión
+
+\subsection{Conclusión}
+Finalmente y como conclusión creo que la mejor forma de implementar un g.c.l es hacer una correcta gestión de los errores de precisión o trabajar con números enteros y evitar estos errores directamente.
+
+Los generadores de datos son esenciales a la hora de simular un sistema de manera realista y para poder realizar buenas estimaciones, por tanto, han de ser diseñados de manera que no produzcan fallos del tipo que hemos comentado.
+
