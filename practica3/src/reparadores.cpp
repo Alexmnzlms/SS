@@ -17,7 +17,7 @@ void insertar_lsuc(suc n)
 int temporizacion()
 {
  int suc_sig;
- 
+
    suc_sig = lsuc.front().tipo;
    reloj = lsuc.front().tiempo;
    lsuc.pop_front();
@@ -33,7 +33,7 @@ void suceso(int suc_sig)
          case FALLO_MAQUINA: falloMaquina(); break;
          case FIN_REPARACION: finReparacion(); break;
          case FIN_SIMULACION: generadorInformes(); break;
-      } 
+      }
 }
 
 
@@ -91,7 +91,7 @@ void falloMaquina()
       repuestos --;
       nodo.tipo = FALLO_MAQUINA;
       nodo.tiempo = reloj+generafallo(tfallo);
-      insertar_lsuc(nodo);      
+      insertar_lsuc(nodo);
    }
    else {
       rotas ++;
@@ -128,7 +128,7 @@ void finReparacion()
       rotas --;
       nodo.tipo = FALLO_MAQUINA;
       nodo.tiempo = reloj+generafallo(tfallo);
-      insertar_lsuc(nodo);     
+      insertar_lsuc(nodo);
       if (rotas == 0)
       {
          durfallos += reloj - comienzofallo;
@@ -142,20 +142,20 @@ void finReparacion()
 void generadorInformes()
 {
  float DMF,TMEFS,NMMR,TOR,DTF;
- 
+
    parar = true; //para detener la simulacion
    /* ultimas actualizaciones de contadores estadisticos */
    maqport += (reloj - tusrep) * enreparacion;
    ocio += (reloj - tusocio) * libres;
    if (fallo) durfallos += reloj - comienzofallo;
-   
+
    // Imprimir todas las medidas de rendimiento
    DMF = durfallos/numfallos;
    TMEFS = entrefallos/(numfallos-1);
    NMMR = maqport/reloj;
    TOR = 100*ocio/(reloj*reparadores);
    DTF = 100*durfallos/reloj;
-   
+
    printf("\nDuracion media de los fallos = %.3f",DMF);
    printf("\nTiempo medio entre fallos del sistema = %.3f",TMEFS);
    printf("\nNumero medio de maquinas en reparacion = %.3f",NMMR);
@@ -187,22 +187,22 @@ float generareparacion(float media)
 int main(int argc, char *argv[])
 {
  int suc_sig;
- 
+
  if (argc != 7)
     {
      printf("\n\nFormato Argumentos -> totalMaq maqRepuesto reparadores trepar tfallo tparada\n\n");
      exit(1);
     }
-    
+
     n = atoi(argv[1]);
     s = atoi(argv[2]);
     reparadores = atoi(argv[3]);
     trepar = atof(argv[4]);
     tfallo = atof(argv[5]);
     tparada = atoi(argv[6]);
- 
+
    inicializacion();
-   while(!parar) 
+   while(!parar)
    	{
 	 suc_sig = temporizacion();
 	 suceso(suc_sig);

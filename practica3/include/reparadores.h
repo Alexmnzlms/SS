@@ -23,7 +23,7 @@ typedef struct {
    float trepar;
    float tfallo;
    int   tparada;
-   
+
    // Variables de estado:
    float reloj;
    int   rotas;
@@ -39,7 +39,7 @@ typedef struct {
    float tusocio;
    float tusrep;
    suc nodo;
-   
+
    // Contadores estadisticos
    int   numfallos;
    float durfallos;

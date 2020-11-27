@@ -26,7 +26,7 @@ bool busca_suceso(int tipo)
 	if(((suc)(*itr)).suceso == tipo)
 		{
 		encontrado = true;
-		nodo = *itr; 
+		nodo = *itr;
 		itr = lsuc.erase(itr);
 		}
 	else itr++;
@@ -119,7 +119,7 @@ void suceso()
 void llegada_barco()
 {
   int tipobarco;
-  
+
   nodo.suceso = SUCESO_LLEGADA_BARCO;
   nodo.tiempo = reloj+genera_barco(tllegmin,tllegmax);
   nodo.reg_cola = reg_cola_null;
@@ -274,7 +274,7 @@ void fin_viaje_bo_at()
         encola_sal --;
         atraques_libres ++;
         reg_cola = cola_salidas.front();
-	cola_salidas.pop_front(); 
+	cola_salidas.pop_front();
         nodo.suceso = SUCESO_FIN_DESATRAQUE;
         nodo.tiempo = reloj+genera_viajelleno(tviajellenomin,tviajellenomax);
         nodo.reg_cola = reg_cola;
@@ -322,7 +322,7 @@ void fin_tormenta()
   nodo.tiempo = reloj+genera_tormenta(tentre_tormentas);
   nodo.reg_cola = reg_cola_null;
   insertar_lsuc(nodo);
-  if (remolcador == LIBRE) //con los datos actuales esto siempre ocurrira     
+  if (remolcador == LIBRE) //con los datos actuales esto siempre ocurrira
     if (encola_sal > 0) //comienza a desatracar un barco
        {
         acum_sal += (reloj-tdus_sal)*encola_sal;
@@ -404,7 +404,7 @@ void generador_informes(int simulaciones)
 {
   float media[11], dt[11];
   int i,j;
-  
+
   for(j=0; j<11; j++)
   	{
   	media[j] = 0;
@@ -417,7 +417,7 @@ void generador_informes(int simulaciones)
 		dt[j] += informe[i][j] * informe[i][j];
   	dt[j] = sqrt((dt[j]-simulaciones*media[j]*media[j]) / (simulaciones-1.0));
 	}
-	
+
   printf("\n\nINFORME ->");
   printf("\n\nNumero medio de barcos en cola de llegadas: media(%f), dt(%f)",media[0],dt[0]);
   printf("\nNumero medio de barcos en cola de salidas: media(%f), dt(%f)",media[1],dt[1]);
@@ -493,13 +493,13 @@ int generador_discreto()
 int main(int argc, char *argv[])
 {
   int i, simulaciones;
-  
+
   if(argc != 2)
   	{
 	printf("\n\nFormato Argumentos -> <numero_simulaciones>\n\n");
 	exit(1);
 	}
-	
+
   sscanf(argv[1],"%d",&simulaciones);
 
   informe = (float **) malloc (simulaciones*sizeof(float *));
@@ -520,7 +520,7 @@ int main(int argc, char *argv[])
 		}
 	}
   generador_informes(simulaciones);
-	
+
   for(i=0; i<simulaciones; i++)
   	free(informe[i]);
   free(informe);
