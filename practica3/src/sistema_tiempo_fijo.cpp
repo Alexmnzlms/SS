@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 using namespace std;
 
@@ -10,8 +11,8 @@ int main(int argc, char ** argv){
 	bool fallo = false;
 	bool reparadorlibre = true;
 	bool maquinaesperando = false;
-	int numfallos = 0;
-	int durfallos = 0;
+	float numfallos = 0.0;
+	float durfallos = 0.0;
 	int tiempofinreparacion = 1000000000;
 	int comienzofallo = 0;
 	bool hayrepuesto;
@@ -40,6 +41,18 @@ int main(int argc, char ** argv){
 	int tiempofallomaquina = reloj + tfallo;
 
 	while (reloj <= tiempodeparar){
+/*
+		cout << "Reloj "<< reloj << endl;
+		cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
+		cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
+		cout << "Reparadorlibre " << reparadorlibre << endl;
+		cout << "Maquinaesperando " << maquinaesperando << endl;
+		cout << "Hayrepuesto " << hayrepuesto << endl;
+		cout << "Fallo " << fallo << endl;
+		cout << "Durfallos " << durfallos << endl;
+		cout << "Numfallos " << numfallos << endl;
+		cout << "------" << endl;
+*/
 		if(reloj == tiempofallomaquina){
 			if(reparadorlibre){
 				reparadorlibre = false;
@@ -74,13 +87,22 @@ int main(int argc, char ** argv){
 			}
 		}
 		reloj++;
+/*
+		cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
+		cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
+		cout << "Reparadorlibre " << reparadorlibre << endl;
+		cout << "Maquinaesperando " << maquinaesperando << endl;
+		cout << "Hayrepuesto " << hayrepuesto << endl;
+		cout << "Fallo " << fallo << endl;
+		cout << "Durfallos " << durfallos << endl;
+		cout << "Numfallos " << numfallos << endl;
+		cout << "-----------------------------------------" << endl;
+*/
 	}
 	if(fallo){
 		durfallos += reloj - comienzofallo;
 	}
-	if(numfallos != 0){
-		cout << "Duración media de los fallos: " << durfallos/numfallos << endl;
-	} else {
-		cout << "Duración media de los fallos: 0" << endl;
-	}
+	cout << "Duración de los fallos: " << durfallos << endl;
+	cout << "Número de fallos: " << numfallos << endl;
+	cout << "Duración media de los fallos: " << durfallos/numfallos << endl;
 }

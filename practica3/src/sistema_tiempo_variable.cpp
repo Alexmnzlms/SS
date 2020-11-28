@@ -7,28 +7,33 @@ using namespace std;
 float generar(float media){
 	float u = (float) random();
 	u = (float) (u/(RAND_MAX+1.0));
-	return (-media*log(1-u));
+	int n = roundf(-media * log(1-u));
+	if( n == 0 ){
+		n = 1;
+	}
+	//cout << n << endl;
+	return n;
 }
 
 // bin/sistema_tiempo_fijo hayrepuesto tfallo trepar tiempodeparar
 
 int main(int argc, char ** argv){
-	float reloj = 0;
+	int reloj = 0;
 	bool fallo = false;
 	bool reparadorlibre = true;
 	bool maquinaesperando = false;
-	float numfallos = 0;
-	float durfallos = 0;
-	float tiempofinreparacion = 1000000000.0;
-	float comienzofallo = 0;
+	float numfallos = 0.0;
+	float durfallos = 0.0;
+	int tiempofinreparacion = 1000000000;
+	int comienzofallo = 0;
 	bool hayrepuesto;
-	float tfallo;
-	float trepar;
-	float tiempodeparar;
+	int tfallo;
+	int trepar;
+	int tiempodeparar;
 
 	if( argc != 5 ){
 		cerr << "Numero incorrecto de argumentos" << endl;
-		cerr << "bin/sistema_tiempo_fijo repuesto tfallo trepar tiempodeparar" << endl;
+		cerr << "bin/sistema_tiempo_variable repuesto tfallo trepar tiempodeparar" << endl;
 		exit(1);
 	} else {
 		if(atoi(argv[1]) == 0){
@@ -39,14 +44,26 @@ int main(int argc, char ** argv){
 			cerr << "Repuesto solo puede ser 0 o 1" << endl;
 			exit(1);
 		}
-		tfallo = atof(argv[2]);
-		trepar = atof(argv[3]);
-		tiempodeparar = atof(argv[4]);
+		tfallo = atoi(argv[2]);
+		trepar = atoi(argv[3]);
+		tiempodeparar = atoi(argv[4]);
 	}
 
 	int tiempofallomaquina = reloj + tfallo;
 
 	while (reloj <= tiempodeparar){
+/*
+		cout << "Reloj "<< reloj << endl;
+		cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
+		cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
+		cout << "Reparadorlibre " << reparadorlibre << endl;
+		cout << "Maquinaesperando " << maquinaesperando << endl;
+		cout << "Hayrepuesto " << hayrepuesto << endl;
+		cout << "Fallo " << fallo << endl;
+		cout << "Durfallos " << durfallos << endl;
+		cout << "Numfallos " << numfallos << endl;
+		cout << "------" << endl;
+*/
 		if(reloj == tiempofallomaquina){
 			if(reparadorlibre){
 				reparadorlibre = false;
@@ -61,7 +78,7 @@ int main(int argc, char ** argv){
 				fallo = true;
 				comienzofallo = reloj;
 				numfallos++;
-				tiempofallomaquina = 1000000000.0;
+				tiempofallomaquina = 1000000000;
 			}
 		}
 		if(reloj == tiempofinreparacion){
@@ -70,7 +87,7 @@ int main(int argc, char ** argv){
 				tiempofinreparacion = reloj + generar(trepar);
 			} else {
 				reparadorlibre = true;
-				tiempofinreparacion = 1000000000.0;
+				tiempofinreparacion = 1000000000;
 			}
 			if(!fallo){
 				hayrepuesto = true;
@@ -81,13 +98,22 @@ int main(int argc, char ** argv){
 			}
 		}
 		reloj++;
+/*
+		cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
+		cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
+		cout << "Reparadorlibre " << reparadorlibre << endl;
+		cout << "Maquinaesperando " << maquinaesperando << endl;
+		cout << "Hayrepuesto " << hayrepuesto << endl;
+		cout << "Fallo " << fallo << endl;
+		cout << "Durfallos " << durfallos << endl;
+		cout << "Numfallos " << numfallos << endl;
+		cout << "-----------------------------------------" << endl;
+*/
 	}
 	if(fallo){
 		durfallos += reloj - comienzofallo;
 	}
-	if(numfallos != 0){
-		cout << "Duración media de los fallos: " << durfallos/numfallos << endl;
-	} else {
-		cout << "Duración media de los fallos: 0" << endl;
-	}
+	cout << "Duración de los fallos: " << durfallos << endl;
+	cout << "Número de fallos: " << numfallos << endl;
+	cout << "Duración media de los fallos: " << durfallos/numfallos << endl;
 }
