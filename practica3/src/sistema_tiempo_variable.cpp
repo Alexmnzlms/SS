@@ -1,23 +1,30 @@
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 using namespace std;
+
+float generar(float media){
+	float u = (float) random();
+	u = (float) (u/(RAND_MAX+1.0));
+	return (-media*log(1-u));
+}
 
 // bin/sistema_tiempo_fijo hayrepuesto tfallo trepar tiempodeparar
 
 int main(int argc, char ** argv){
-	int reloj = 0;
+	float reloj = 0;
 	bool fallo = false;
 	bool reparadorlibre = true;
 	bool maquinaesperando = false;
-	int numfallos = 0;
-	int durfallos = 0;
-	int tiempofinreparacion = 1000000000;
-	int comienzofallo = 0;
+	float numfallos = 0;
+	float durfallos = 0;
+	float tiempofinreparacion = 1000000000.0;
+	float comienzofallo = 0;
 	bool hayrepuesto;
-	int tfallo;
-	int trepar;
-	int tiempodeparar;
+	float tfallo;
+	float trepar;
+	float tiempodeparar;
 
 	if( argc != 5 ){
 		cerr << "Numero incorrecto de argumentos" << endl;
@@ -32,9 +39,9 @@ int main(int argc, char ** argv){
 			cerr << "Repuesto solo puede ser 0 o 1" << endl;
 			exit(1);
 		}
-		tfallo = atoi(argv[2]);
-		trepar = atoi(argv[3]);
-		tiempodeparar = atoi(argv[4]);
+		tfallo = atof(argv[2]);
+		trepar = atof(argv[3]);
+		tiempodeparar = atof(argv[4]);
 	}
 
 	int tiempofallomaquina = reloj + tfallo;
@@ -43,32 +50,32 @@ int main(int argc, char ** argv){
 		if(reloj == tiempofallomaquina){
 			if(reparadorlibre){
 				reparadorlibre = false;
-				tiempofinreparacion = reloj + trepar;
+				tiempofinreparacion = reloj + generar(trepar);
 			} else {
 				maquinaesperando = true;
 			}
 			if(hayrepuesto){
 				hayrepuesto = false;
-				tiempofallomaquina = reloj + tfallo;
+				tiempofallomaquina = reloj + generar(tfallo);
 			} else if(!fallo){
 				fallo = true;
 				comienzofallo = reloj;
 				numfallos++;
-				tiempofallomaquina = 1000000000;
+				tiempofallomaquina = 1000000000.0;
 			}
 		}
 		if(reloj == tiempofinreparacion){
 			if(maquinaesperando){
 				maquinaesperando = false;
-				tiempofinreparacion = reloj + trepar;
+				tiempofinreparacion = reloj + generar(trepar);
 			} else {
 				reparadorlibre = true;
-				tiempofinreparacion = 1000000000;
+				tiempofinreparacion = 1000000000.0;
 			}
 			if(!fallo){
 				hayrepuesto = true;
 			} else {
-				tiempofallomaquina = reloj + tfallo;
+				tiempofallomaquina = reloj + generar(tfallo);
 				durfallos += reloj - comienzofallo;
 				fallo = false;
 			}
