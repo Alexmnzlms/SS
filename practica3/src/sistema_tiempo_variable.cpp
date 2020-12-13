@@ -7,29 +7,28 @@ using namespace std;
 float generar(float media){
 	float u = (float) random();
 	u = (float) (u/(RAND_MAX+1.0));
-	int n = roundf(-media * log(1-u));
-	if( n == 0 ){
-		n = 1;
-	}
-	//cout << n << endl;
-	return n;
+	return (-media * log(1-u));
 }
 
 // bin/sistema_tiempo_fijo hayrepuesto tfallo trepar tiempodeparar
 
 int main(int argc, char ** argv){
-	int reloj = 0;
+
+	srandom(time(NULL));
+	//srandom(1);
+
+	float reloj = 0.0;
 	bool fallo = false;
 	bool reparadorlibre = true;
 	bool maquinaesperando = false;
 	float numfallos = 0.0;
 	float durfallos = 0.0;
-	int tiempofinreparacion = 1000000000;
-	int comienzofallo = 0;
+	float tiempofinreparacion = 1000000000.0;
+	float comienzofallo = 0.0;
 	bool hayrepuesto;
-	int tfallo;
-	int trepar;
-	int tiempodeparar;
+	float tfallo;
+	float trepar;
+	float tiempodeparar;
 
 	if( argc != 5 ){
 		cerr << "Numero incorrecto de argumentos" << endl;
@@ -49,7 +48,7 @@ int main(int argc, char ** argv){
 		tiempodeparar = atoi(argv[4]);
 	}
 
-	int tiempofallomaquina = reloj + tfallo;
+	float tiempofallomaquina = reloj + generar(tfallo);
 
 	while (reloj <= tiempodeparar){
 /*
@@ -64,6 +63,7 @@ int main(int argc, char ** argv){
 		cout << "Numfallos " << numfallos << endl;
 		cout << "------" << endl;
 */
+		reloj = min(tiempofallomaquina,tiempofinreparacion);
 		if(reloj == tiempofallomaquina){
 			if(reparadorlibre){
 				reparadorlibre = false;
@@ -97,7 +97,6 @@ int main(int argc, char ** argv){
 				fallo = false;
 			}
 		}
-		reloj++;
 /*
 		cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
 		cout << "Tiempofinreparacion " << tiempofinreparacion << endl;

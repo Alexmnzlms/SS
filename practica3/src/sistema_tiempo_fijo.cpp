@@ -5,8 +5,23 @@
 using namespace std;
 
 // bin/sistema_tiempo_fijo hayrepuesto tfallo trepar tiempodeparar
+int generar(float media){
+	float u = (float) random();
+	u = (float) (u/(RAND_MAX+1.0));
+	float n = (-media * log(1-u));
+	int ent = ceil(n);
+	if (ent == 0){
+		ent++;
+	}
+	return ent;
+}
+
 
 int main(int argc, char ** argv){
+
+	srandom(time(NULL));
+	//srandom(1);
+
 	int reloj = 0;
 	bool fallo = false;
 	bool reparadorlibre = true;
@@ -38,7 +53,7 @@ int main(int argc, char ** argv){
 		tiempodeparar = atoi(argv[4]);
 	}
 
-	int tiempofallomaquina = reloj + tfallo;
+	int tiempofallomaquina = reloj + generar(tfallo);
 
 	while (reloj <= tiempodeparar){
 /*
@@ -56,13 +71,13 @@ int main(int argc, char ** argv){
 		if(reloj == tiempofallomaquina){
 			if(reparadorlibre){
 				reparadorlibre = false;
-				tiempofinreparacion = reloj + trepar;
+				tiempofinreparacion = reloj + generar(trepar);
 			} else {
 				maquinaesperando = true;
 			}
 			if(hayrepuesto){
 				hayrepuesto = false;
-				tiempofallomaquina = reloj + tfallo;
+				tiempofallomaquina = reloj + generar(tfallo);
 			} else if(!fallo){
 				fallo = true;
 				comienzofallo = reloj;
@@ -73,7 +88,7 @@ int main(int argc, char ** argv){
 		if(reloj == tiempofinreparacion){
 			if(maquinaesperando){
 				maquinaesperando = false;
-				tiempofinreparacion = reloj + trepar;
+				tiempofinreparacion = reloj + generar(trepar);
 			} else {
 				reparadorlibre = true;
 				tiempofinreparacion = 1000000000;
@@ -81,7 +96,7 @@ int main(int argc, char ** argv){
 			if(!fallo){
 				hayrepuesto = true;
 			} else {
-				tiempofallomaquina = reloj + tfallo;
+				tiempofallomaquina = reloj + generar(tfallo);
 				durfallos += reloj - comienzofallo;
 				fallo = false;
 			}
