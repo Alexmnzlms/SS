@@ -14,40 +14,40 @@ using namespace std;
 typedef struct {
 	int tipo;
 	float tiempo;
-	} suc;
+} suc;
 
-   // Variables exogenas:
-   int   n;
-   int   s;
-   int   reparadores;
-   float trepar;
-   float tfallo;
-   int   tparada;
+// Variables exogenas:
+int	n;
+int	s;
+int	reparadores;
+float trepar;
+float tfallo;
+int	tparada;
 
-   // Variables de estado:
-   float reloj;
-   int   rotas;
-   int   repuestos;
-   bool  fallo;
-   int   libres;
-   int   encola;
-   int   enreparacion;
-   bool parar;
-   list<suc> lsuc;
-   float comienzofallo;
-   float finfalloanterior;
-   float tusocio;
-   float tusrep;
-   suc nodo;
+// Variables de estado:
+float reloj;
+int	rotas;
+int	repuestos;
+bool	fallo;
+int	libres;
+int	encola;
+int	enreparacion;
+bool parar;
+list<suc> lsuc;
+float comienzofallo;
+float finfalloanterior;
+float tusocio;
+float tusrep;
+suc nodo;
 
-   // Contadores estadisticos
-   int   numfallos;
-   float durfallos;
-   float entrefallos;
-   float maqport;
-   float ocio;
+// Contadores estadisticos
+int	numfallos;
+float durfallos;
+float entrefallos;
+float maqport;
+float ocio;
 
-   /* Funciones y procedimientos */
+/* Funciones y procedimientos */
 void inicializacion();
 // gestion de lista de sucesos
 int temporizacion();
