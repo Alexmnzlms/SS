@@ -23,18 +23,20 @@ using namespace std;
 typedef struct {
 	int tipo;
 	float tiempo;
-	} registro;
+} registro;
+
 typedef struct {
 	int suceso;
 	float tiempo;
 	registro reg_cola;
-	} suc;
+} suc;
+
 float reloj;
 bool tormenta;
 int remolcador;
 int atraques_libres;
 int encola_lleg;
-list<registro>cola_llegadas;
+list<registro>	cola_llegadas;
 int encola_sal;
 list<registro> cola_salidas;
 float tdus_at;
