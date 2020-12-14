@@ -1,5 +1,22 @@
 #!/bin/sh
 
+if [ $# != 5 ]; then
+	echo "Número incorrecto de parametros"
+	echo "Necesito repuesto trepar tfallo tparar max"
+	echo "Utilizando por defecto repuesto=0 trepar=2 tfallo=1 tparar=100 max=10000"
+	repuesto=0
+	trepar=2
+	tfallo=1
+	tparar=100
+	max=10000
+else
+	repuesto=$1
+	trepar=$2
+	tfallo=$3
+	tparar=$4
+	max=$5
+fi
+
 cd ..
 make -B apartado1
 cd script
@@ -7,11 +24,6 @@ cd script
 data=../data
 bin=../bin
 
-trepar=2
-tfallo=1
-tparar=100
-repuesto=0
-max=10000
 
 #$bin/sistema_teorico_exe $tfallo $trepar $tparar $max > $data/sistema-teorico_data
 #$bin/sistema_tiempo_fijo_exe $repuesto $tfallo $trepar $tparar $max > $data/sistema-t-fijo_data
@@ -39,7 +51,7 @@ for i in $(seq 1 4); do
 		((tfallo_u = tfallo))
 		((tparar_u = tparar))
 	fi
-	echo "${i} ${u} ${trepar_u} ${tfallo_u} ${tparar_u}"
+	echo "${i} ${u} trepar=${trepar_u} tfallo=${tfallo_u} tparar=${tparar_u} max=${max}"
 	$bin/sistema_teorico_exe $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-teorico-${u}_data"
 	$bin/sistema_tiempo_fijo_exe $repuesto $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-t-fijo-${u}_data"
 	$bin/sistema_tiempo_variable_exe $repuesto $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-t-variable-${u}_data"
