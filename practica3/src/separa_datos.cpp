@@ -16,11 +16,11 @@ int main(int argc, char* argv[]){
 	}
 
 	string output[5];
-	output[0] = string(argv[1]) + "_dmf";
-	output[1] = string(argv[1]) + "_tmefs";
-	output[2] = string(argv[1]) + "_nmmr";
-	output[3] = string(argv[1]) + "_tor";
-	output[4] = string(argv[1]) + "_dtf";
+	output[0] = string(argv[1]) + "_dmf_data";
+	output[1] = string(argv[1]) + "_tmefs_data";
+	output[2] = string(argv[1]) + "_nmmr_data";
+	output[3] = string(argv[1]) + "_tor_data";
+	output[4] = string(argv[1]) + "_dtf_data";
 
 	ofstream fo[5];
 	for(int f = 0; f < 5; f++){
