@@ -9,7 +9,7 @@ all: apartado1 apartado2
 
 apartado1: $(BIN)/sistema_tiempo_fijo_exe $(BIN)/sistema_tiempo_variable_exe $(BIN)/sistema_teorico_exe
 
-apartado2: $(BIN)/reparadores_exe
+apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe
 
 apartado3: $(BIN)/puerto_exe
 
@@ -26,6 +26,9 @@ $(BIN)/sistema_tiempo_variable_exe: $(SRC)/sistema_tiempo_variable.cpp
 	$(GXX) $@ $^ $(FLAGS)
 
 $(BIN)/sistema_teorico_exe: $(SRC)/sistema_teorico.cpp
+	$(GXX) $@ $^ $(FLAGS)
+
+$(BIN)/separa_datos_exe: $(SRC)/separa_datos.cpp
 	$(GXX) $@ $^ $(FLAGS)
 
 clean:
