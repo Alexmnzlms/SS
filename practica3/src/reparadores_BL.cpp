@@ -1,4 +1,4 @@
-#include "reparadores.h"
+#include "reparadores_BL.h"
 
 bool compare(const suc &s1, const suc &s2){
 	return s1.tiempo < s2.tiempo;
