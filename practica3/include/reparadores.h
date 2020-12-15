@@ -47,6 +47,13 @@ float entrefallos;
 float maqport;
 float ocio;
 
+//Varibles de iteración
+int i;
+int iter;
+
+//Variables de informe
+float DMF, TMEFS, NMMR, TOR, DTF;
+
 /* Funciones y procedimientos */
 void inicializacion();
 // gestion de lista de sucesos

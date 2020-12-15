@@ -42,8 +42,7 @@ void suceso(int suc_sig){
 /* Procedimiento inicializacion */
 void inicializacion()
 {
-	srandom(time(NULL));
-	//srandom(123456);
+	//srandom(time(NULL));
 	reloj = 0.0;
 	parar = false;
 	rotas = 0;
@@ -60,6 +59,8 @@ void inicializacion()
 	ocio = 0.0;
 	tusocio = reloj;
 	tusrep = reloj;
+
+	lsuc.clear();
 
 	for (int i=0; i<n; i++){
 		nodo.tipo = FALLO_MAQUINA;
@@ -147,7 +148,6 @@ void finReparacion()
 
 /* Procedimiento generador de informes */
 void generadorInformes(){
-	float DMF,TMEFS,NMMR,TOR,DTF;
 
 	parar = true; //para detener la simulacion
 	/* ultimas actualizaciones de contadores estadisticos */
@@ -158,18 +158,24 @@ void generadorInformes(){
 	}
 
 	// Imprimir todas las medidas de rendimiento
-	DMF = durfallos/numfallos;
-	TMEFS = entrefallos/(numfallos-1);
-	NMMR = maqport/reloj;
-	TOR = 100*ocio/(reloj*reparadores);
-	DTF = 100*durfallos/reloj;
+	DMF += durfallos/numfallos;
+	TMEFS += entrefallos/(numfallos-1);
+	NMMR += maqport/reloj;
+	TOR += 100*ocio/(reloj*reparadores);
+	DTF += 100*durfallos/reloj;
 
-	printf("\nDuracion media de los fallos = %.3f",DMF);
-	printf("\nTiempo medio entre fallos del sistema = %.3f",TMEFS);
-	printf("\nNumero medio de maquinas en reparacion = %.3f",NMMR);
-	printf("\nPorcentaje de tiempo de ocio de los reparadores = %.3f",TOR);
-	printf("\nPorcentaje de duracion total de los fallos = %.3f",DTF);
-	printf("\n");
+	//printf("\nDuracion media de los fallos = %.3f",DMF);
+	//printf("\nTiempo medio entre fallos del sistema = %.3f",TMEFS);
+	//printf("\nNumero medio de maquinas en reparacion = %.3f",NMMR);
+	//printf("\nPorcentaje de tiempo de ocio de los reparadores = %.3f",TOR);
+	//printf("\nPorcentaje de duracion total de los fallos = %.3f",DTF);
+	//printf("\n");
+	printf("\n%.3f",DMF/i);
+	printf("\n%.3f",TMEFS/i);
+	printf("\n%.3f",NMMR/i);
+	printf("\n%.3f",TOR/i);
+	printf("\n%.3f",DTF/i);
+	//printf("\n");
 }
 
 /* generadores de datos */
@@ -195,8 +201,8 @@ float generareparacion(float media){
 int main(int argc, char *argv[]){
 	int suc_sig;
 
-	if (argc != 7){
-		printf("\n\nFormato Argumentos -> totalMaq maqRepuesto reparadores trepar tfallo tparada\n\n");
+	if (argc != 8){
+		printf("\n\nFormato Argumentos -> totalMaq maqRepuesto reparadores trepar tfallo tparada iter\n\n");
 		exit(1);
 	}
 
@@ -206,10 +212,21 @@ int main(int argc, char *argv[]){
 	trepar = atof(argv[4]);
 	tfallo = atof(argv[5]);
 	tparada = atoi(argv[6]);
+	iter = atoi(argv[7]);
 
+	DMF = 0;
+	TMEFS = 0;
+	NMMR = 0;
+	TOR = 0;
+	DTF = 0;
+
+	srandom(123456);
+
+	for(i = 1; i <= iter; i++){
 	inicializacion();
-	while(!parar){
-		suc_sig = temporizacion();
-		suceso(suc_sig);
+		while(!parar){
+			suc_sig = temporizacion();
+			suceso(suc_sig);
+		}
 	}
 }
