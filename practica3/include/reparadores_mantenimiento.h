@@ -79,5 +79,7 @@ void generadorInformes();
 // generadores de datos
 float generafallo(float media);
 float generareparacion(float media);
-int generaruniforme(int min, int max);
+float generaruniforme(float min, float max);
+
+void print_lsuc(int n);
 

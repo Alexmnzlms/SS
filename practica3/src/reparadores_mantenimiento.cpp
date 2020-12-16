@@ -197,18 +197,20 @@ void mantenimiento(){
 			for(auto it = numeros_aleatorios.begin(); it != numeros_aleatorios.end(); ++it){
 				nodo.tipo = FIN_MANTENIMIENTO;
 				nodo.maquina = (*it);
-				nodo.tiempo = generaruniforme(tmantmin, tmantmax);
+				nodo.tiempo = reloj+generaruniforme(tmantmin, tmantmax);
 				insertar_lsuc(nodo);
 				eliminar_lsuc(FALLO_MAQUINA, *it);
 			}
+			libres = 0;
 		} else {
 			for(int i = 0; i < (n-rotas); i++){
 				nodo.tipo = FIN_MANTENIMIENTO;
 				nodo.maquina = i;
-				nodo.tiempo = generaruniforme(tmantmin,tmantmax);
+				nodo.tiempo = reloj+generaruniforme(tmantmin,tmantmax);
 				insertar_lsuc(nodo);
 				eliminar_lsuc(FALLO_MAQUINA, i);
 			}
+			libres -= (n-rotas);
 		}
 	}
 
@@ -225,10 +227,11 @@ void finMantenimiento(int m){
 		nodo.tipo = FIN_REPARACION;
 		nodo.maquina = m;
 		nodo.tiempo = reloj+generareparacion(trepar);
+		insertar_lsuc(nodo);
 	}
 
 	nodo.tipo = FALLO_MAQUINA;
-	nodo.tipo = m;
+	nodo.maquina = m;
 	nodo.tiempo = reloj+generafallo(tfallo);
 	insertar_lsuc(nodo);
 }
@@ -251,11 +254,11 @@ void generadorInformes(){
 	TOR += 100*ocio/(reloj*reparadores);
 	DTF += 100*durfallos/reloj;
 
-	//printf("\nDuracion media de los fallos = %.3f",DMF);
-	//printf("\nTiempo medio entre fallos del sistema = %.3f",TMEFS);
-	//printf("\nNumero medio de maquinas en reparacion = %.3f",NMMR);
-	//printf("\nPorcentaje de tiempo de ocio de los reparadores = %.3f",TOR);
-	//printf("\nPorcentaje de duracion total de los fallos = %.3f",DTF);
+	//printf("\nDuracion media de los fallos = %.3f",DMF/i);
+	//printf("\nTiempo medio entre fallos del sistema = %.3f",TMEFS/i);
+	//printf("\nNumero medio de maquinas en reparacion = %.3f",NMMR/i);
+	//printf("\nPorcentaje de tiempo de ocio de los reparadores = %.3f",TOR/i);
+	//printf("\nPorcentaje de duracion total de los fallos = %.3f",DTF/i);
 	//printf("\n");
 	printf("\n%.3f",DMF/i);
 	printf("\n%.3f",TMEFS/i);
@@ -284,8 +287,20 @@ float generareparacion(float media){
 	return generador_exponencial(media);
 }
 
-int generaruniforme(int min, int max){
-	return random() % max + min;
+float generaruniforme(float min, float max){
+	float u;
+	u = (float) random();
+	u = (float) (u/(RAND_MAX+1.0));
+	return(min+(max-min)*u);
+}
+
+void print_lsuc(int n){
+	int i = 0;
+	printf("----------------------------------------------------------------\n");
+	for(auto it = lsuc.begin(); it != lsuc.end(); ++it,i++){
+		printf("[ n=%d i=%d tipo=%d maquina=%d tiempo=%0.3f ]\n", n, i, it->tipo, it->maquina, it->tiempo);;
+	}
+	printf("----------------------------------------------------------------\n");
 }
 
 /* Programa principal */
@@ -319,7 +334,10 @@ int main(int argc, char *argv[]){
 
 	for(i = 1; i <= iter; i++){
 	inicializacion();
+	int cont = 0;
 		while(!parar){
+			//print_lsuc(cont);
+			cont++;
 			suc_sig = temporizacion();
 			maq = temporizacion_maquina();
 			suceso(suc_sig,maq);
