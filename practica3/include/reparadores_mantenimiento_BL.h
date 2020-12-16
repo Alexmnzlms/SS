@@ -79,6 +79,7 @@ void generadorInformes();
 float generafallo(float media);
 float generareparacion(float media);
 float generaruniforme(float min, float max);
-
+float simulacion(int m_reparadores, int s_repuestos);
+pair<int,int> generar_vecino(pair<int,int> dato);
 void print_lsuc(int n);
 

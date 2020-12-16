@@ -9,7 +9,7 @@ all: apartado1 apartado2
 
 apartado1: $(BIN)/sistema_tiempo_fijo_exe $(BIN)/sistema_tiempo_variable_exe $(BIN)/sistema_teorico_exe
 
-apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe
+apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe $(BIN)/reparadores_mantenimiento_BL_exe
 
 apartado3: $(BIN)/puerto_exe
 
@@ -36,5 +36,9 @@ $(BIN)/reparadores_BL_exe: $(SRC)/reparadores_BL.cpp $(INC)/reparadores_BL.h
 
 $(BIN)/reparadores_mantenimiento_exe: $(SRC)/reparadores_mantenimiento.cpp $(INC)/reparadores_mantenimiento.h
 	$(GXX) $@ $^ $(FLAGS)
+
+$(BIN)/reparadores_mantenimiento_BL_exe: $(SRC)/reparadores_mantenimiento_BL.cpp $(INC)/reparadores_mantenimiento_BL.h
+	$(GXX) $@ $^ $(FLAGS)
+
 clean:
 	rm bin/*

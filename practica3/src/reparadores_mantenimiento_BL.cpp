@@ -1,4 +1,4 @@
-#include "reparadores_mantenimiento.h"
+#include "reparadores_mantenimiento_BL.h"
 
 bool compare(const suc &s1, const suc &s2){
 	return s1.tiempo < s2.tiempo;
@@ -223,12 +223,12 @@ void generadorInformes(){
 	//printf("\nPorcentaje de tiempo de ocio de los reparadores = %.3f",TOR/i);
 	//printf("\nPorcentaje de duracion total de los fallos = %.3f",DTF/i);
 	//printf("\n");
-	printf("\n%.3f",DMF/i);
-	printf("\n%.3f",TMEFS/i);
-	printf("\n%.3f",NMMR/i);
-	printf("\n%.3f",TOR/i);
-	printf("\n%.3f",DTF/i);
-	printf("\n");
+	//printf("\n%.3f",DMF/i);
+	//printf("\n%.3f",TMEFS/i);
+	//printf("\n%.3f",NMMR/i);
+	//printf("\n%.3f",TOR/i);
+	//printf("\n%.3f",DTF/i);
+	//printf("\n");
 }
 
 /* generadores de datos */
@@ -267,24 +267,19 @@ void print_lsuc(int n){
 }
 
 /* Programa principal */
-int main(int argc, char *argv[]){
+float simulacion(int m_reparadores, int s_repuestos){
 	int suc_sig;
 
-	if (argc != 11){
-		printf("\n\nFormato Argumentos -> totalMaq maqRepuesto reparadores trepar tfallo tparada iter trevision tmantmin tmantmax\n\n");
-		exit(1);
-	}
-
-	n = atoi(argv[1]);
-	s = atoi(argv[2]);
-	reparadores = atoi(argv[3]);
-	trepar = atof(argv[4]);
-	tfallo = atof(argv[5]);
-	tparada = atoi(argv[6]);
-	iter = atoi(argv[7]);
-	trevision = atoi(argv[8]);
-	tmantmin = atoi(argv[9]);
-	tmantmax = atoi(argv[10]);
+	n = 4;
+	s = s_repuestos;
+	reparadores = m_reparadores;
+	trepar = 2;
+	tfallo = 1.5;
+	tparada = 365;
+	iter = 10000;
+	trevision = 7;
+	tmantmin = 0.5;
+	tmantmax = 1;
 
 	DMF = 0;
 	TMEFS = 0;
@@ -292,16 +287,71 @@ int main(int argc, char *argv[]){
 	TOR = 0;
 	DTF = 0;
 
-	srandom(123456);
-
 	for(i = 1; i <= iter; i++){
 	inicializacion();
-	int cont = 0;
 		while(!parar){
-			//print_lsuc(cont);
-			cont++;
 			suc_sig = temporizacion();
 			suceso(suc_sig);
 		}
+	}
+
+	return (DTF/iter);
+}
+
+pair<int,int> generar_vecino(pair<int,int> dato){
+	int m = dato.first;
+	int s = dato.second;
+
+	int moneda = random() % 100;
+	//printf("Moneda %d\n", moneda);
+
+	if(moneda%2 == 0){
+		s++;
+	} else {
+		m++;
+	}
+
+	pair<int,int> vecino (m,s);
+
+
+	return vecino;
+}
+
+int main(int agrc, char* argv[]){
+
+	int busquedas = atoi(argv[1]);
+
+	for(int bl = 0; bl < busquedas; bl++){
+
+		srandom(time(NULL));
+
+		int iter_bl = 0;
+		int max_iter = 1000000;
+		pair<int,int> actual (1, 1);
+		pair<int,int> actual_ant = actual;
+		float valor_objetivo = simulacion(actual.first, actual.second);
+		float valor_objetivo_ant = valor_objetivo;
+		bool terminado = false;
+
+		while(iter_bl <= max_iter && !terminado){
+			actual = generar_vecino(actual);
+			valor_objetivo = simulacion(actual.first,actual.second);
+			//printf("Probando m=%d , s=%d, obj=%f\n", actual.first, actual.second,valor_objetivo);
+			if(valor_objetivo < valor_objetivo_ant){
+				actual_ant = actual;
+				valor_objetivo_ant = valor_objetivo;
+			} else {
+				actual = actual_ant;
+				valor_objetivo = valor_objetivo_ant;
+			}
+			if(valor_objetivo <= 10.0){
+				terminado = true;
+			}
+
+			iter_bl++;
+			//printf("Valores minimos encontrados m=%d , s=%d, obj=%f\n", actual.first, actual.second,valor_objetivo);
+		}
+
+		printf("Valores minimos encontrados m=%d , s=%d, obj=%f\n", actual.first, actual.second,valor_objetivo);
 	}
 }
