@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <iomanip>
+#include <chrono>
 
 using namespace std;
 
@@ -25,10 +26,11 @@ int main(int argc, char ** argv){
 	int tiempodeparar;
 	int max;
 	float durfallos_media = 0.0;
+	bool efi;
 
-	if( argc != 6 ){
+	if( argc != 7 ){
 		cerr << "Numero incorrecto de argumentos" << endl;
-		cerr << "bin/sistema_tiempo_fijo repuesto tfallo trepar tiempodeparar max" << endl;
+		cerr << "bin/sistema_tiempo_fijo repuesto tfallo trepar tiempodeparar max efi" << endl;
 		exit(1);
 	} else {
 		if(atoi(argv[1]) == 0){
@@ -43,10 +45,17 @@ int main(int argc, char ** argv){
 		trepar = atoi(argv[3]);
 		tiempodeparar = atoi(argv[4]);
 		max = atoi(argv[5]);
+		if(atoi(argv[6]) == 0){
+			efi = false;
+		} else {
+			efi = true;
+		}
 	}
 
-	srandom(18);
-	//srandom(1);
+	//srandom(18);
+	srandom(1);
+
+	auto start = std::chrono::high_resolution_clock::now();
 
 	for(int i = 1; i <= max; i++){
 		int reloj = 0;
@@ -62,18 +71,7 @@ int main(int argc, char ** argv){
 		int tiempofallomaquina = reloj + generar(tfallo);
 
 		while (reloj <= tiempodeparar){
-			/*
-			cout << "Reloj "<< reloj << endl;
-			cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
-			cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
-			cout << "Reparadorlibre " << reparadorlibre << endl;
-			cout << "Maquinaesperando " << maquinaesperando << endl;
-			cout << "Hayrepuesto " << hayrepuesto << endl;
-			cout << "Fallo " << fallo << endl;
-			cout << "Durfallos " << durfallos << endl;
-			cout << "Numfallos " << numfallos << endl;
-			cout << "------" << endl;
-			*/
+
 			if(reloj == tiempofallomaquina){
 				if(reparadorlibre){
 					reparadorlibre = false;
@@ -108,17 +106,7 @@ int main(int argc, char ** argv){
 				}
 			}
 			reloj++;
-			/*
-			cout << "Tiempofallomaquina " << tiempofallomaquina << endl;
-			cout << "Tiempofinreparacion " << tiempofinreparacion << endl;
-			cout << "Reparadorlibre " << reparadorlibre << endl;
-			cout << "Maquinaesperando " << maquinaesperando << endl;
-			cout << "Hayrepuesto " << hayrepuesto << endl;
-			cout << "Fallo " << fallo << endl;
-			cout << "Durfallos " << durfallos << endl;
-			cout << "Numfallos " << numfallos << endl;
-			cout << "-----------------------------------------" << endl;
-			*/
+
 		}
 		if(fallo){
 			durfallos += reloj - comienzofallo;
@@ -127,6 +115,18 @@ int main(int argc, char ** argv){
 		// cout << "Duración de los fallos: " << durfallos << endl;
 		// cout << "Número de fallos: " << numfallos << endl;
 		durfallos_media += (durfallos/numfallos);
-		cout << i << " " << setprecision(7) << durfallos_media/i << endl;
+
+		if(!efi){
+			cout << i << " " << setprecision(7) << durfallos_media/i << endl;
+		}
 	}
+
+	auto finish = std::chrono::high_resolution_clock::now();
+
+	std::chrono::duration<double> elapsed = finish - start;
+
+	if(efi){
+		cout << tiempodeparar << " " << elapsed.count() << endl;;
+	}
+
 }

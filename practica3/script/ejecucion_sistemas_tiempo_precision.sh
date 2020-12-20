@@ -8,6 +8,7 @@ if [ $# != 5 ]; then
 	trepar=2
 	tparar=100
 	max=10000
+	efi=0
 	echo "Utilizando por defecto repuesto=${repuesto} tfallo=${tfallo} trepar=${trepar} tparar=${tparar} max=${max}"
 
 else
@@ -16,6 +17,7 @@ else
 	trepar=$3
 	tparar=$4
 	max=$5
+	efi=0
 fi
 
 cd ..
@@ -52,12 +54,12 @@ for i in $(seq 1 4); do
 		((tfallo_u = tfallo))
 		((tparar_u = tparar))
 	fi
-	echo "${i} ${u} tfallo=${tfallo_u} trepar=${trepar_u} tparar=${tparar_u} max=${max}"
+	echo "${i} ${u} tfallo=${tfallo_u} trepar=${trepar_u} tparar=${tparar_u} max=${max} efi=${efi}"
 	$bin/sistema_teorico_exe $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-teorico-${u}_data"
-	$bin/sistema_tiempo_fijo_exe $repuesto $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-t-fijo-${u}_data"
-	$bin/sistema_tiempo_variable_exe $repuesto $tfallo_u $trepar_u $tparar_u $max > "${data}/sistema-t-variable-${u}_data"
+	$bin/sistema_tiempo_fijo_exe $repuesto $tfallo_u $trepar_u $tparar_u $max $efi > "${data}/sistema-t-fijo-${u}_data"
+	$bin/sistema_tiempo_variable_exe $repuesto $tfallo_u $trepar_u $tparar_u $max $efi > "${data}/sistema-t-variable-${u}_data"
 done
 
-echo "Generando graficos..."
+echo "Generando graficos de precision..."
 
 gnuplot precision.gp
