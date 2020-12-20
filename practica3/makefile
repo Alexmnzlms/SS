@@ -9,16 +9,9 @@ all: apartado1 apartado2 apartado3
 
 apartado1: $(BIN)/sistema_tiempo_fijo_exe $(BIN)/sistema_tiempo_variable_exe $(BIN)/sistema_teorico_exe
 
-apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe $(BIN)/reparadores_mantenimiento_BL_exe
+apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe $(BIN)/reparadores_mantenimiento_BL_exe $(BIN)/puerto_exe
 
-apartado3: $(BIN)/puerto_exe
-
-$(BIN)/reparadores_exe: $(SRC)/reparadores.cpp $(INC)/reparadores.h
-	$(GXX) $@ $^ $(FLAGS)
-
-$(BIN)/puerto_exe: $(SRC)/puerto.cpp $(INC)/puerto.h
-	$(GXX) $@ $^ $(FLAGS)
-
+###############################################################################
 $(BIN)/sistema_tiempo_fijo_exe: $(SRC)/sistema_tiempo_fijo.cpp
 	$(GXX) $@ $^ $(FLAGS)
 
@@ -26,6 +19,13 @@ $(BIN)/sistema_tiempo_variable_exe: $(SRC)/sistema_tiempo_variable.cpp
 	$(GXX) $@ $^ $(FLAGS)
 
 $(BIN)/sistema_teorico_exe: $(SRC)/sistema_teorico.cpp
+	$(GXX) $@ $^ $(FLAGS)
+###############################################################################
+###############################################################################
+$(BIN)/reparadores_exe: $(SRC)/reparadores.cpp $(INC)/reparadores.h
+	$(GXX) $@ $^ $(FLAGS)
+
+$(BIN)/puerto_exe: $(SRC)/puerto.cpp $(INC)/puerto.h
 	$(GXX) $@ $^ $(FLAGS)
 
 $(BIN)/separa_datos_exe: $(SRC)/separa_datos.cpp
@@ -39,6 +39,8 @@ $(BIN)/reparadores_mantenimiento_exe: $(SRC)/reparadores_mantenimiento.cpp $(INC
 
 $(BIN)/reparadores_mantenimiento_BL_exe: $(SRC)/reparadores_mantenimiento_BL.cpp $(INC)/reparadores_mantenimiento_BL.h
 	$(GXX) $@ $^ $(FLAGS)
-
+###############################################################################
+###############################################################################
 clean:
 	rm bin/*
+###############################################################################
