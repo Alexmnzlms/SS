@@ -5,7 +5,7 @@ INC = include
 FLAGS = -std=c++20 -Wall -I/usr/include -I$(INC) -O3
 GXX = g++ -o
 
-all: apartado1 apartado2
+all: apartado1 apartado2 apartado3
 
 apartado1: $(BIN)/sistema_tiempo_fijo_exe $(BIN)/sistema_tiempo_variable_exe $(BIN)/sistema_teorico_exe
 
