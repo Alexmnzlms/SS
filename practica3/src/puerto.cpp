@@ -76,6 +76,7 @@ void inicializacion()
 	acum_at_desocupado = 0.0;
 	acum_at_cargando = 0.0;
 	acum_at_yacargado = 0.0;
+	carga_total = 0;
 
 	// inicializacion de la lista de sucesos
 	while(!lsuc.empty()){
@@ -90,9 +91,12 @@ void inicializacion()
 	nodo.suceso = SUCESO_LLEGADA_BARCO;
 	nodo.tiempo = reloj+genera_barco(tllegmin,tllegmax);
 	insertar_lsuc(nodo);
-	nodo.suceso = SUCESO_COMIENZO_TORMENTA;
-	nodo.tiempo = reloj+genera_tormenta(tentre_tormentas);
-	insertar_lsuc(nodo);
+
+	if(modificacion != 3){
+		nodo.suceso = SUCESO_COMIENZO_TORMENTA;
+		nodo.tiempo = reloj+genera_tormenta(tentre_tormentas);
+		insertar_lsuc(nodo);
+	}
 
 	parar=false;
 }
@@ -196,6 +200,7 @@ void fin_atraque(){
 	atraques_libres --;
 	nodo.suceso = SUCESO_FIN_CARGA;
 	nodo.tiempo = reloj+genera_tiempocarga(nodo.reg_cola.tipo);
+	carga_total += carga(nodo.reg_cola.tipo);
 	insertar_lsuc(nodo); //programa la finalizacin de la operacion de carga
 	if (tormenta == false){
 		if (encola_sal > 0){
@@ -418,15 +423,16 @@ void fin_simulacion()
 	informe[cont_simu][9] = 100*acum_at_yacargado/(reloj*num_atraques);
 	//printf("\nPorcentaje de tiempo puntos de atraque ocupados cargando = %f",100*acum_at_cargando/(reloj*num_atraques));
 	informe[cont_simu][10] = 100*acum_at_cargando/(reloj*num_atraques);
+	informe[cont_simu][11] = carga_total;
 }
 
 
 /* El generador de informes se encarga de calcular la media y desviacion tipica de los valores obtenidos */
 void generador_informes(int simulaciones){
-	float media[11], dt[11];
+	float media[12], dt[12];
 	int i,j;
 
-	for(j=0; j<11; j++){
+	for(j=0; j<12; j++){
 		media[j] = 0;
 		for(i=0; i<simulaciones; i++){
 			media[j] += informe[i][j];
@@ -451,7 +457,8 @@ void generador_informes(int simulaciones){
 	printf("\nPorcentaje de tiempo remolcador remolcando barcos: media(%f), dt(%f)",media[7],dt[7]);
 	printf("\nPorcentaje de tiempo puntos de atraque libres: media(%f), dt(%f)",media[8],dt[8]);
 	printf("\nPorcentaje de tiempo puntos de atraque ocupados sin cargar: media(%f), dt(%f)",media[9],dt[9]);
-	printf("\nPorcentaje de tiempo puntos de atraque ocupados cargando: media(%f), dt(%f)\n\n",media[10],dt[10]);
+	printf("\nPorcentaje de tiempo puntos de atraque ocupados cargando: media(%f), dt(%f)",media[10],dt[10]);
+	printf("\nCarga total: media(%f), dt(%f)\n\n",media[11],dt[11]);
 }
 
 
@@ -492,6 +499,16 @@ float genera_tiempocarga(int tipo){
 	}
 }
 
+int carga(int tipo){
+	if(tipo == 0){
+		return carga1;
+	} else if(tipo==1){
+		return carga2;
+	} else {
+		return carga3;
+	}
+}
+
 
 float generador_uniforme(float min, float max){
 	float u;
@@ -527,12 +544,25 @@ int generador_discreto(){
 int main(int argc, char *argv[]){
 	int i, simulaciones;
 
-	if(argc != 2){
-		printf("\n\nFormato Argumentos -> <numero_simulaciones>\n\n");
+	if(argc != 3){
+		printf("\n\nFormato Argumentos -> <numero_simulaciones> modificacion\n\n");
 		exit(1);
 	}
 
 	sscanf(argv[1],"%d",&simulaciones);
+	sscanf(argv[2],"%d",&modificacion);
+
+	if(modificacion < 0 || modificacion > 4){
+		printf("\n\n Las modificaciones son:\n(0): sin modificacion\n(1): 4 atraques\n(2): 5 atraques\n(3): remolcador no afectado por tormentas\n(4): remolcador más rapido");
+	}
+
+	if(modificacion == 1){
+		num_atraques = 4;
+	} else if (modificacion == 2){
+		num_atraques = 5;
+	} else if (modificacion == 4){
+		tviajevacio = 0.15;
+	}
 
 	informe = (float **) malloc (simulaciones*sizeof(float *));
 	for(i=0; i<simulaciones; i++){

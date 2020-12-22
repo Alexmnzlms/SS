@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd ..
-make -B apartado2
+make apartado2
 cd script
 
 m=10
@@ -40,7 +40,9 @@ $bin/separa_datos_exe "${data}/reparadores_${m_2}_${x_2}_data"
 
 gnuplot reparadores.gp
 
+echo "Ejecutando BL..."
 
+$bin/reparadores_BL_exe 10 >> "${data}/reparadores_BL_data" &
+$bin/reparadores_mantenimiento_BL_exe 10 >> "${data}/reparadores_mantenimiento_BL_data" &
 
-
-
+wait

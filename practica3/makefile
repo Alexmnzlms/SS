@@ -10,7 +10,7 @@ all: apartado1 apartado2
 
 apartado1: $(BIN)/sistema_tiempo_fijo_exe $(BIN)/sistema_tiempo_variable_exe $(BIN)/sistema_teorico_exe
 
-apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe $(BIN)/reparadores_mantenimiento_BL_exe $(BIN)/puerto_exe
+apartado2: $(BIN)/reparadores_exe $(BIN)/separa_datos_exe $(BIN)/reparadores_BL_exe $(BIN)/reparadores_mantenimiento_exe $(BIN)/reparadores_mantenimiento_BL_exe $(BIN)/puerto_exe $(BIN)/compara_sistemas_exe $(BIN)/intervalos_de_confianza_exe
 
 ###############################################################################
 $(BIN)/sistema_tiempo_fijo_exe: $(SRC)/sistema_tiempo_fijo.cpp
@@ -41,6 +41,11 @@ $(BIN)/reparadores_mantenimiento_exe: $(SRC)/reparadores_mantenimiento.cpp $(INC
 $(BIN)/reparadores_mantenimiento_BL_exe: $(SRC)/reparadores_mantenimiento_BL.cpp $(INC)/reparadores_mantenimiento_BL.h
 	$(GXX) $@ $^ $(FLAGS)
 ###############################################################################
+$(BIN)/compara_sistemas_exe: $(SRC)/compara_sistemas.cpp
+	$(GXX) $@ $^ $(FLAGS)
+
+$(BIN)/intervalos_de_confianza_exe: $(SRC)/intervalos_de_confianza.cpp
+	$(GXX) $@ $^ $(FLAGS)
 ###############################################################################
 clean:
 	rm bin/*

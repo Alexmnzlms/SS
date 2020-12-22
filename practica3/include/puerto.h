@@ -62,6 +62,7 @@ float acum_at_cargando;
 float acum_at_yacargado;
 float **informe;
 int cont_simu;
+float carga_total;
 
 /* Parametros de entrada */
 int remolcadores = 1;
@@ -84,7 +85,13 @@ float tiempo_carga3min = 32.0;
 float tiempo_carga1max = 20.0;
 float tiempo_carga2max = 27.0;
 float tiempo_carga3max = 40.0;
+int carga1 = 1000;
+int carga2 = 2000;
+int carga3 = 3000;
 float tparada = 8760.0;
+
+/*Modificación*/
+int modificacion;
 
 /* Funciones y procedimientos */
 void inicializacion();
@@ -112,6 +119,7 @@ bool compare(const suc &s1, const suc &s2);
 void insertar_lsuc(suc n);
 bool busca_suceso(int tipo);
 void generador_informes(int simulaciones);
+int carga(int tipo);
 
 
 

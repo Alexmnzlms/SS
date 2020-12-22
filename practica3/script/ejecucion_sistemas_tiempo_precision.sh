@@ -21,7 +21,7 @@ else
 fi
 
 cd ..
-make -B apartado1
+make apartado1
 cd script
 
 data=../data

@@ -276,7 +276,7 @@ float simulacion(int m_reparadores, int s_repuestos){
 	trepar = 2;
 	tfallo = 1.5;
 	tparada = 365;
-	iter = 10000;
+	iter = 100;
 	trevision = 7;
 	tmantmin = 0.5;
 	tmantmax = 1;
