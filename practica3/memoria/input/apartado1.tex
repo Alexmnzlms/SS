@@ -1,1 +1,236 @@
 \chapter{Mi Segundo Modelo de Simulación Discreto}
+
+\section{Modelo de simulación de incremento fijo}
+El código del simulador de incremento fijo se encuentra disponible en \textbf{src/sistema\_tiempo\_fijo.cpp}.
+
+\section{Modelo de simulación de incremento variable}
+El código del simulador de incremento variable se encuentra disponible en \textbf{src/sistema\_tiempo\_variable.cpp}.
+
+\section{Comparación de ambos modelos}
+En este apartado se pide probar los modelos anteriores. Para la prueba se han elegido dos configuraciones:
+\begin{itemize}
+	\item \textbf{trepar} = 2 y \textbf{tfallo} = 1. (Configuración A)
+	\item \textbf{trepar} = 1 y \textbf{tfallo} = 2. (Configuración B)
+\end{itemize}
+
+\subsection{Eficiencia de los modelos}
+Para comparar la eficiencia de los modelos, se han ejecutado sin repuestos para ambas configuraciones con \textbf{tparada} = [100,10000000] y una sola ejecución interna del modelo.
+
+En la siguiente figura podemos apreciar los resultados obtenidos:
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{eficiencia21.png}
+		\caption{Configuración A}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{eficiencia12.png}
+		\caption{Configuración B}
+	\end{subfigure}
+	\caption{Eficiencia de los modelos}
+\end{figure}
+
+Podemos apreciar que para ambas configuraciones el modelo de incremento variable es más eficiente que el de incremento fijo, cosa que tiene sentido, ya que el modelo de incremento variable realiza menos operaciones que el modelo de incremento fijo.
+
+\newpage
+
+\subsection{Precisión de los modelos}
+Para comparar la precisión de los modelos se ha calculado los resultados teoricos que deberían aportar ambos modelos. El cáculo se ha realizado de la siguiente manera:
+\begin{itemize}
+	\item \textbf{Dur\_fallos} = $ \frac{trepar}{tfallo + trepar}tparada  $
+	\item \textbf{Num\_fallos} = $ \frac{tparada}{tfallo + trepar}  $
+	\item \textbf{Duración media de los fallos} = $\frac{Dur\_fallos}{Num\_fallos}$
+\end{itemize}
+
+Para obtener unos datos más fiables, se han modifcado los modelos para permitir realizar mas de una ejecución interna de los mismos. El modelo devuelve los datos medios obtenidos de todas las ejecuciones internas. De esta manera podemos ver como convergen los datos obtenidos segun aumenta el número de ejecuciones realizadas.
+
+Se ha realizado esta prueba de precisión para los modelos utilizando unidades en días, horas, minutos y segundos. Además se ha realizado la prueba para las configuraciones A y B descritas anteriormente.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision21/precisiondias.png}
+		\caption{Configuración A}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision12/precisiondias.png}
+		\caption{Configuración B}
+	\end{subfigure}
+	\caption{Precisión en días}
+\end{figure}
+
+Utilizando unidades en días podemos apreciar la superioridad que presenta el modelo de incremento variable frente al de incremento fijo, ya que el modelo de incremento variable es capaz de operar con datos decimales lo que le proporciona una precsión muy superior al de incremento fijo, que no puede operar con decimales.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision21/precisionhoras.png}
+		\caption{Configuración A}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision12/precisionhoras.png}
+		\caption{Configuración B}
+	\end{subfigure}
+	\caption{Precisión en horas}
+\end{figure}
+
+Cuando pasamos las unidades a horas vemos como esta diferencia se reduce enormemente, llegando ambos modelos a casi solaparse para la configuración B. Sin embargo para la configuración A vemos como el modelo de incremento variable sigue siendo superior.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision21/precisionminutos.png}
+		\caption{Configuración A}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision12/precisionminutos.png}
+		\caption{Configuración B}
+	\end{subfigure}
+	\caption{Precisión en minutos}
+\end{figure}
+
+Convertir las unidades a minutos benficia enormemente al modelo de incremento fijo, ya que el modelo de incremento variable no se ve afectado por el cambio de unidades. Usar unidades más pequeñas permite subsanar en gran medida los errores de precisión que comete el modelo de incremento fijo para unidades grandes, ya que le permite usar numeros con más cifras y superar la capacidad del modelo de incremento variable de trabajar con decimales.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision21/precisionsegundos.png}
+		\caption{Configuración A}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{precision12/precisionsegundos.png}
+		\caption{Configuración B}
+	\end{subfigure}
+	\caption{Precisión en segundos}
+\end{figure}
+
+Para las unidades en segundo, vemos que ningun modelo gana más precisión.
+
+Como conclusión podemos establecer que el modelo de incremento variable es independiente de las unidades, ya que no contiene un reloj interno, si no que simplemente salta entre los distintos eventos, mientras que el modelo de incremento fijo, al si contar con dicho reloj, se ve muy beneficiado cuando más grandes sean las unidades en las que se mide el reloj.
+
+\section{Comparación del modelo con diferentes parámetros}
+
+Este apartado pide investigar la diferencia entre:
+\begin{itemize}
+	\item un sistema con \textit{m} reparadores y \textbf{trepar} = \textit{x} días. (Sistema A)
+	\item un sistema con 1 reparador (\textit{m} = 1) y \textbf{trepar} = $\frac{x}{m}$ días. (Sistema B)
+	\item un sistema con \textit{m} = $\frac{m}{2} $ reparadores y \textbf{trepar} = $\frac{x}{2}$ días. (Sistema C)
+\end{itemize}
+
+Para ello hemos ejecutado el simulador 50000 veces para cada sistema, obteniendo los valores medios de las ejecuciones. Esto puede verse en la figura 1.6 que se muestra más adelante.
+
+Los valores elegidos para las simulaciones han sido \textit{m} = 10, \textit{x} = 20, totalMaq = 10, maqRepuesto = 5, \textbf{tfallo} = 10, \textbf{tparada} = 365 y 10000 ejecuciones internas de la simulación.
+
+Comentaré los resultados en función de cada medida de rendimiento:
+\begin{itemize}
+	\item Duración media de los fallos (\textbf{DMF}): Vemos como el sistema A tiene el doble de DMF que los sistemas B y C.
+	\item Tiempo medio entre fallos del sistema (\textbf{TMEFS}): El TMEFS desciende hasta 0 para los tres sistemas de forma muy abrupta, por lo que no resulta una buena medida para establecer una comparación.
+	\item Número medio de máquinas en reparación (\textbf{NMMR}): Vemos que para el NMMR no existe una gran diferencia entre los tres sistemas, aunque si podemos ver que hay una diferencia similar a la que hay para la DMF. Los sistemas B y C son bastante similares, mientras que el sistema A tiene un valor superior de NMMR.
+	\item Porcentaje de ocio de los trabajadores (\textbf{TOR}): Mismo caso cuando se trata del TOR. El sistema A obtiene valores superiores a los del B y C mientras que estos obtienen valores cercanos entre si.
+	\item Porcentaje de duración total de los fallos  (\textbf{DTF}): No deberia sorprender a nadie, que el DTF sigue la misma tendencia que las medidas de rendimiento anteriores.
+\end{itemize}
+
+Por todo esto podemos establecer que el sistema A no es equivalente ni al sistema B ni al C, mientras que estos dos ultimos si que podrian considerarse muy similares.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{reparadores_dmf.png}
+		\caption{Duración media de los fallos}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{reparadores_tmefs.png}
+		\caption{Tiempo medio entre fallos del sistema}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{reparadores_nmmr.png}
+		\caption{Número medio de máquinas en reparación}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{reparadores_tor.png}
+		\caption{Porcentaje de tiempo de ocio de los trabajadores}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{reparadores_dtf.png}
+		\caption{Porcentaje de duración total de los fallos}
+	\end{subfigure}
+	\hfill
+	\caption{Comparación del modelo con diferentes parámetros}
+\end{figure}
+
+\section{Configuración óptima del modelo}
+Para encontrar los valores óptimos de \textit{m} y \textit{s} he implemento una sencilla búsqueda local (BL). Esta BL parte del punto \textit{m} = 1 y \textit{s} = 1 y aleatoriamente aumenta el valor de \textit{m} o \textit{s} hasta que encuentra una configuración para la que la simulación aporte un \textbf{DTF} inferior al 10\%.
+
+Los resultados obtenidos por esta BL son:
+\begin{table}[H]
+\centering
+\begin{tabular}{|ccc|}
+\hline
+\multicolumn{1}{|c|}{\textbf{m}} & \multicolumn{1}{c|}{\textbf{s}} & \textbf{DTF} \\ \hline
+7 & 9 & 8.859.598 \\
+7 & 9 & 8.859.598 \\
+8 & 8 & 8.734.942 \\
+9 & 8 & 7.629.614 \\
+6 & 12 & 9.031.083 \\
+6 & 12 & 9.031.083 \\
+9 & 8 & 7.654.179 \\
+7 & 11 & 4.708.119 \\
+9 & 8 & 7.386.688 \\
+9 & 8 & 7.386.688 \\ \hline
+\multicolumn{1}{|c|}{\textbf{media}} & \multicolumn{1}{c|}{7,7} & 9,3 \\ \hline
+\end{tabular}
+\end{table}
+
+Por tanto los valores optimos son \textit{m} = 7.7 y \textit{s} = 9.3
+
+\section{Modificación al modelo original}
+El código que adapata el nuevo grafo de sucesos original se encuentra disponible en \\ \textbf{src/reparadores\_mantenimiento.cpp}.
+
+\section{Configuración optima del nuevo modelo}
+Igual que en el apartado anterior, para el modelo modificado se ha realizado el mismo proceso de BL.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|ccc|}
+\hline
+\multicolumn{1}{|c|}{\textbf{m}} & \multicolumn{1}{c|}{\textbf{s}} & \textbf{DTF} \\ \hline
+7 & 8 & 8.890.568 \\
+7 & 8 & 8.890.568 \\
+9 & 7 & 9.921.217 \\
+9 & 7 & 9.965.062 \\
+7 & 9 & 6.038.984 \\
+10 & 7 & 9.866.929 \\
+9 & 7 & 9.664.355 \\
+9 & 7 & 9.664.355 \\
+9 & 7 & 9.970.577 \\
+8 & 8 & 6.446.058 \\ \hline
+\multicolumn{1}{|c|}{\textbf{media}} & \multicolumn{1}{c|}{8,4} & 7,5 \\ \hline
+\end{tabular}
+\end{table}
+
+Podemos ver como de media el numero de reparadores aumenta ligeramente mientras que el numero de repuestos desciende, por lo que el sistema modificado mejora al sistema original en cuanto al uso de recursos.
