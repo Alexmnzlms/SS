@@ -42,6 +42,6 @@ for i in $(seq 0 99); do
 done
 
 
-for mod in 0 3 4; do
-	$bin/intervalos_de_confianza_exe "${data}/puerto_${mod}_confianza_data" >> "${data}/intervalo_confianza_${mod}_data"
+for mod in 3 4; do
+	$bin/intervalos_de_confianza_exe "${data}/puerto_0_confianza_data" "${data}/puerto_${mod}_confianza_data" >> "${data}/intervalo_confianza_0_${mod}_data"
 done

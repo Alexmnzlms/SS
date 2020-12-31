@@ -3,7 +3,13 @@
 \section{Modificaciones al sistema}
 El código que contiene las modificaciones al sistema se encuentra disponible en \textbf{src/puerto.cpp}.
 
+Para la modificación del remolcador al que no le afectan las tormentas, se ha optado por eliminar el primer suceso \textit{comienzo de tormenta} de manera que no se produzcan tormentas en el sistema.
+
 \section{Comparativa de las modificaciones}
+Tal y como se pide, se ha llamado una nueva medida de rendimiento llamada \textbf{Carga total}. Esta medida simplemente se calcula sumando el valor de carga correspondiente a cada tipo de carguero a una variable cada vez que sucede un evento \textit{fin de atraque}.
+
+Los resultados obtenidos han sido obtenidos para 10000 simulaciones del modelo:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|c|c|}
@@ -13,6 +19,8 @@ El código que contiene las modificaciones al sistema se encuentra disponible en
 \textbf{4 puntos de atraque} & 1.790.571,88 & 32.579,02 \\ \hline
 \textbf{5 puntos de atraque} & 1.790.525,50 & 32.605,38 \\ \hline
 \textbf{Remolcador al que no afectan las tormentas} & 1.788.556,88 & 32.181,05 \\ \hline
-\textbf{Remolcador más rapido} & 1.787.903,63 & 31.801,75 \\ \hline
+\textbf{Remolcador más rápido} & 1.787.903,63 & 31.801,75 \\ \hline
 \end{tabular}
 \end{table}
+
+Podemos ver que según la carga total, la mejor modificación es la que consta de aumentar a 4 el número de puntos de atraque.

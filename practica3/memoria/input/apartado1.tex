@@ -39,14 +39,14 @@ Podemos apreciar que para ambas configuraciones el modelo de incremento variable
 \newpage
 
 \subsection{Precisión de los modelos}
-Para comparar la precisión de los modelos se ha calculado los resultados teoricos que deberían aportar ambos modelos. El cáculo se ha realizado de la siguiente manera:
+Para comparar la precisión de los modelos se ha calculado los resultados teóricos que deberían aportar ambos modelos. El cálculo se ha realizado de la siguiente manera:
 \begin{itemize}
 	\item \textbf{Dur\_fallos} = $ \frac{trepar}{tfallo + trepar}tparada  $
 	\item \textbf{Num\_fallos} = $ \frac{tparada}{tfallo + trepar}  $
 	\item \textbf{Duración media de los fallos} = $\frac{Dur\_fallos}{Num\_fallos}$
 \end{itemize}
 
-Para obtener unos datos más fiables, se han modifcado los modelos para permitir realizar mas de una ejecución interna de los mismos. El modelo devuelve los datos medios obtenidos de todas las ejecuciones internas. De esta manera podemos ver como convergen los datos obtenidos segun aumenta el número de ejecuciones realizadas.
+Para obtener unos datos más fiables, se han modificado los modelos para permitir realizar mas de una ejecución interna de los mismos. El modelo devuelve los datos medios obtenidos de todas las ejecuciones internas. De esta manera podemos ver como convergen los datos obtenidos según aumenta el número de ejecuciones realizadas.
 
 Se ha realizado esta prueba de precisión para los modelos utilizando unidades en días, horas, minutos y segundos. Además se ha realizado la prueba para las configuraciones A y B descritas anteriormente.
 
@@ -66,7 +66,7 @@ Se ha realizado esta prueba de precisión para los modelos utilizando unidades e
 	\caption{Precisión en días}
 \end{figure}
 
-Utilizando unidades en días podemos apreciar la superioridad que presenta el modelo de incremento variable frente al de incremento fijo, ya que el modelo de incremento variable es capaz de operar con datos decimales lo que le proporciona una precsión muy superior al de incremento fijo, que no puede operar con decimales.
+Utilizando unidades en días podemos apreciar la superioridad que presenta el modelo de incremento variable frente al de incremento fijo, ya que el modelo de incremento variable es capaz de operar con datos decimales lo que le proporciona una precisión muy superior al de incremento fijo, que no puede operar con decimales.
 
 \begin{figure}[H]
 	\centering
@@ -102,7 +102,7 @@ Cuando pasamos las unidades a horas vemos como esta diferencia se reduce enormem
 	\caption{Precisión en minutos}
 \end{figure}
 
-Convertir las unidades a minutos benficia enormemente al modelo de incremento fijo, ya que el modelo de incremento variable no se ve afectado por el cambio de unidades. Usar unidades más pequeñas permite subsanar en gran medida los errores de precisión que comete el modelo de incremento fijo para unidades grandes, ya que le permite usar numeros con más cifras y superar la capacidad del modelo de incremento variable de trabajar con decimales.
+Convertir las unidades a minutos beneficia enormemente al modelo de incremento fijo, ya que el modelo de incremento variable no se ve afectado por el cambio de unidades. Usar unidades más pequeñas permite subsanar en gran medida los errores de precisión que comete el modelo de incremento fijo para unidades grandes, ya que le permite usar números con más cifras y superar la capacidad del modelo de incremento variable de trabajar con decimales.
 
 \begin{figure}[H]
 	\centering
@@ -120,7 +120,7 @@ Convertir las unidades a minutos benficia enormemente al modelo de incremento fi
 	\caption{Precisión en segundos}
 \end{figure}
 
-Para las unidades en segundo, vemos que ningun modelo gana más precisión.
+Para las unidades en segundos, vemos que ningún modelo gana más precisión.
 
 Como conclusión podemos establecer que el modelo de incremento variable es independiente de las unidades, ya que no contiene un reloj interno, si no que simplemente salta entre los distintos eventos, mientras que el modelo de incremento fijo, al si contar con dicho reloj, se ve muy beneficiado cuando más grandes sean las unidades en las que se mide el reloj.
 
@@ -143,10 +143,10 @@ Comentaré los resultados en función de cada medida de rendimiento:
 	\item Tiempo medio entre fallos del sistema (\textbf{TMEFS}): El TMEFS desciende hasta 0 para los tres sistemas de forma muy abrupta, por lo que no resulta una buena medida para establecer una comparación.
 	\item Número medio de máquinas en reparación (\textbf{NMMR}): Vemos que para el NMMR no existe una gran diferencia entre los tres sistemas, aunque si podemos ver que hay una diferencia similar a la que hay para la DMF. Los sistemas B y C son bastante similares, mientras que el sistema A tiene un valor superior de NMMR.
 	\item Porcentaje de ocio de los trabajadores (\textbf{TOR}): Mismo caso cuando se trata del TOR. El sistema A obtiene valores superiores a los del B y C mientras que estos obtienen valores cercanos entre si.
-	\item Porcentaje de duración total de los fallos  (\textbf{DTF}): No deberia sorprender a nadie, que el DTF sigue la misma tendencia que las medidas de rendimiento anteriores.
+	\item Porcentaje de duración total de los fallos  (\textbf{DTF}): No debería sorprender a nadie, que el DTF sigue la misma tendencia que las medidas de rendimiento anteriores.
 \end{itemize}
 
-Por todo esto podemos establecer que el sistema A no es equivalente ni al sistema B ni al C, mientras que estos dos ultimos si que podrian considerarse muy similares.
+Por todo esto podemos establecer que el sistema A no es equivalente ni al sistema B ni al C, mientras que estos dos últimos si que podrían considerarse muy similares.
 
 \begin{figure}[H]
 	\centering
@@ -192,26 +192,26 @@ Los resultados obtenidos por esta BL son:
 \begin{tabular}{|ccc|}
 \hline
 \multicolumn{1}{|c|}{\textbf{m}} & \multicolumn{1}{c|}{\textbf{s}} & \textbf{DTF} \\ \hline
-7 & 9 & 8.859.598 \\
-7 & 9 & 8.859.598 \\
-8 & 8 & 8.734.942 \\
-9 & 8 & 7.629.614 \\
-6 & 12 & 9.031.083 \\
-6 & 12 & 9.031.083 \\
-9 & 8 & 7.654.179 \\
-7 & 11 & 4.708.119 \\
-9 & 8 & 7.386.688 \\
-9 & 8 & 7.386.688 \\ \hline
+7 & 9 & 8.859598 \\
+7 & 9 & 8.859598 \\
+8 & 8 & 8.734942 \\
+9 & 8 & 7.629614 \\
+6 & 12 & 9.031083 \\
+6 & 12 & 9.031083 \\
+9 & 8 & 7.654179 \\
+7 & 11 & 4.708119 \\
+9 & 8 & 7.386688 \\
+9 & 8 & 7.386688 \\ \hline
 \multicolumn{1}{|c|}{\textbf{media}} & \multicolumn{1}{c|}{7,7} & 9,3 \\ \hline
 \end{tabular}
 \end{table}
 
-Por tanto los valores optimos son \textit{m} = 7.7 y \textit{s} = 9.3
+Por tanto los valores óptimos son \textit{m} = 7.7 y \textit{s} = 9.3
 
 \section{Modificación al modelo original}
-El código que adapata el nuevo grafo de sucesos original se encuentra disponible en \\ \textbf{src/reparadores\_mantenimiento.cpp}.
+El código que adapta el nuevo grafo de sucesos original se encuentra disponible en \\ \textbf{src/reparadores\_mantenimiento.cpp}.
 
-\section{Configuración optima del nuevo modelo}
+\section{Configuración óptima del nuevo modelo}
 Igual que en el apartado anterior, para el modelo modificado se ha realizado el mismo proceso de BL.
 
 \begin{table}[H]
@@ -219,18 +219,18 @@ Igual que en el apartado anterior, para el modelo modificado se ha realizado el 
 \begin{tabular}{|ccc|}
 \hline
 \multicolumn{1}{|c|}{\textbf{m}} & \multicolumn{1}{c|}{\textbf{s}} & \textbf{DTF} \\ \hline
-7 & 8 & 8.890.568 \\
-7 & 8 & 8.890.568 \\
-9 & 7 & 9.921.217 \\
-9 & 7 & 9.965.062 \\
-7 & 9 & 6.038.984 \\
-10 & 7 & 9.866.929 \\
-9 & 7 & 9.664.355 \\
-9 & 7 & 9.664.355 \\
-9 & 7 & 9.970.577 \\
-8 & 8 & 6.446.058 \\ \hline
+7 & 8 & 8.890568 \\
+7 & 8 & 8.890568 \\
+9 & 7 & 9.921217 \\
+9 & 7 & 9.965062 \\
+7 & 9 & 6.038984 \\
+10 & 7 & 9.866929 \\
+9 & 7 & 9.664355 \\
+9 & 7 & 9.664355 \\
+9 & 7 & 9.970577 \\
+8 & 8 & 6.446058 \\ \hline
 \multicolumn{1}{|c|}{\textbf{media}} & \multicolumn{1}{c|}{8,4} & 7,5 \\ \hline
 \end{tabular}
 \end{table}
 
-Podemos ver como de media el numero de reparadores aumenta ligeramente mientras que el numero de repuestos desciende, por lo que el sistema modificado mejora al sistema original en cuanto al uso de recursos.
+Podemos ver como de media el número de reparadores aumenta ligeramente mientras que el número de repuestos desciende, por lo que el sistema modificado mejora al sistema original en cuanto al uso de recursos.
