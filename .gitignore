@@ -4,6 +4,7 @@
 !./practica2/memoria/img/cover.png
 *.csv
 *.data
+*_data
 
 # Prerequisites
 *.d
