@@ -5,6 +5,7 @@
 *.csv
 *.data
 *_data
+*_sum
 
 # Prerequisites
 *.d
