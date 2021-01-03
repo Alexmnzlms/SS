@@ -1,11 +1,8 @@
-set terminal png size 1400, 600
+set terminal png size 960, 540
 set datafile separator ","
 
-do for [p1 in "I R S"]{
-	do for [p2 in "I R S"]{
-		set output p1."_".p2.".png"
-		set xlabel p1
-		set ylabel p2
-		plot "../data/salida_data_".p1."_".p2."_data" with lines title p1."-".p2
-	}
-}
+set output "I_S.png"
+set title "Número de Susceptibles respecto a los Infectados"
+set xlabel "Número de Infectados"
+set ylabel "Número de Susceptibles"
+plot "../data/salida_data_I_S_data" with lines title "Susceptibles-Infectados"

@@ -1,0 +1,50 @@
+\chapter{Modelos de Simulación Dinámicos Continuos}
+
+\section{Tarea 1}
+
+El código del simulador se encuentra disponible en \textbf{src/simulador\_enfermedad.cpp} y \textbf{src/simulador.cpp}.
+
+\section{Tarea 2}
+
+En las siguientes figuras podemos apreciar como evoluciona la población en el tiempo dependiendo del numero inicial de elementos susceptibles ($S_0$).
+Para estas dos simulaciones se han establecido los parametros a = 0.001 y b = 0.125, por tanto b/a = 125. El valor inicial de $I_0$ es 10 para ambos casos.
+
+Analicemos que ocurre cuando el valor de $S_0$ es superior o inferior a 125:
+
+En la figura 1.1.a, $S_0$ = 90, por lo que el sistema consta de 100 personas, de las que 10 estan inicialmente infectadas y las 90 restantes son susceptibles a la enfermedad.
+
+Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I(t) tiene una pendiente negativa en la grafica ---. De esta forma la enfermedad que simulamos no es capaz de infectar a un número significativo de la población
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ISR_1.png}
+		\caption{$I_0$ = 10, $S_0$ = 90, $R_0$ = 0, a = 0.001, b = 0.125}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ISR_2.png}
+		\caption{$I_0$ = 10, $S_0$ = 190, $R_0$ = 0, a = 0.001, b = 0.125}
+	\end{subfigure}
+	\caption{Resultados para $S_0$ en relación a $a/b$}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ISR_3.png}
+		\caption{$I_0$ = 100, $S_0$ = 400, $R_0$ = 0, a = 0.0001, b = 0.05}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ISR_4.png}
+		\caption{$I_0$ = 100, $S_0$ = 600, $R_0$ = 0, a = 0.0001, b = 0.05}
+	\end{subfigure}
+	\caption{Resultados para $S_0$ en relación a $a/b$}
+\end{figure}
+

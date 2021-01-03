@@ -25,11 +25,15 @@ void Simulacion::one_step(int metodo, double* inp, double*out, double tt, double
 }
 
 void Simulacion::one_step_runge_kuttai(double* inp, double* out, double tt, double hh){
-	for (int i=0; i<numeq; i++) out[i]=inp[i];
 	double time = tt;
 	double incr;
 	double f[numeq];
 	double k[numeq][4];
+
+	for (int i = 0; i < numeq; i++){
+		out[i] = inp[i];
+	}
+
 	for (int j = 0; j < 4; j++) {
 		derivacion(out,f,time);
 		for (int i = 0; i < numeq; i++){
