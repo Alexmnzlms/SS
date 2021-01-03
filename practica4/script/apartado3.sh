@@ -16,7 +16,7 @@ dt=0.1
 tinic=0
 tfin=15
 
-echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin}-o ${data}/salida_data"
+echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin} -o ${data}/salida_data"
 $bin/simulacion_enfermedad_exe $a $b $I $S $R $dt $tinic $tfin -o $data/salida_data
 
 python suma.py $data/salida_data

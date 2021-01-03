@@ -9,14 +9,14 @@ using namespace std;
 int main(int argc, char** argv) {
 	if(argc < 2){
 		cerr << "Formato incorrecto" << endl;
-		cerr << "bin/simulacion_enfermedad_exe -f fichero [-o] [salida] [-v]" << endl;
-		cerr << "bin/simulacion_enfermedad_exe a b I S R dt tinic tfin [-o] [salida] [-v]" << endl;
+		cerr << "bin/simulacion_enfermedad_exe -f fichero [-e] [-o] [salida]" << endl;
+		cerr << "bin/simulacion_enfermedad_exe a b I S R dt tinic tfin [-e] [-o] [salida]" << endl;
 		exit(0);
 	}
 
 	const int NPARAMS = 8;
 	string params[NPARAMS];
-	//bool verbose = false;
+	bool euler = false;
 	bool salida = false;
 	string salida_fichero = "";
 
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 	} else {
 		if (argc < (NPARAMS + 1)){
 			cerr << "Numero de argumentos incorrecto" << endl;
-			cerr << "bin/simulacion_enfermedad_exe a b I S R dt tinic tfin [salida] [-v]" << endl;
+			cerr << "bin/simulacion_enfermedad_exe a b I S R dt tinic tfin [-e] [-o] [salida]" << endl;
 			exit(0);
 		} else {
 			for(int i = 0; i < NPARAMS; i++){
@@ -56,6 +56,10 @@ int main(int argc, char** argv) {
 		cout << "Salida a fichero " << salida_fichero << endl;
 	}
 
+	if(!strcmp(argv[argc-1], "-e") || !strcmp(argv[argc-3], "-e")){
+		euler = true;
+	}
+
 	cout << "Parametros:" << endl;
 	for(int i = 0; i < NPARAMS; i++){
 		cout << params[i] << " ";
@@ -71,5 +75,10 @@ int main(int argc, char** argv) {
 
 	Simulacion enfermedad;
 	enfermedad.fijar_parametros(3,a,b,estado,dt,tinic,tfin,salida,salida_fichero);
-	enfermedad.integracion(1);
+	if(!euler){
+		enfermedad.integracion(1);
+	} else {
+		cout << "Metodo de intregación de euler seleccionado" << endl;
+		enfermedad.integracion(2);
+	}
 }

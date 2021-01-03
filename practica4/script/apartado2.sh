@@ -18,7 +18,7 @@ tfin=30
 
 for i in $(seq 1 2); do
 
-	echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin}-o ${data}/salida_data"
+	echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin} -o ${data}/salida_data"
 	$bin/simulacion_enfermedad_exe $a $b $I $S $R $dt $tinic $tfin -o $data/salida_data
 
 	gnuplot salida.gp
@@ -36,7 +36,7 @@ R=0
 
 for i in $(seq 3 4); do
 
-	echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin}-o ${data}/salida_data"
+	echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin} -o ${data}/salida_data"
 	$bin/simulacion_enfermedad_exe $a $b $I $S $R $dt $tinic $tfin -o $data/salida_data
 
 	gnuplot salida.gp
