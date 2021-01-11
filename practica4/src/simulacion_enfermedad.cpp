@@ -68,7 +68,10 @@ int main(int argc, char** argv) {
 
 	double a = stod(params[0]);
 	double b = stod(params[1]);
-	double estado[3] = {stod(params[2]), stod(params[3]), stod(params[4])};
+	vector<double> estado;
+	estado.push_back(stod(params[2]));
+	estado.push_back(stod(params[3]));
+	estado.push_back(stod(params[4]));
 	double dt = stod(params[5]);
 	double tinic = stod(params[6]);
 	double tfin = stod(params[7]);
