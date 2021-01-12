@@ -14,7 +14,7 @@ S=999
 R=0
 dt=0.1
 tinic=0
-tfin=15
+tfin=60
 
 echo "${bin}/simulacion_enfermedad_exe ${a} ${b} ${I} ${S} ${R} ${dt} ${tinic} ${tfin} -o ${data}/salida_data"
 $bin/simulacion_enfermedad_exe $a $b $I $S $R $dt $tinic $tfin -o $data/salida_data
@@ -25,6 +25,6 @@ python separar_cols.py $data/salida_data
 gnuplot suma.gp
 gnuplot separar_cols.gp
 
-mv ISR_acumulado.png "../memoria/img/ISR_acumulado.png"
-mv I_S.png "../memoria/img/I_S.png"
+mv ISR_acumulado.png "../memoria/img/apartado3/ISR_acumulado.png"
+mv I_S.png "../memoria/img/apartado3/I_S.png"
 

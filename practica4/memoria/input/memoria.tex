@@ -7,25 +7,25 @@ El código del simulador se encuentra disponible en \textbf{src/simulador\_enfer
 \section{Tarea 2}
 
 En las siguientes figuras podemos apreciar como evoluciona la población en el tiempo dependiendo del numero inicial de elementos susceptibles ($S_0$).
-Para estas dos simulaciones se han establecido los parametros a = 0.001 y b = 0.125, por tanto b/a = 125. El valor inicial de $I_0$ es 10 para ambos casos.
+Para estas dos simulaciones se han establecido los parámetros a = 0.001 y b = 0.125, por tanto b/a = 125. El valor inicial de $I_0$ es 10 para ambos casos.
 
 Analicemos que ocurre cuando el valor de $S_0$ es superior o inferior a 125:
 
-En la figura 1.1.a, $S_0$ = 90, por lo que el sistema consta de 100 personas, de las que 10 estan inicialmente infectadas y las 90 restantes son susceptibles a la enfermedad.
+En la figura 1.1.a, $S_0$ = 90, por lo que el sistema consta de 100 personas, de las que 10 están inicialmente infectadas y las 90 restantes son susceptibles a la enfermedad.
 
-Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I(t) tiene una pendiente negativa en la grafica ---. De esta forma la enfermedad que simulamos no es capaz de infectar a un número significativo de la población
+Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I(t) tiene una pendiente negativa en la gráfica ---. De esta forma la enfermedad que simulamos no es capaz de infectar a un número significativo de la población
 
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_1.png}
+		\includegraphics[width=\textwidth]{apartado2/ISR_1.png}
 		\caption{$I_0$ = 10, $S_0$ = 90, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_2.png}
+		\includegraphics[width=\textwidth]{apartado2/ISR_2.png}
 		\caption{$I_0$ = 10, $S_0$ = 190, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
 	\caption{Resultados para $S_0$ en relación a $a/b$}
@@ -36,13 +36,13 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_3.png}
+		\includegraphics[width=\textwidth]{apartado2/ISR_3.png}
 		\caption{$I_0$ = 100, $S_0$ = 400, $R_0$ = 0, a = 0.0001, b = 0.05}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_4.png}
+		\includegraphics[width=\textwidth]{apartado2/ISR_4.png}
 		\caption{$I_0$ = 100, $S_0$ = 600, $R_0$ = 0, a = 0.0001, b = 0.05}
 	\end{subfigure}
 	\caption{Resultados para $S_0$ en relación a $a/b$}
@@ -54,16 +54,19 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado.png}
+		\includegraphics[width=\textwidth]{apartado3/ISR_acumulado.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
-	\hfill
+	\caption{Evolución del sistema acumulada}
+\end{figure}
+\begin{figure}[H]
+	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{I_S.png}
+		\includegraphics[width=\textwidth]{apartado3/I_S.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
-	\caption{}
+	\caption{Plano S-I}
 \end{figure}
 
 \section{Tarea 4}
@@ -71,31 +74,31 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_5.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_5.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado_5.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_acumulado_5.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
-	\caption{}
+	\caption{Evolución del sistema con los parámetros por defecto}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_6.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_6.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.0005, b = 0.25}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado_6.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_acumulado_6.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.0005, b = 0.25}
 	\end{subfigure}
-	\caption{}
+	\caption{Evolución del sistema disminuyendo a y aumentando b}
 \end{figure}
 
 \section{Tarea 5}
@@ -103,46 +106,46 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_5.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_5.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado_5.png}
+		\includegraphics[width=\textwidth]{apartado4/ISR_acumulado_5.png}
 		\caption{$I_0$ = 1, $S_0$ = 999, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
-	\caption{}
+	\caption{Evolución del sistema con los parámetros por defecto}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_7.png}
+		\includegraphics[width=\textwidth]{apartado5/ISR_7.png}
 		\caption{$I_0$ = 500, $S_0$ = 500, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado_7.png}
+		\includegraphics[width=\textwidth]{apartado5/ISR_acumulado_7.png}
 		\caption{$I_0$ = 500, $S_0$ = 500, $R_0$ = 0, a = 0.001, b = 0.125}
 	\end{subfigure}
-	\caption{}
+	\caption{Evolución del sistema con el mismo número de infectados que susceptibles}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_8.png}
+		\includegraphics[width=\textwidth]{apartado5/ISR_8.png}
 		\caption{$I_0$ = 1, $S_0$ = 499, $R_0$ = 500, a = 0.0005, b = 0.25}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_acumulado_8.png}
+		\includegraphics[width=\textwidth]{apartado5/ISR_acumulado_8.png}
 		\caption{$I_0$ = 1, $S_0$ = 499, $R_0$ = 500, a = 0.0005, b = 0.25}
 	\end{subfigure}
-	\caption{}
+	\caption{Evolución del sistema con el mismo número de susceptibles que recuperados}
 \end{figure}
 
 \section{Tarea 6}
@@ -150,44 +153,59 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_9.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_9.png}
 		\caption{dt = 0.1, Integración de Runge-Kutta}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_9_e.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_9_e.png}
 		\caption{dt = 0.1, Integración de Euler}
 	\end{subfigure}
-	\caption{}
+	\caption{Comparativa entre los dos métodos de integración dt = 0.1}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_10.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_10.png}
 		\caption{dt = 0.05, Integración de Runge-Kutta}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_10_e.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_10_e.png}
 		\caption{dt = 0.05, Integración de Euler}
 	\end{subfigure}
-	\caption{}
+	\caption{Comparativa entre los dos métodos de integración dt = 0.05}
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_11.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_11.png}
 		\caption{dt = 0.01, Integración de Runge-Kutta}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}[b]{0.8\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ISR_11_e.png}
+		\includegraphics[width=\textwidth]{apartado6/ISR_11_e.png}
 		\caption{dt = 0.01, Integración de Euler}
 	\end{subfigure}
-	\caption{}
+	\caption{Comparativa entre los dos métodos de integración dt = 0.01}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{apartado6/ISR_12.png}
+		\caption{dt = 2, Integración de Runge-Kutta}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.8\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{apartado6/ISR_12_e.png}
+		\caption{dt = 2, Integración de Euler}
+	\end{subfigure}
+	\caption{Comparativa entre los dos métodos de integración dt = 2}
 \end{figure}

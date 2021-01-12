@@ -14,7 +14,7 @@ S=90
 R=0
 dt=0.1
 tinic=0
-tfin=30
+tfin=60
 
 for i in $(seq 1 2); do
 
@@ -23,7 +23,7 @@ for i in $(seq 1 2); do
 
 	gnuplot salida.gp
 
-	mv ISR.png "../memoria/img/ISR_${i}.png"
+	mv ISR.png "../memoria/img/apartado2/ISR_${i}.png"
 
 	((S  = S + 100))
 done
@@ -41,7 +41,7 @@ for i in $(seq 3 4); do
 
 	gnuplot salida.gp
 
-	mv ISR.png "../memoria/img/ISR_${i}.png"
+	mv ISR.png "../memoria/img/apartado2/ISR_${i}.png"
 
 	((S  = S + 600))
 done
