@@ -6,14 +6,21 @@ El código del simulador se encuentra disponible en \textbf{src/simulador\_enfer
 
 \section{Tarea 2}
 
-En las siguientes figuras podemos apreciar como evoluciona la población en el tiempo dependiendo del numero inicial de elementos susceptibles ($S_0$).
+En las siguientes figuras podemos apreciar cómo evoluciona la población en el tiempo dependiendo del número inicial de elementos susceptibles ($S_0$).
 Para estas dos simulaciones se han establecido los parámetros a = 0.001 y b = 0.125, por tanto b/a = 125. El valor inicial de $I_0$ es 10 para ambos casos.
 
 Analicemos que ocurre cuando el valor de $S_0$ es superior o inferior a 125:
 
 En la figura 1.1.a, $S_0$ = 90, por lo que el sistema consta de 100 personas, de las que 10 están inicialmente infectadas y las 90 restantes son susceptibles a la enfermedad.
 
-Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I(t) tiene una pendiente negativa en la gráfica ---. De esta forma la enfermedad que simulamos no es capaz de infectar a un número significativo de la población
+Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I(t) tiene una pendiente negativa en la gráfica ---. De esta forma la enfermedad que simulamos no es capaz de infectar a un número significativo de la población de susceptibles (S).
+
+Sin embargo, en la figura 1.1.b, $S_0$ = 190. En este caso la población total del sistema consta de 200 personas, de las que 10 están inicialmente infectadas y las 190 restantes son susceptibles a la enfermedad.
+
+Podemos ver cómo la pendiente de I(t) es positiva, por lo que el número de infectados (I) aumenta hasta llegar a un punto de inflexión a partir del cual empieza a disminuir.
+
+Se aprecia que en el caso en el que el número de individuos susceptibles (S) es menor a b/a, el número de individuos retirados (R) nunca supera al número de susceptibles (S), mientras que en el caso en el que S es mayor que b/a, el número de retirados (R) si que supera al número de susceptibles (S) con el tiempo.
+
 
 \begin{figure}[H]
 	\centering
@@ -30,6 +37,18 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\end{subfigure}
 	\caption{Resultados para $S_0$ en relación a $a/b$}
 \end{figure}
+
+\newpage
+
+En la figura 1.2 se han cambiado los valores de a y b. Ahora a=0.001 y b=0.0.
+
+En el caso de la figura 1.2.a $I_0$ = 100 y $S_0$ = 400, por lo que la población total es de 500.
+
+En el caso de la figura 1.2.b, $I_0$ = 100 y $S_0$ = 600, por lo que la población del sistema es 700. Para esta nueva configuración b/a = 500.
+
+Cuando $S_0$ no supera b/a el número de individuos retirados (R) supera al número de individuos susceptibles (S) mucho antes que cuando $S_0$ supera a b/a.
+
+Finalmente podemos concluir que la relación entre $S_0$ y b/a influye en cómo crece la población retirada (R) y cómo decrece la población susceptible (S), así como el comportamiento de la curva de infectados I(t).
 
 
 \begin{figure}[H]
@@ -48,7 +67,13 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\caption{Resultados para $S_0$ en relación a $a/b$}
 \end{figure}
 
+\newpage
+
 \section{Tarea 3}
+
+Para apreciar la evolución del sistema, en la figura 1.3 podemos ver un gráfico en el que se muestra de forma acumulada, la evolución de la población en cada momento.
+
+Los parámetros utilizados para la simulación son a = 0.001, b = 0.0125.
 
 \begin{figure}[H]
 	\centering
@@ -59,6 +84,15 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\end{subfigure}
 	\caption{Evolución del sistema acumulada}
 \end{figure}
+
+La población inicial cuenta con un total de 1 individuo infectado ($I_0$) y 999 individuos susceptibles a la enfermedad ($S_0$). Como $S_0$ es mayor que b/a, podemos suponer que el número de individuos infectados crecerá con el tiempo hasta que, llegado a un punto de inflexión, comenzará a decrecer. Esto puede comprobarse con solo mirar la figura 1.3.
+
+Vemos como rápidamente, según aumenta la población infectada (I), el número de individuos susceptibles (S) se reduce, llegando un punto, pasados los 10 días de simulación, en el que en la población solo quedan individuos infectados (I) o individuos retirados (R), que ya han pasado la enfermedad o han muerto. Finalmente, la población de individuos infectados (I) llega a 0, lo que significa que toda la población ha padecido la enfermedad.
+
+\newpage
+
+En la siguiente figura 1.4, puede observarse la evolución del número de individuos susceptibles (S), respecto al número de individuos infectados (I).
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -69,7 +103,15 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\caption{Plano S-I}
 \end{figure}
 
+Vemos como según aumenta el número de infectados (I) disminuye el número de susceptibles (S), cosa que tiene sentido, ya que los individuos susceptibles se convierten en infectados. Además vemos como finalmente, el número de individuos infectados (I) también disminuye porque deja de haber individuos susceptibles (S) a los que infectar.
+
+\newpage
+
+\newpage
+
 \section{Tarea 4}
+En la figura 1.5 podemos ver la misma gráfica que en la figura 1.3 además de una gráfica de la evolución de la población sin acumular. Vemos que, como ya hemos demostrado, $S_0$ es muy superior a b/a, por lo que, el número de infectados (I) crece rápidamente para después descender, el número de susceptibles (S) disminuye drásticamente y el número de retirados (R) aumenta siguiendo la tendencia.
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -85,6 +127,14 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\end{subfigure}
 	\caption{Evolución del sistema con los parámetros por defecto}
 \end{figure}
+
+\newpage
+
+Sin embargo, para la siguiente figura 1.6, los parámetros a y b se han modificado. Supondremos que se han mejorado las técnicas para tratar la enfermedad y además se ha decretado un confinamiento en la población.
+
+Los nuevos valores son a = 0.0005 y b = 0.25. En cuanto a la evolución de la enfermedad en esta situación, vemos como $S_0$ ya no es tan superior a b/a, por lo que el número de infectados (I) no crece tan rápido. De hecho, vemos como el número de individuos susceptibles (S) crece lentamente y no llega a 0, por lo que existe una parte de la población inicial que no se contagia de la enfermedad.
+
+Por lo que, podríamos decir, que las medidas adoptadas para contener la enfermedad han sido acertadas.
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -101,7 +151,12 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\caption{Evolución del sistema disminuyendo a y aumentando b}
 \end{figure}
 
+\newpage
+
 \section{Tarea 5}
+
+Igualmente, por motivos de comparación, en la figura 1.7 vemos la evolución de la enfermedad con los parámetros estándar.
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -117,6 +172,15 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\end{subfigure}
 	\caption{Evolución del sistema con los parámetros por defecto}
 \end{figure}
+
+\newpage
+
+En la figura 1.8 se ha probado a aumentar el número inicial de individuos infectados ($I_0$) a 500, para comprobar como afecta esto a la evolución del sistema.
+
+Vemos como inicialmente el número de infectados (I) crece para después decrecer, con lo que el número de susceptibles (S) decae drásticamente.
+
+Lo que se consigue aumentando el número inicial de infectados es que adelantar el punto de inflexión de la curva de infecciones I(t), consiguiendo que en su máximo haya más infectados que si lo comparamos con la evolución del caso estándar.
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -132,6 +196,13 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\end{subfigure}
 	\caption{Evolución del sistema con el mismo número de infectados que susceptibles}
 \end{figure}
+
+\newpage
+
+En la figura 1.9, se ha modificado el número inicial de individuos retirados ($R_0$) a 500 para ver como afecta la inmunidad de rebaño.
+
+Vemos que este cambio consigue que la evolución de la curva de infectados I(t) sea más suave consiguiendo incluso que el número máximo de infectados sea mucho más bajo que en el caso estándar. Aun así, esta modificación no es suficiente para evitar que la totalidad de la población resulte infectada por la enfermedad.
+
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
@@ -148,7 +219,12 @@ Podemos apreciar como el número de infectados (I) se reduce con el tiempo --- I
 	\caption{Evolución del sistema con el mismo número de susceptibles que recuperados}
 \end{figure}
 
+\newpage
+
 \section{Tarea 6}
+En este apartado se ha intentado comparar los resultados aportados por la simulación utilizando el método de Runge-Kutta (Figuras 1.10.a 1.11.a 1.12.a y 1.13.a) con los resultados utilizando el método de Euler (Figuras 1.10.b 1.11.b 1.12.b y 1.13.b).
+
+Sin embargo, vemos como para los intervalos de cálculo 0.1, 0.05 y 0.001 (figs 1.10, 1.11, y 1.12), apenas hay diferencias apreciables entre los resultados aportados por ambos métodos. No es hasta que probamos con un intervalo de cálculo exagerado como dt = 2, que vemos que podemos apreciar los errores de calculo del método de Euler respecto al de Runge-Kutta.
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.8\textwidth}
