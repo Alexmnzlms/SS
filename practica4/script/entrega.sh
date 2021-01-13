@@ -2,7 +2,7 @@
 
 cd ../memoria
 make
-cp ./demo.pdf ../Memoria_Practica4_AlejandroManzanaresLemus.pdf
+cp ./memoria.pdf ../Memoria_Practica4_AlejandroManzanaresLemus.pdf
 cd ..
 
 mkdir codigo-fuente
