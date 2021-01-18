@@ -19,4 +19,4 @@ cp makefile codigo-fuente/makefile
 zip -r Practica4_AlejandroManzanaresLemus.zip codigo-fuente Memoria_Practica4_AlejandroManzanaresLemus.pdf
 
 rm -rf codigo-fuente
-rm Memoria_Practica4_AlejandroManzanaresLemus.pdf
+# rm Memoria_Practica4_AlejandroManzanaresLemus.pdf
