@@ -121,9 +121,9 @@ void Papel::simular(int n_sim){
 	demanda_insatisfecha_acumulado /= n_sim;
 
 	cout << "Numero de simulaciones: " << n_sim << endl;
-	cout << "Papel Rojo medio: " << cont_rojo_acumulado << endl;
-	cout << "Papel Verde medio: " << cont_verde_acumulado << endl;
-	cout << "Papel Rojo excedido: " << exceso_papel_rojo_acumulado << endl;
-	cout << "Papel Verde excedido: " << exceso_papel_verde_acumulado << endl;
-	cout << "Demanda insatisfecha: " << demanda_insatisfecha_acumulado << endl;
+	cout << "Kg de papel usado / dia (media): " << cont_rojo_acumulado << endl;
+	cout << "Kg de papel reciclado / dia (media): " << cont_verde_acumulado << endl;
+	cout << "Kg de papel usado excedido / año (media): " << exceso_papel_rojo_acumulado << endl;
+	cout << "Kg de papel reciclado excedido / año (media) : " << exceso_papel_verde_acumulado << endl;
+	cout << "Demanda de papel reciclado insatisfecha / año (media): " << demanda_insatisfecha_acumulado << endl;
 }
