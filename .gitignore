@@ -1,3 +1,4 @@
+teoria
 *.zip
 *.png
 !./practica1/memoria/img/cover.png
