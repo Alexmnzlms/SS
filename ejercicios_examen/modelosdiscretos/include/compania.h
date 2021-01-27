@@ -53,8 +53,19 @@ private:
 
 	bool primera_sim;
 
+	// Modificaciones
+	int mod;
+
+	//Mod 1
+	double vendido_mes;
+
+	//Mod 2
+	bool pedido_encargado;
+
+
+
 public:
-	Compania();
+	Compania(int m);
 	void simular(int simul);
 
 private:

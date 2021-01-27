@@ -9,7 +9,9 @@ bool compare(const suc &s1, const suc &s2){
 	return s1.tiempo < s2.tiempo;
 }
 
-Compania::Compania(){}
+Compania::Compania(int m){
+	mod = m;
+}
 
 double Compania::gendem(double media){
 	int seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -67,6 +69,10 @@ void Compania::inicializacion(){
 	acummenos = 0.0;
 	acumpedido = 0.0;
 
+	vendido_mes = 0.0;
+
+	pedido_encargado = false;
+
 	tabla_de_propabilidad();
 
 	while(!lsuc.empty()){
@@ -120,41 +126,105 @@ void Compania::suceso(){
 }
 
 void Compania::demanda(){
-	if(nivel > 0){
-		acummas += (reloj-tultsuc)*nivel;
-	} else {
-		acummenos += (reloj-tultsuc)*(-nivel);
+	if(mod == 0){
+		if(nivel > 0){
+			acummas += (reloj-tultsuc)*nivel;
+		} else {
+			acummenos += (reloj-tultsuc)*(-nivel);
+		}
+		tultsuc = reloj;
+		tam = genera_tamano();
+		nivel -= tam;
+		nodo.suceso = SUCESO_DEMANDA;
+		nodo.tiempo = reloj+gendem(0.1);
+		insertar_lsuc(nodo);
+
+	} else if (mod == 1){
+		if(nivel > 0){
+			acummas += (reloj-tultsuc)*nivel;
+		} else {
+			acummenos += (reloj-tultsuc)*(-nivel);
+		}
+		tultsuc = reloj;
+		tam = genera_tamano();
+		nivel -= tam;
+		vendido_mes += tam;
+		nodo.suceso = SUCESO_DEMANDA;
+		nodo.tiempo = reloj+gendem(0.1);
+		insertar_lsuc(nodo);
+
+	} else if(mod == 2){
+		if(nivel > 0){
+			acummas += (reloj-tultsuc)*nivel;
+		} else {
+			acummenos += (reloj-tultsuc)*(-nivel);
+		}
+		tultsuc = reloj;
+		tam = genera_tamano();
+		nivel -= tam;
+		if(nivel < spequena && !pedido_encargado){
+			pedido = sgrande - nivel;
+			acumpedido += K+i*pedido;
+			nodo.suceso = SUCESO_PEDIDO;
+			nodo.tiempo = reloj+genpedido(0.5, 1.0);
+			insertar_lsuc(nodo);
+			pedido_encargado = true;
+		}
+		nodo.suceso = SUCESO_DEMANDA;
+		nodo.tiempo = reloj+gendem(0.1);
+		insertar_lsuc(nodo);
 	}
-	tultsuc = reloj;
-	tam = genera_tamano();
-	nivel -= tam;
-	nodo.suceso = SUCESO_DEMANDA;
-	nodo.tiempo = reloj+gendem(0.1);
-	insertar_lsuc(nodo);
 }
 
 void Compania::evaluacion(){
-	if(nivel < spequena && pedido == 0){
-		pedido = sgrande - nivel;
+	if(mod == 0){
+		if(nivel < spequena && pedido == 0){
+			pedido = sgrande - nivel;
+			acumpedido += K+i*pedido;
+			nodo.suceso = SUCESO_PEDIDO;
+			nodo.tiempo = reloj+genpedido(0.5, 1.0);
+			insertar_lsuc(nodo);
+		}
+		nodo.suceso = SUCESO_EVAL;
+		nodo.tiempo = reloj+1.0;
+		insertar_lsuc(nodo);
+
+	} else if(mod == 1){
+		pedido = vendido_mes;
+		vendido_mes = 0;
 		acumpedido += K+i*pedido;
 		nodo.suceso = SUCESO_PEDIDO;
 		nodo.tiempo = reloj+genpedido(0.5, 1.0);
 		insertar_lsuc(nodo);
+		nodo.suceso = SUCESO_EVAL;
+		nodo.tiempo = reloj+1.0;
+		insertar_lsuc(nodo);
 	}
-	nodo.suceso = SUCESO_EVAL;
-	nodo.tiempo = reloj+1.0;
-	insertar_lsuc(nodo);
 }
 
 void Compania::llegapedido(){
-	if(nivel > 0){
-		acummas += (reloj-tultsuc)*nivel;
-	} else {
-		acummenos += (reloj-tultsuc)*(-nivel);
+	if(mod == 0 || mod == 1){
+		if(nivel > 0){
+			acummas += (reloj-tultsuc)*nivel;
+		} else {
+			acummenos += (reloj-tultsuc)*(-nivel);
+		}
+		tultsuc = reloj;
+		nivel += pedido;
+		pedido = 0;
+
+	} else if(mod == 2){
+		if(nivel > 0){
+			acummas += (reloj-tultsuc)*nivel;
+		} else {
+			acummenos += (reloj-tultsuc)*(-nivel);
+		}
+		tultsuc = reloj;
+		nivel += pedido;
+		pedido = 0;
+		pedido_encargado = false;
 	}
-	tultsuc = reloj;
-	nivel += pedido;
-	pedido = 0;
+
 }
 
 void Compania::fin_simulacion(){
@@ -184,6 +254,7 @@ void Compania::fin_simulacion(){
 void Compania::generador_informes(int simul){
 	double min_p = 0;
 	double min = (costes[0][0] / simul);
+	cout << "Modificacion: " << mod << endl;
 	cout << "Numero de simulaciones: " << simul << endl;
 	cout << "Politica Costo Total Costo de pedido Costo de mantenimiento Costo de deficit" << endl;
 	for(int i = 0; i < (int)costes.size(); i++){
