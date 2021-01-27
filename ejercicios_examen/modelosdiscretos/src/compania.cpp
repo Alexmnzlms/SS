@@ -233,12 +233,13 @@ void Compania::fin_simulacion(){
 
 	if(primera_sim){
 		costes.push_back(acum);
+		cout << "PRIMERA SIM" << endl;
 	} else {
 		int pos, i;
 		pos = i = 0;
 		bool encontrado = false;
 		for(auto it = ss.begin(); it != ss.end() && !encontrado; ++it){
-			if(it->first == sgrande && it->second == spequena){
+			if(it->first == spequena && it->second == sgrande){
 				pos = i;
 				encontrado = true;
 			}
@@ -248,6 +249,7 @@ void Compania::fin_simulacion(){
 			costes[pos][j] += acum[j];
 		}
 	}
+	generador_informes(1);
 
 }
 
