@@ -1,0 +1,57 @@
+\chapter{Montecarlo}
+
+\section{Ejecución de la simulación}
+
+El codigo del simulador de esta planta de reciclaje de papel se encuentra disponible en \textbf{src/papel.cpp} e \textbf{include/papel.h}
+
+Para la realización de este ejercicio, se han realizado 1000000 ejecuciones de la simulación, lo que en terminos del sistema implica que se ha simulado el comportamiento de esta planta de reciclaje de papel durante 1000000 años.
+
+Estos son los resultados obtenidos de dicha simulación:
+
+\begin{itemize}
+	\item \textbf{Numero de simulaciones}: 1000000
+	\item \textbf{Kg de papel usado / dia (media)}: 374.149\\
+		Este valor nos indica cuantos kilogramos de papel usado contenia el deposito rojo cada día.
+	\item \textbf{Kg de papel reciclado / dia (media)}: 59.7768\\
+		Este valor nos indica cuantos kilogramos de papel reciclado contenia el deposito verde cada día.
+	\item \textbf{Kg de papel usado excedido / año (media)}: 30.9376\\
+		Este valor nos indica cuantos kilogramos de papel usado se ha desperdiciado cada año debido a que el deposito rojo estaba lleno.
+	\item \textbf{Kg de papel reciclado excedido / año (media) }: 493.5\\
+		Este valor nos indica cuantos kilogramos de papel reciclado se ha desperdiciado cada año debido a que el deposito verde estaba lleno.
+	\item \textbf{Demanda de papel reciclado insatisfecha / año (media)}: 17088.8\\
+		Este valor nos indica cuantos kilogramos de papel reciclado no se ha podido vender debido a que la cantidad almacenada en el deposito verde era menor que la demanda.
+\end{itemize}
+
+Estos datos nos llevan a responder a las siguientes cuestiones:
+
+\subsection{Capacidad del deposito rojo}
+Como podemos ver, de media cada día el deposito rojo almacena un total de 374.149 kg. Esta cantidad es bastante inferior al limite de almacenamiento que posee. Además cada año, de media, sólo se desperdician 30.9376 kg de papel usado, lo que a mi parecer, es una cifra lo bastante baja, como para no necesitar una ampliación del deposito rojo.
+
+Por lo tanto, el deposito rojo es capaz de almacenar la cantidad de papel usado acumulada durante un año.
+
+\subsection{Capacidad del deposito verde}
+El caso del deposito verde es mucho más preocupante. Vemos que al dia, este deposito almacena de media unos 59.7768kg de papel reciclado. Este es un valor muy por debajo del limite de 300 kg que tiene el depósito verde. Aún así, podemos ver como cada año, de media, se desperdician 493.5 kg de papel reciclado que no se puede almacenar.
+Y lo que es aun peor, tampoco hay suficiente papel reciclado para satisfacer la demanda del mismo. De media, cada año no se pudo vender 17088.8 kg necesarios para cubrir la demanda de papel.
+
+Por lo que, el deposito verde no es lo suficientemente grande para alamacenar la cantidad de papel reciclado que se acumula cada año.
+
+\subsection{Demanda de papel reciclado}
+
+Para responder a la pregunta de si resulta necesario aumentar la capacidad de reciclado de la planta para satisfacer la demanda de papel reciclado, se ha hecho un estudio sobre qué rendimiento debería tener la planta de reciclaje para satisfacer esta demanda.
+
+De base, por cada 30 kg de papel usado, se obtiene 10 kg de papel reciclado. Ya ha quedado demostrado que este rendiemiento no es suficiente para satisfacer la demanda de papel reciclado.
+
+Por tanto, he probado ha aumentar 1 kg de papel reciclado extra obtenido por cada 3 kg de papel usado. Este ha sido el resultado:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{demanda.png}
+	\caption{Búsqueda del rendimiento óptimo}
+\end{figure}
+
+En la figura anterior, se observa como al duplicar el rendimiento de procesamiento de papel, se consigue satisfacer la demanda de papel reciclado casi en tu totalidad.
+
+Por tanto bastaria con obtener 1 kg extra de papel reciclado por cada 3kg de papel usado, es decir, obtener 2kg de papel reciclado por cada 3 kg de papel usado.
+
+Me gustaría recalcar el hecho, de que como el deposito verde no es lo suficientemente grande para contener toda la cantidad de papel reciclado que se acumula durante un año, el aumento del rendimiento en el procesado, provocaría que se desperdiciara una cantidad enorme de papel reciclado. Concretamente con el aumento antes descrito, se estarian desperdiciando aproximadamente 28000 kg de papel reciclado cada año de media.
+

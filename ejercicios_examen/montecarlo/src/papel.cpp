@@ -35,20 +35,17 @@ int Papel::generar_probabilidad(){
 	bool encontrado = false;
 	int prob = 0;
 	for(int i = 0; i < (int)probabilidad.size() && !encontrado; i++){
-		//cout << "P: " << u << ", " << probabilidad[i] << endl;
 		if ( u <= probabilidad[i] ){
 			prob = i;
 			encontrado = true;
 		}
 	}
-	//cout << "Probabilidad: " << u << ", " << prob << endl;
 	return prob;
 }
 
 void Papel::recibir_papel(){
 	int prob = generar_probabilidad();
 	int papel = (150 + prob*PUSADO);
-	//cout << "Se genera papel: " << papel << endl;
 	cont_rojo += papel;
 
 	if(cont_rojo > LIMITJ){
@@ -60,7 +57,6 @@ void Papel::recibir_papel(){
 void Papel::demanda_papel(){
 	int prob = generar_probabilidad();
 	int papel = (30 + prob*PVENDIDO);
-	//cout << "Se genera demanda: " << papel << endl;
 	if(papel > cont_verde){
 		cont_verde = 0;
 		demanda_insatisfecha += (papel - cont_verde);
