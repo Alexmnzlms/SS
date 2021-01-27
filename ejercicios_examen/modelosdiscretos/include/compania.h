@@ -25,8 +25,8 @@ private:
 	const int SUCESO_FIN_SIMULACION = 4;
 	const double K = 32;
 	const double i = 3;
-	const std::vector<double> S {20.0,40.0,60.0};
-	const std::vector<double> s {40.0,60.0,80.0,100.0};
+	const std::vector<double> s {0.0,20.0,40.0,60.0};
+	const std::vector<double> S {40.0,60.0,80.0,100.0};
 
 	double reloj;
 	double tparada;
@@ -51,9 +51,11 @@ private:
 	std::vector<std::pair<int,int>> ss;
 	std::vector<std::vector<double>> costes;
 
+	bool primera_sim;
+
 public:
 	Compania();
-	void simular();
+	void simular(int simul);
 
 private:
 	double gendem(double media);
@@ -69,7 +71,7 @@ private:
 	void evaluacion();
 	void llegapedido();
 	void fin_simulacion();
-	void generador_informes();
+	void generador_informes(int simul);
 };
 
 #endif

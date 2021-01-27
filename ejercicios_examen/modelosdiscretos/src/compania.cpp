@@ -89,6 +89,16 @@ void Compania::inicializacion(){
 	insertar_lsuc(nodo);
 
 	parar = false;
+
+	if(ss.empty()){
+		for(auto i = s.begin(); i != s.end(); ++i){
+			for(auto j = S.begin(); j != S.end(); ++j){
+				if( *i < *j ){
+					ss.push_back(make_pair(*i, *j));
+				}
+			}
+		}
+	}
 }
 
 void Compania::temporizacion(){
@@ -149,23 +159,41 @@ void Compania::llegapedido(){
 
 void Compania::fin_simulacion(){
 	parar = true;
-	ss.push_back(make_pair(sgrande,spequena));
 	vector<double> acum {(acumpedido + acummas + acummenos)/reloj, acumpedido/reloj, acummas/reloj, acummenos/reloj};
-	costes.push_back(acum);
+
+	if(primera_sim){
+		costes.push_back(acum);
+	} else {
+		int pos, i;
+		pos = i = 0;
+		bool encontrado = false;
+		for(auto it = ss.begin(); it != ss.end() && !encontrado; ++it){
+			if(it->first == sgrande && it->second == spequena){
+				pos = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		for(int j = 0; j < (int)acum.size(); j++){
+			costes[pos][j] += acum[j];
+		}
+	}
+
 }
 
-void Compania::generador_informes(){
+void Compania::generador_informes(int simul){
 	double min_p = 0;
-	double min = costes[0][0];
+	double min = (costes[0][0] / simul);
+	cout << "Numero de simulaciones: " << simul << endl;
 	cout << "Politica Costo Total Costo de pedido Costo de mantenimiento Costo de deficit" << endl;
 	for(int i = 0; i < (int)costes.size(); i++){
 		cout << "(" << ss[i].first << "," << ss[i].second << ")" << " ";
-		if(min > costes[i][0]){
+		if(min > (costes[i][0] / simul)){
 			min_p = i;
-			min = costes[i][0];
+			min = (costes[i][0] / simul);
 		}
 		for(int j = 0; j < (int)costes[i].size(); j++){
-			cout << costes[i][j] << " ";
+			cout << (costes[i][j] / simul) << " ";
 		}
 		cout << endl;
 	}
@@ -173,19 +201,25 @@ void Compania::generador_informes(){
 	cout << "El minimo: "<< min << " -> configuracion (" << ss[min_p].first << "," << ss[min_p].second << ")" << endl;
 }
 
-void Compania::simular(){
-	for(auto i = S.begin(); i != S.end(); ++i){
-		for(auto j = s.begin(); j != s.end(); ++j){
-			if( *i < *j ){
-				sgrande = *i;
-				spequena = *j;
-				inicializacion();
-				while(!parar){
-					temporizacion();
-					suceso();
+void Compania::simular(int simul){
+	primera_sim = true;
+	for(int sim = 0; sim < simul; sim++){
+		if(sim > 0 && primera_sim){
+			primera_sim = false;
+		}
+		for(auto i = s.begin(); i != s.end(); ++i){
+			for(auto j = S.begin(); j != S.end(); ++j){
+				if( *i < *j ){
+					spequena = *i;
+					sgrande = *j;
+					inicializacion();
+					while(!parar){
+						temporizacion();
+						suceso();
+					}
 				}
 			}
 		}
 	}
-	generador_informes(1);
+	generador_informes(simul);
 }
