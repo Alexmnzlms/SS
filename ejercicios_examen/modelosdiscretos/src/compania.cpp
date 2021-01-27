@@ -14,18 +14,17 @@ Compania::Compania(int m){
 }
 
 double Compania::gendem(double media){
-	int seed = std::chrono::system_clock::now().time_since_epoch().count();
- 	std::default_random_engine gen (seed);
- 	std::exponential_distribution<double> dist (media);
-
-	return dist(gen);
+	float u;
+	u = (float) random();
+	u = (float) (u/(RAND_MAX+1.0));
+	return(-media*log(1-u));
 }
 
 double Compania::genpedido(double min, double max){
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine gen (seed);
-	uniform_real_distribution<double> dist(min, max);
-	return dist(gen);
+	float u;
+	u = (float) random();
+	u = (float) (u/(RAND_MAX+1.0));
+	return(min+(max-min)*u);
 }
 
 void Compania::tabla_de_propabilidad(){
@@ -61,7 +60,7 @@ void Compania::inicializacion(){
 	reloj = 0.0;
 	tparada = 120.0;
 	tam = 0.0;
-	nivel = 0.0;
+	nivel = 60.0;
 	pedido = 0.0;
 	tultsuc = 0.0;
 
@@ -233,7 +232,6 @@ void Compania::fin_simulacion(){
 
 	if(primera_sim){
 		costes.push_back(acum);
-		cout << "PRIMERA SIM" << endl;
 	} else {
 		int pos, i;
 		pos = i = 0;
@@ -249,8 +247,6 @@ void Compania::fin_simulacion(){
 			costes[pos][j] += acum[j];
 		}
 	}
-	generador_informes(1);
-
 }
 
 void Compania::generador_informes(int simul){

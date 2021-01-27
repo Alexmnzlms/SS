@@ -7,10 +7,10 @@
 using namespace std;
 
 double uniforme(){
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine gen (seed);
-	uniform_real_distribution<double> dist(0.0,1.0);
-	return dist(gen);
+	int t = random();
+	double f = ((double)RAND_MAX+1.0);
+
+	return (double)t/f;
 }
 
 Papel::Papel(double r){
