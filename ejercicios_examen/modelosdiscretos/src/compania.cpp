@@ -272,9 +272,7 @@ void Compania::generador_informes(int simul){
 
 void Compania::simular(int simul){
 	primera_sim = true;
-	cout << "hola" << endl;
 	for(int sim = 0; sim < simul; sim++){
-		cout << sim << endl;
 		if(sim > 0 && primera_sim){
 			primera_sim = false;
 		}
