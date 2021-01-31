@@ -228,6 +228,8 @@ void Compania::llegapedido(){
 
 void Compania::fin_simulacion(){
 	parar = true;
+	acummas *= h;
+	acummenos *= pi;
 	vector<double> acum {(acumpedido + acummas + acummenos)/reloj, acumpedido/reloj, acummas/reloj, acummenos/reloj};
 
 	if(primera_sim){

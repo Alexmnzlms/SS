@@ -25,6 +25,8 @@ private:
 	const int SUCESO_FIN_SIMULACION = 4;
 	const double K = 32;
 	const double i = 3;
+	const double h = 1;
+	const double pi = 5;
 	const std::vector<double> s {0.0,20.0,40.0,60.0};
 	const std::vector<double> S {40.0,60.0,80.0,100.0};
 

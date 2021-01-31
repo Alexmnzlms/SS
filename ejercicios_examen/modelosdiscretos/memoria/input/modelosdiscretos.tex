@@ -1,4 +1,4 @@
-\chapter{Modelos discretos}
+políticapolítica\chapter{Modelos discretos}
 
 \section{Simulador base}
 El código del simulador de esta compañía esta disponible en \textbf{src/compania.cpp} e \textbf{include/compania.h}
@@ -115,24 +115,24 @@ Simulaciones realizadas: 100000
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \textbf{Política} & \textbf{Costo Total} & \textbf{Costo de pedido} & \textbf{Costo de mantenimiento} & \textbf{Costo de déficit} \\ \hline
-(0,40) & 104.232 & 87.9343 & 5.80992 & 10.488 \\
-(0,60) & 105.026 & 84.3331 & 12.9841 & 7.70838 \\
-(0,80) & 109.766 & 82.4005 & 21.2844 & 6.08128 \\
-(0,100) & 116.356 & 81.2058 & 30.1149 & 5.03571 \\
-(20,40) & 110.368 & 97.6004 & 9.12237 & 3.64483 \\
-(20,60) & 108.607 & 88.5082 & 17.5176 & 2.58156 \\
-(20,80) & 113.672 & 84.9072 & 26.8582 & 1.90621 \\
-(20,100) & 120.901 & 82.9457 & 36.4555 & 1.4997 \\
-(40,60) & 124.186 & 98.2922 & 25.5252 & 0.368201 \\
-(40,80) & 124.355 & 89.1253 & 34.9559 & 0.273466 \\
-(40,100) & 130.665 & 85.4697 & 44.9903 & 0.204556 \\
-(60,80) & 143.768 & 98.8523 & 44.9009 & 0.0144457 \\
-(60,100) & 144.116 & 89.6499 & 54.455 & 0.0107663 \\ \hline
+(0,40) & 146.184 & 87.9343 & 5.80992 & 52.4401 \\
+(0,60) & 135.859 & 84.3331 & 12.9841 & 38.5419 \\
+(0,80) & 134.091 & 82.4005 & 21.2844 & 30.4064 \\
+(0,100) & 136.499 & 81.2058 & 30.1149 & 25.1786 \\
+(20,40) & 124.947 & 97.6004 & 9.12237 & 18.2241 \\
+(20,60) & 118.934 & 88.5082 & 17.5176 & 12.9078 \\
+(20,80) & 121.297 & 84.9072 & 26.8582 & 9.53105 \\
+(20,100) & 126.9 & 82.9457 & 36.4555 & 7.4985 \\
+(40,60) & 125.658 & 98.2922 & 25.5252 & 1.841 \\
+(40,80) & 125.449 & 89.1253 & 34.9559 & 1.36733 \\
+(40,100) & 131.483 & 85.4697 & 44.9903 & 1.02278 \\
+(60,80) & 143.825 & 98.8523 & 44.9009 & 0.0722284 \\
+(60,100) & 144.159 & 89.6499 & 54.455 & 0.0538317 \\ \hline
 \end{tabular}%
 }
 \end{table}
 
-El mínimo es 104.232 y se obtiene para la configuración (0,40).
+El mínimo es 118.934 y se obtiene para la configuración (20,60).
 
 \section{Primera modificación}
 \subsection{Variables de interés}
@@ -194,24 +194,24 @@ Simulaciones realizadas: 100000
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \textbf{Política} & \textbf{Costo Total} & \textbf{Costo de pedido} & \textbf{Costo de mantenimiento} & \textbf{Costo de déficit} \\ \hline
-(0,40) & 135.105 & 105.974 & 29.0322 & 0.0990368 \\
-(0,60) & 135.114 & 105.988 & 29.027 & 0.0989829 \\
-(0,80) & 135.121 & 106.002 & 29.0191 & 0.0993632 \\
-(0,100) & 135.118 & 105.994 & 29.0242 & 0.0991591 \\
-(20,40) & 135.115 & 105.992 & 29.0239 & 0.0992819 \\
-(20,60) & 135.115 & 105.991 & 29.0245 & 0.0993882 \\
-(20,80) & 135.107 & 105.976 & 29.0317 & 0.0988683 \\
-(20,100) & 135.122 & 106.003 & 29.0191 & 0.0994772 \\
-(40,60) & 135.116 & 105.987 & 29.0295 & 0.0989866 \\
-(40,80) & 135.12 & 106.001 & 29.0199 & 0.0998262 \\
-(40,100) & 135.112 & 105.986 & 29.0272 & 0.0990688 \\
-(60,80) & 135.115 & 105.99 & 29.0259 & 0.0993546 \\
-(60,100) & 135.116 & 105.992 & 29.025 & 0.0990352 \\ \hline
+0,40) & 135.501 & 105.974 & 29.0322 & 0.495184 \\
+(0,60) & 135.51 & 105.988 & 29.027 & 0.494915 \\
+(0,80) & 135.518 & 106.002 & 29.0191 & 0.496816 \\
+(0,100) & 135.514 & 105.994 & 29.0242 & 0.495795 \\
+(20,40) & 135.512 & 105.992 & 29.0239 & 0.496409 \\
+(20,60) & 135.513 & 105.991 & 29.0245 & 0.496941 \\
+(20,80) & 135.502 & 105.976 & 29.0317 & 0.494341 \\
+(20,100) & 135.52 & 106.003 & 29.0191 & 0.497386 \\
+(40,60) & 135.512 & 105.987 & 29.0295 & 0.494933 \\
+(40,80) & 135.52 & 106.001 & 29.0199 & 0.499131 \\
+(40,100) & 135.508 & 105.986 & 29.0272 & 0.495344 \\
+(60,80) & 135.513 & 105.99 & 29.0259 & 0.496773 \\
+(60,100) & 135.513 & 105.992 & 29.025 & 0.495176 \\ \hline
 \end{tabular}%
 }
 \end{table}
 
-El	mínimo es 135.105	y se alcanza en la configuración (0,40).
+El	mínimo es 135.501	y se alcanza en la configuración (0,40).
 
 \newpage
 
@@ -278,41 +278,39 @@ Simulaciones realizadas: 100000
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \textbf{Política} & \textbf{Costo Total} & \textbf{Costo de pedido} & \textbf{Costo de mantenimiento} & \textbf{Costo de déficit} \\ \hline
-(0,40) & 105.342 & 92.8309 & 7.37193 & 5.13969 \\
-(0,60) & 106.048 & 87.0459 & 15.5264 & 3.47599 \\
-(0,80) & 111.337 & 84.2107 & 24.4896 & 2.63657 \\
-(0,100) & 118.516 & 82.5862 & 33.8031 & 2.12676 \\
-(20,40) & 119.046 & 106.049 & 11.5772 & 1.41913 \\
-(20,60) & 116.147 & 93.4654 & 22.2841 & 0.39756 \\
-(20,80) & 119.939 & 87.6403 & 32.0333 & 0.265872 \\
-(20,100) & 126.819 & 84.7803 & 41.8365 & 0.201937 \\
-(40,60) & 136.747 & 106.777 & 29.9181 & 0.0524362 \\
-(40,80) & 135.767 & 94.0802 & 41.6825 & 0.0045564 \\
-(40,100) & 139.847 & 88.2189 & 51.6256 & 0.00291496 \\
-(60,80) & 157.182 & 107.478 & 49.7034 & 0.000691493 \\
-(60,100) & 156.292 & 94.699 & 61.5931 & 5.76485e-06 \\ \hline
+(0,40) & 125.901 & 92.8309 & 7.37193 & 25.6985 \\
+(0,60) & 119.952 & 87.0459 & 15.5264 & 17.3799 \\
+(0,80) & 121.883 & 84.2107 & 24.4896 & 13.1828 \\
+(0,100) & 127.023 & 82.5862 & 33.8031 & 10.6338 \\
+(20,40) & 124.722 & 106.049 & 11.5772 & 7.09565 \\
+(20,60) & 117.737 & 93.4654 & 22.2841 & 1.9878 \\
+(20,80) & 121.003 & 87.6403 & 32.0333 & 1.32936 \\
+(20,100) & 127.627 & 84.7803 & 41.8365 & 1.00968 \\
+(40,60) & 136.957 & 106.777 & 29.9181 & 0.262181 \\
+(40,80) & 135.786 & 94.0802 & 41.6825 & 0.022782 \\
+(40,100) & 139.859 & 88.2189 & 51.6256 & 0.0145748 \\
+(60,80) & 157.185 & 107.478 & 49.7034 & 0.00345746 \\
+(60,100) & 156.292 & 94.699 & 61.5931 & 2.88242e-05 \\ \hline
 \end{tabular}%
 }
 \end{table}
 
-El	mínimo es 105.342 y se alcanza en la configuración (0,40).
+El	mínimo es 117.737 y se alcanza en la configuración (20,60).
 
 \newpage
 
 \section{Conclusión}
 
-Como se puede observar en los apartados correspondientes a los resultados de las simulaciones, todas ellas alcanzan el coste mínimo para la configuración (0,40).
+Como se puede observar en los apartados correspondientes a los resultados de las simulaciones, la versión base y la segunda versión alcanzan el mínimo en la configuración (20,60) mientras que la primera versión lo hace en la (0,40).
 Esto significa:
 \begin{itemize}
-	\item En la versión base, cada vez que se programa una evaluación, si el nivel del inventario es negativo, se hace un pedido de 40 más el déficit del inventario en el momento de la revisión.
-	\item No afecta a la primera modificación, puesto que depende de la demanda.
-	\item En la segunda modificación, implica que cada vez que el nivel del inventario es negativo (menor que 0), se hace un pedido de 40 más el déficit del producto, con esto se consigue que siempre haya como mínimo un stock de 41 unidades del producto.
+	\item En la versión base, cada vez que se programa una evaluación, si el nivel del inventario es inferior a 20, se hace un pedido de 60 menos el nivel de inventario actual (se suma si existe déficit de existencias).
+	\item La primera modificación depende de la demanda, no de la configuración.
+	\item En la segunda modificación, implica que cada vez que el nivel del inventario es inferior a 20, sin necesidad de una evaluación y siempre que no haya otro pedido en curso, se hace un pedido de 60 menos el nivel de inventario actual (se suma si existe déficit de existencias).
 \end{itemize}
 
-Vemos que la versión base como la segunda modificación son muy similares, siendo la única diferencia el momento en el que se realiza el pedido. En la versión base se hace un pedido mensual (si es necesario), mientras que en la segunda modificación siempre que se acabe el stock del producto, este es repuesto.
+Podemos descartar a la primera versión como una política que merezca la pena adoptar, puesto que es la que peores resultados aporta. No es conveniente dejarse llevar sólo por la demanda del mes anterior, sin realizar un análisis previo, a la hora de planificar las ventas del mes actual.
 
-Según los datos obtenidos, la versión base obtiene un coste total menor al que obtienen ambas modificaciones. Aunque queda muy claro que la primera modificación es la peor versión de las tres, la segunda obtiene unos resultados lo bastante buenos como para que se considere similar a la versión en función al coste total. Si nos fijamos en el coste de pedido, la versión base tiene menor coste de pedido y mayor coste de déficit, lo que es lógico, porque realiza menos pedidos.
+Por tanto, compararemos la versión base y la segunda versión. La diferencia entre estas versiones, no es más que el momento en el que se realiza un pedido. Para la versión base, cada vez se realiza una revisión del estado del inventario, se hace un pedido en consecuencia con el resultado de la evaluación. Sin embargo, la segunda versión no necesita esperar a realizar una evaluación y puede, de manera más dinámica, realizar un pedido siempre que el nivel de inventario rebaje un umbral de peligro (con la restricción de no poder hacer varios pedidos simultáneos).
 
-La primera modificación vemos como apenas genera coste por déficit, puesto que siempre pide una cantidad de producto razonable (basada en las ventas anteriores), pero si que obtiene un elevado coste de mantenimiento.
-
-En definitiva, ninguna de las dos modificaciones aporta resultados como para ser consideradas superiores a la versión base.
+Según los datos, la política más ventajosa es la que implementa la segunda versión, por lo que podemos inferir que una política  más dinámica es más favorable. Esto, si bien es cierto, es una afirmación un tanto pobre, ya que la mejora que obtiene la segunda versión respecto a la versión base es de 1.197€ de media en 100000 simulaciones. Esta diferencia es lo suficientemente pequeña como para no poder asegurar que en todos los casos, una política dinámica sea mejor que una política estática.
